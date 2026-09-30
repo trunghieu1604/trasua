@@ -477,8 +477,8 @@
 
     .danger {
       margin-top: 14px;
-      border: 2px solid var(--warn);
-      color: var(--warn);
+      border: 2px solid #f4f4f4;
+      color: #f4f4f4;
       background: transparent;
       border-radius: 12px;
       padding: 8px 14px;
@@ -3947,7 +3947,7 @@
       bottom: 0;
       width: 0;
       border-radius: 24px;
-      background: #4a3526
+      background: var(--pink)
     }
 
     .sp4-bar span {
@@ -5142,7 +5142,7 @@
       { n: 'Karik', t: 'Rapper Việt Nam · Rap Việt', l: 'vn', m: 1, f: 3 }, { n: 'Suboi', t: 'Rapper Việt Nam · Queen of Rap', l: 'vn', m: 0, f: 2 },
       { n: 'B-Ray', t: 'Rapper Việt Nam · Underdogs', l: 'vn', m: 1, f: 6 }, { n: 'JustaTee', t: 'Rapper Việt Nam · SpaceSpeakers', l: 'vn', m: 1, f: 7 },
       { n: 'MCK', t: 'Rapper Việt Nam · RPT', l: 'vn', m: 1, f: 1 }, { n: 'tlinh', t: 'Rapper Việt Nam · GenZ Star', l: 'vn', m: 0, f: 4 },
-      { n: 'TRUNG HIẾU', t: 'ADMINISTRATOR· BÁ CHỦ', l: 'vn', m: 1, f: 0 }, { n: 'HIEUTHUHAI', t: 'Rapper Việt Nam · GERDNANG', l: 'vn', m: 1, f: 6 }, { n: 'LƯỢNG NGUYỄN', t: 'VIP MEMBER', l: 'vn', m: 1, f: 0 }];
+      { n: 'TRUNG HIẾU', t: 'ADMINISTRATOR· TRÙM GAME', l: 'vn', m: 1, f: 0 }, { n: 'HIEUTHUHAI', t: 'Rapper Việt Nam · GERDNANG', l: 'vn', m: 1, f: 6 }, { n: 'LƯỢNG NGUYỄN', t: 'VIP MEMBER', l: 'vn', m: 1, f: 0 }];
     const starLine = (st, kind) => {
       if (st && st.n && st.n.includes('TRUNG HIẾU')) {
         if (kind === 'hi') return ['Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!', 'Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!'];
@@ -7554,7 +7554,7 @@
     }
     function passDlg(msg) {
       $('card').onchange = null;
-      $('card').innerHTML = `<h2>${ico('book')} Nhập Mật Khẩu Admin</h2><p>Nhập mật khẩu Admin để bật Menu Mod:</p>
+      $('card').innerHTML = `<h2>🔑Nhập Mật Khẩu Admin🔑</h2><p>Menu Mod</p>
     ${msg ? `<p class="warnline"><b>${esc(msg)}</b></p>` : ''}
     <input type="password" id="modPassInp" class="rpin" placeholder="Nhập mật khẩu (4 số)…" style="font-size:16px!important;text-align:center;letter-spacing:4px" autofocus>
     <div class="askbtns"><button class="big" id="modPassGo">Xác nhận</button><button class="sbtn ghost" id="modPassBack">Quay lại</button></div>`;
