@@ -1,4 +1,4 @@
-/* ========== TIỆM TRÀ SỮA - HACK MOD MENU========== */
+/* ========== TIỆM TRÀ SỮA - HACK MOD MENU v2.2 ========== */
 
 (function () {
   'use strict';
@@ -18,13 +18,12 @@
     superstarMode: false,
     zeroBills: false,
     zeroTax: false,
-    keepAwake: true
+    keepAwake: false
   };
 
   let config = { ...defaultConfig };
   try {
-    const saved = localStorage.getItem(MOD_STORAGE_KEY);
-    if (saved) config = { ...config, ...JSON.parse(saved) };
+    localStorage.removeItem(MOD_STORAGE_KEY);
   } catch (e) {}
 
   window.modConfig = config;
@@ -32,7 +31,7 @@
 
   function saveConfig() {
     try {
-      localStorage.setItem(MOD_STORAGE_KEY, JSON.stringify(config));
+      localStorage.removeItem(MOD_STORAGE_KEY);
     } catch (e) {}
     applyDynamicMods();
   }
@@ -200,20 +199,25 @@
         S.upg.robot = true;
         S.upg.staffOn = true;
       }
+    } else {
+      const S = getS();
+      if (S && S.upg && S.upg.robot) {
+        S.upg.robot = false;
+      }
     }
-    if (config.keepAwake !== false && typeof window.requestWakeLock === 'function') {
+    if (config.keepAwake && typeof window.requestWakeLock === 'function') {
       window.requestWakeLock();
     }
   }
 
+  let _modMenuSessionVisible = false;
+
   window.isModMenuVisible = function() {
-    return localStorage.getItem('tts_mod_visible') === 'true';
+    return _modMenuSessionVisible === true;
   };
 
   window.setModMenuVisible = function(visible) {
-    try {
-      localStorage.setItem('tts_mod_visible', visible ? 'true' : 'false');
-    } catch(e) {}
+    _modMenuSessionVisible = !!visible;
     const fab = document.getElementById('tts-fab-btn');
     const modal = document.getElementById('tts-mod-modal');
     if (fab) fab.style.display = visible ? '' : 'none';
@@ -235,11 +239,10 @@
     const fab = document.createElement('div');
     fab.id = 'tts-fab-btn';
     fab.innerHTML = '🌟️';
-    fab.title = 'MENU';
+    fab.title = 'MENU v2.2';
 
-    if (localStorage.getItem('tts_mod_visible') !== 'true') {
-      fab.style.display = 'none';
-    }
+    // Mặc định luôn TẮT khi tải lại trang
+    fab.style.display = 'none';
 
     try {
       const savedPos = JSON.parse(localStorage.getItem(POS_STORAGE_KEY));
@@ -597,10 +600,16 @@
         modToast('Lỗi: Chưa kết nối được Memory Game!', 'warn');
         return;
       }
-      S.money = (Number(S.money) || 0) + Number(amount);
-      S.totalRev = (Number(S.totalRev) || 0) + Number(amount);
-      S.totalProfit = (Number(S.totalProfit) || 0) + Number(amount);
-      commitState(`💰 Đã cộng +${amount.toLocaleString('vi-VN')}đ vào két! (Két: ${S.money.toLocaleString('vi-VN')}đ)`);
+      const numAmount = Number(amount) || 0;
+      if (typeof window.checkMoneyAbnormal === 'function' && window.checkMoneyAbnormal(numAmount)) {
+        modToast('🚨 Phát hiện tiền bất chính! Đã bị tịch thu toàn bộ.', 'warn');
+        commitState();
+        return;
+      }
+      S.money = (Number(S.money) || 0) + numAmount;
+      S.totalRev = (Number(S.totalRev) || 0) + numAmount;
+      S.totalProfit = (Number(S.totalProfit) || 0) + numAmount;
+      commitState(`💰 Đã cộng +${numAmount.toLocaleString('vi-VN')}đ vào két! (Két: ${S.money.toLocaleString('vi-VN')}đ)`);
     };
 
     document.getElementById('btn-add-10m').onclick = () => addCash(10000000);
@@ -612,6 +621,15 @@
       if (isNaN(val) || val < 0) return modToast('Số tiền không hợp lệ!', 'warn');
       const S = getS();
       if (!S) return modToast('Lỗi kết nối Game State!', 'warn');
+      const currentMoney = Number(S.money) || 0;
+      const diff = val - currentMoney;
+      if (typeof window.checkMoneyAbnormal === 'function' && (val >= 100000000 || diff >= 100000000)) {
+        if (window.checkMoneyAbnormal(val >= 100000000 ? val : diff)) {
+          modToast('🚨 Phát hiện tiền bất chính! Đã bị tịch thu toàn bộ.', 'warn');
+          commitState();
+          return;
+        }
+      }
       S.money = val;
       commitState(`💰 Đã đặt két thành: ${val.toLocaleString('vi-VN')}đ`);
     };
