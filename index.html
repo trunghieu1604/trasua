@@ -478,7 +478,7 @@
     .danger {
       margin-top: 14px;
       border: 2px solid #f4f4f4;
-      color: #f4f4f4;
+      color: #faff1c;
       background: transparent;
       border-radius: 12px;
       padding: 8px 14px;
@@ -2268,8 +2268,8 @@
     }
 
     .big.blocked {
-      background: var(--warn);
-      box-shadow: 0 4px 0 #a83a31
+      background: var(pink);
+      box-shadow: 0 4px 0 #f7527b
     }
 
     .lowstar {
@@ -5187,11 +5187,10 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.3';
+    const GAME_VERSION = '2.2';
     const CHANGELOG = [
-	  { v: '2.3', d: '30/09/2026', items: ['Fix bug','Fix màu']},
-	  { v: '2.2', d: '29/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
-	  { v: '2.1', d: '28/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
+	  { v: '2.2', d: '30/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
+	  { v: '2.1', d: '29/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
       { v: '2.0', d: '28/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
       { v: '1.0', d: '27/09/2026', items: ['Khai Trương Tiệm Trà Sữa.'] },
     ];
@@ -5639,7 +5638,7 @@
     const level = () => levelOf(S.day);
     const LV_TXT = { 1: 'Khách gọi size, loại trà và 1 topping', 2: 'Khách chọn thêm mức đường và đá', 3: 'Khách có thể mua 2–5 ly một lần, mỗi ly tới 4 topping' };
     /* app giao hàng: hiện chỉ có Baemin, mở theo điều kiện đơn online, cần 1 tablet */
-    const APPS = [{ id: 'sp', n: 'Baemin', c: '#f08a4b', w: 20, rows: [0, 1] }];
+    const APPS = [{ id: 'sp', n: 'Baemin', c: '#2ae53a', w: 20, rows: [0, 1] }];
     const appJoined = a => a.id === 'sp' ? !!S.online : !!(S.apps || {})[a.id];
     const appMinRate = a => a.id === 'sp' ? CFG.online.minRating : a.rate;
     /* app đang nhận đơn: đã mở, có tablet, đủ sao */
