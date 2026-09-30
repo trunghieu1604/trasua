@@ -1,4 +1,4 @@
-/* ========== TIỆM TRÀ SỮA - HACK MOD MENU v2.2 ========== */
+/* ========== TIỆM TRÀ SỮA - HACK MOD MENU========== */
 
 (function () {
   'use strict';
@@ -239,7 +239,7 @@
     const fab = document.createElement('div');
     fab.id = 'tts-fab-btn';
     fab.innerHTML = '🌟️';
-    fab.title = 'MENU v2.2';
+    fab.title = 'MENU MOD';
 
     // Mặc định luôn TẮT khi tải lại trang
     fab.style.display = 'none';
