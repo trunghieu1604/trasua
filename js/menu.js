@@ -261,7 +261,7 @@
         <div class="tts-mod-header">
           <div class="tts-mod-title">
             <span>🌟</span>
-            <span>TRUNGHIEU MENU v2.1.1</span>
+            <span>TRUNGHIEU MENU</span>
           </div>
           <button class="tts-mod-close" id="tts-close-btn">&times;</button>
         </div>
