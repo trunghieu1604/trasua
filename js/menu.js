@@ -906,7 +906,7 @@
     const updateSuperstarBtn = () => {
       const btn = document.getElementById('btn-ev-superstars');
       if (!btn) return;
-      btn.innerText = `🌟 Bão Siêu Sao (${config.superstarMode ? 'BẬT' : 'TẮT'})`;
+      btn.innerText = `🌟 IDOL (${config.superstarMode ? 'BẬT' : 'TẮT'})`;
       btn.className = 'tts-act-btn ' + (config.superstarMode ? 'success' : 'pri');
     };
 
@@ -919,8 +919,8 @@
         updateSuperstarBtn();
         modToast(
           config.superstarMode
-            ? '🌟 Đã BẬT Bão Siêu Sao ghé thăm quán liên tục!'
-            : '🔴 Đã TẮT Bão Siêu Sao!',
+            ? '🌟 Đã BẬT IDOL ghé thăm quán liên tục!'
+            : '🔴 Đã TẮT IDOL Siêu Sao!',
           config.superstarMode ? 'success' : 'warn'
         );
       };
@@ -940,7 +940,7 @@
     });
   }
 
-  // Bão Siêu Sao ghé thăm liên tục khi bật superstarMode
+  // IDOL ghé thăm liên tục khi bật superstarMode
   setInterval(() => {
     if (config.superstarMode) {
       const R = getR();
