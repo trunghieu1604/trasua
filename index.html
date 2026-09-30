@@ -5189,7 +5189,7 @@
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
     const GAME_VERSION = '2.2';
     const CHANGELOG = [
-	  { v: '2.2', d: '30/09/2026', items: ['Cơ chế AntiCheat, chống gian lận tiền bất chính'] },
+	  { v: '2.2', d: '30/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
 	  { v: '2.1', d: '29/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
       { v: '2.0', d: '28/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
       { v: '1.0', d: '27/09/2026', items: ['Khai Trương Tiệm Trà Sữa.'] },
@@ -7641,7 +7641,8 @@
       const canFullscreen = !isIOS && !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
 
       const fsBtnHtml = (!isStandalone && canFullscreen) ? `<button class="setb" id="sFullscreen"><span>${ico('set')}</span>Full màn hình<small>${isFs ? 'Đang bật · bấm để tắt' : 'Đang tắt · bấm để bật'}</small></button>` : '';
-      const installBtnHtml = !isStandalone ? `<button class="setb" id="sInstallApp"><span>${ico('box')}</span>Cài Đặt Game<small>Cài Game lên điện thoại</small></button>` : '';
+      const installBtnHtml = !isStandalone ? `<button class="setb" id="sInstallApp"><span>${ico('box')}</span>Cài Đặt Game<small>Cài PWA Native App cho điện thoại</small></button>` : '';
+
       $('card').innerHTML = `<h2 id="sTitle" style="cursor:pointer;user-select:none">${ico('set')} Cài đặt</h2><div class="setl">
     ${fsBtnHtml}
     ${installBtnHtml}
@@ -7657,8 +7658,40 @@
     <button class="setb" id="sRes"><span>${ico('reload')}</span>Khôi phục từ mã</button>
     <button class="setb warnb" id="sReset"><span>${ico('reload')}</span>Chơi lại từ đầu</button></div>
     <button class="big" id="sClose" style="margin-top:12px">Đóng</button>`;
+
       $('modal').hidden = false;
-      $('sClose').onclick = () => { $('modal').hidden = true };
+
+      const handlers = {
+        sClose: () => { $('modal').hidden = true; },
+        sFullscreen: () => {
+          if (document.fullscreenElement || document.webkitFullscreenElement) {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+          } else {
+            const el = document.documentElement;
+            if (el.requestFullscreen) el.requestFullscreen();
+            else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          }
+          setTimeout(showSettings, 150);
+        },
+        sInstallApp: installAppDlg,
+        sNews: () => showNews(false),
+        sTheme: themeDlg,
+        sLen: () => { const L = [4, 5, 6], c = S.dayLen || CFG.dayMin; S.dayLen = L[(L.indexOf(c) + 1) % L.length]; save(); toast('Mỗi ngày bán ' + S.dayLen + ' phút, khách tới nhiều hơn theo thời gian'); showSettings(); },
+        sMus: () => { AU.mus = !AU.mus; saveAu(); au(); musSync(); showSettings(); },
+        sSea: () => { const L = [null, 'thu', 'dong', 'xuan', 'he']; AU.season = L[(L.indexOf(AU.season || null) + 1) % L.length]; saveAu(); MUS.step = 0; au(); musSync(); showSettings(); },
+        sSnd: () => { AU.on = !AU.on; saveAu(); showSettings(); },
+        sCoach: () => { S.coach = S.coach == null ? true : S.coach === true ? false : undefined; if (S.coach === undefined) delete S.coach; save(); showSettings(); },
+        sBak: backupDlg,
+        sAuto: autoRestoreDlg,
+        sRes: () => restoreDlg(),
+        sReset: () => ask('<div class="pbig">' + ico('reload') + '</div><h2>Chơi lại từ đầu?</h2>', [['Huỷ', showSettings], ['Xoá và chơi lại', () => { const n = S.shopName; S = fresh(); S.shopName = n; save(); R.tab = 'kho'; renderPrep() }, 1]])
+      };
+
+      Object.keys(handlers).forEach(id => {
+        const el = $(id);
+        if (el) el.onclick = handlers[id];
+      });
 
       let sTitleTaps = 0, sTitleTimer = null;
       const sTitle = $('sTitle');
@@ -7673,31 +7706,6 @@
           }
         };
       }
-
-      const sFs = $('sFullscreen');
-      if (sFs) {
-        sFs.onclick = () => {
-          if (document.fullscreenElement || document.webkitFullscreenElement) {
-            if (document.exitFullscreen) document.exitFullscreen();
-            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-          } else {
-            const el = document.documentElement;
-            if (el.requestFullscreen) el.requestFullscreen();
-            else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
-          }
-          setTimeout(showSettings, 150);
-        };
-      }
-      $('sInstallApp').onclick = installAppDlg;
-      $('sNews').onclick = () => showNews(false);
-      $('sTheme').onclick = themeDlg;
-      $('sLen').onclick = () => { const L = [4, 5, 6], c = S.dayLen || CFG.dayMin; S.dayLen = L[(L.indexOf(c) + 1) % L.length]; save(); toast('Mỗi ngày bán ' + S.dayLen + ' phút, khách tới nhiều hơn theo thời gian'); showSettings() };
-      $('sMus').onclick = () => { AU.mus = !AU.mus; saveAu(); au(); musSync(); showSettings() };
-      $('sSea').onclick = () => { const L = [null, 'thu', 'dong', 'xuan', 'he']; AU.season = L[(L.indexOf(AU.season || null) + 1) % L.length]; saveAu(); MUS.step = 0; au(); musSync(); showSettings() };
-      $('sSnd').onclick = () => { AU.on = !AU.on; saveAu(); showSettings() };
-      $('sCoach').onclick = () => { S.coach = S.coach == null ? true : S.coach === true ? false : undefined; if (S.coach === undefined) delete S.coach; save(); showSettings() };
-      $('sBak').onclick = backupDlg; $('sAuto').onclick = autoRestoreDlg; $('sRes').onclick = () => restoreDlg();
-      $('sReset').onclick = () => ask('<div class="pbig">' + ico('reload') + '</div><h2>Chơi lại từ đầu?</h2>', [['Huỷ', showSettings], ['Xoá và chơi lại', () => { const n = S.shopName; S = fresh(); S.shopName = n; save(); R.tab = 'kho'; renderPrep() }, 1]]);
     }
 
     /* ---------- BOOT ---------- */
