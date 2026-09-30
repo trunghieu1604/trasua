@@ -390,15 +390,15 @@
           <div class="tts-mod-pane" id="pane-unlock">
             <div class="tts-sec-box">
               <div class="tts-sec-title">⭐ Mở Khóa Siêu Tốc</div>
-              <button class="tts-act-btn success full-w" id="btn-unlock-all">🌟 SIÊU MỞ KHÓA TẤT CẢ (100%)</button>
+              <button class="tts-act-btn success full-w" id="btn-unlock-all">🌟 TẤT CẢ (100%)</button>
               
               <div class="tts-btn-grid">
-                <button class="tts-act-btn pri" id="btn-unlock-bases">🌟 Mở Toàn Bộ Cốt Trà</button>
-                <button class="tts-act-btn pri" id="btn-unlock-flavs">🍓 Mở Toàn Bộ Hương Vị</button>
-                <button class="tts-act-btn pri" id="btn-unlock-tops">🧀 Mở Toàn Bộ Topping</button>
-                <button class="tts-act-btn pri" id="btn-unlock-upg">⚙️ Mở Tất Cả Máy Móc</button>
-                <button class="tts-act-btn pri" id="btn-unlock-staff">👥 Thuê Full Nhân Viên</button>
-                <button class="tts-act-btn pri" id="btn-unlock-brand">🏷️ Mở Tem Brand & Online</button>
+                <button class="tts-act-btn pri" id="btn-unlock-bases">🌟 Cốt Trà</button>
+                <button class="tts-act-btn pri" id="btn-unlock-flavs">🍓 Hương Vị</button>
+                <button class="tts-act-btn pri" id="btn-unlock-tops">🧀 Topping</button>
+                <button class="tts-act-btn pri" id="btn-unlock-upg">⚙️ Máy Móc</button>
+                <button class="tts-act-btn pri" id="btn-unlock-staff">👥 Nhân Viên</button>
+                <button class="tts-act-btn pri" id="btn-unlock-brand">🏷️ Brand & Online</button>
               </div>
             </div>
           </div>
