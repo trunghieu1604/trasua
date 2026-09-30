@@ -457,7 +457,7 @@
 
         <!-- Footer -->
         <div class="tts-mod-footer">
-          <span class="tts-status-tag">● Trạng thái: Đã Sẵn Sàng - MenuMod tạo bởi Trung Hiếu</span>
+          <span class="tts-status-tag">MenuMod tạo bởi Trung Hiếu</span>
         </div>
       </div>
     `;
