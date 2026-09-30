@@ -754,8 +754,8 @@ const STARS=[
   {n:'TRUNG HIẾU',t:'ADMINISTRATOR· BÁ CHỦ',l:'vn',m:1,f:0},{n:'HIEUTHUHAI',t:'Rapper Việt Nam · GERDNANG',l:'vn',m:1,f:6}];
 const starLine=(st,kind)=>{
   if(st&&st.n&&st.n.includes('TRUNG HIẾU')){
-    if(kind==='hi')return ['Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!'];
-    if(kind==='rv')return ['Admin ghé thăm quán, trà sữa ngon tuyệt cú mèo! 🌟👑'];
+    if(kind==='hi')return ['Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!','Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!'];
+    if(kind==='rv')return ['Admin ghé thăm quán, trà sữa ngon tuyệt cú mèo! 🌟👑','Admin ghé thăm quán, trà sữa ngon tuyệt cú mèo! 🌟👑'];
   }
   const x=rnd(STAR_TXT[st.l][kind]);return [x[0].replace('{p}',st.m?'ครับ':'ค่ะ'),x[1]]
 };
