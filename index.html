@@ -5188,10 +5188,11 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.2';
+    const GAME_VERSION = '2.3';
     const CHANGELOG = [
-	  { v: '2.2', d: '30/09/2026', items: ['Nâng cấp AntiCheat, chống gian lận tiền bất chính'] },
-	  { v: '2.1', d: '29/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
+	  { v: '2.3', d: '30/09/2026', items: ['Cơ chế AntiCheat, chống gian lận tiền bất chính'] },
+	  { v: '2.2', d: '29/09/2026', items: ['Sửa cơ chế phóng to màn trên iOS','Sửa nút bấm cài đặt game nhưng không cài đặt'] },
+	  { v: '2.1', d: '28/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
       { v: '2.0', d: '27/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
       { v: '1.0', d: '26/09/2026', items: ['Khai Trương Tiệm Trà Sữa.'] },
     ];
@@ -7588,10 +7589,22 @@
     });
 
     window.addEventListener('appinstalled', () => {
+      try { localStorage.setItem('tts_pwa_installed', '1'); } catch (e) {}
       deferredInstallPrompt = null;
       window.deferredInstallPrompt = null;
       if (typeof toast === 'function') toast('🎉 Đã cài đặt Tiệm Trà Sữa làm Native App!');
     });
+
+    function isAppStandalone() {
+      try {
+        if (window.navigator.standalone === true) return true;
+        if (window.matchMedia('(display-mode: standalone)').matches) return true;
+        if (window.matchMedia('(display-mode: fullscreen)').matches) return true;
+        if (document.referrer && document.referrer.includes('android-app://')) return true;
+        if (localStorage.getItem('tts_pwa_installed') === '1') return true;
+      } catch (e) {}
+      return false;
+    }
 
     function installAppDlg() {
       const promptEvt = deferredInstallPrompt || window.deferredInstallPrompt;
@@ -7599,24 +7612,43 @@
         promptEvt.prompt();
         promptEvt.userChoice.then((res) => {
           if (res && res.outcome === 'accepted') {
+            try { localStorage.setItem('tts_pwa_installed', '1'); } catch (e) {}
             if (typeof toast === 'function') toast('🎉 Đã chấp nhận cài đặt App!');
           }
           deferredInstallPrompt = null;
           window.deferredInstallPrompt = null;
         });
-      } else if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
-        if (typeof toast === 'function') toast('📱 Game đã chạy dưới dạng App Native!');
-      } else {
-        if (typeof toast === 'function') toast('📲 Đã gửi yêu cầu cài đặt PWA tới trình duyệt!');
+        return;
       }
+
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const guideHtml = isIOS ? `
+        <div class="lvs" style="text-align:left;margin:10px 0;background:rgba(0,0,0,0.03);padding:10px;border-radius:8px">
+          <div><b>1.</b> Chạm biểu tượng <b>Chia sẻ ⎋</b> (hình ô vuông có mũi tên hướng lên) ở thanh Safari.</div>
+          <div><b>2.</b> Cuộn xuống chọn <b>"Thêm vào Màn hình chính" ➕</b> (Add to Home Screen).</div>
+          <div><b>3.</b> Bấm <b>"Thêm"</b> ở góc phải trên cùng để hoàn tất cài đặt Native App.</div>
+        </div>` : `
+        <div class="lvs" style="text-align:left;margin:10px 0;background:rgba(0,0,0,0.03);padding:10px;border-radius:8px">
+          <div><b>1.</b> Chạm biểu tượng <b>Menu (⋮) 3 chấm</b> ở góc phải trình duyệt.</div>
+          <div><b>2.</b> Chọn <b>"Cài đặt ứng dụng"</b> hoặc <b>"Thêm vào Màn hình chính"</b>.</div>
+          <div><b>3.</b> Chọn <b>"Cài đặt"</b> để tạo biểu tượng App Native trên màn hình điện thoại.</div>
+        </div>`;
+
+      ask(`<div class="pbig">${ico('box')}</div><h2>📱 Cài Đặt Game </h2><p>Cài game ra màn hình chính điện thoại</p>${guideHtml}`, [['Đã hiểu', showSettings, 1]]);
     }
 
     function showSettings() {
       $('card').onchange = null;
       const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
-      $('card').innerHTML = `<h2 id="sTitle" style="cursor:pointer;user-select:none" title="Chạm 5 lần để mở Mod Menu">${ico('set')} Cài đặt</h2><div class="setl">
-    <button class="setb" id="sFullscreen"><span>${ico('set')}</span>Full màn hình<small>${isFs ? 'Đang bật · bấm để tắt' : 'Đang tắt · bấm để bật'}</small></button>
-    <button class="setb" id="sInstallApp"><span>${ico('set')}</span>Cài Đặt Game<small>Cài Game cho điện thoại</small></button>
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      const isStandalone = isAppStandalone();
+      const canFullscreen = !isIOS && !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
+
+      const fsBtnHtml = (!isStandalone && canFullscreen) ? `<button class="setb" id="sFullscreen"><span>${ico('set')}</span>Full màn hình<small>${isFs ? 'Đang bật · bấm để tắt' : 'Đang tắt · bấm để bật'}</small></button>` : '';
+      const installBtnHtml = !isStandalone ? `<button class="setb" id="sInstallApp"><span>${ico('box')}</span>Cài Đặt Game<small>Cài Game lên điện thoại</small></button>` : '';
+      $('card').innerHTML = `<h2 id="sTitle" style="cursor:pointer;user-select:none" title="Menu Ẩn">${ico('set')} Cài đặt</h2><div class="setl">
+    ${fsBtnHtml}
+    ${installBtnHtml}
     <button class="setb" id="sNews"><span>${ico('gift')}</span>Thông tin phiên bản<small>v${GAME_VERSION}</small></button>
     <button class="setb" id="sCoach"><span>${ico('book')}</span>Chỉ dẫn từng bước<small>${S.coach === true ? 'Luôn bật' : S.coach === false ? 'Tắt' : 'Tự động'}</small></button>
     <button class="setb" id="sLen"><span>${ico('clock')}</span>Thời gian bán mỗi ngày<small>${S.dayLen || CFG.dayMin} phút${R.running ? ' · áp dụng từ ngày sau' : ''}</small></button>
