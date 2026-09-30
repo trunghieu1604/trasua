@@ -434,7 +434,7 @@
                   <div class="tts-toggle-desc">Tự động kích hoạt Screen Wake Lock API để giữ điện thoại/App luôn sáng khi treo game.</div>
                 </div>
                 <label class="tts-switch">
-                  <input type="checkbox" id="mod-keepAwake" ${config.keepAwake !== false ? 'checked' : ''}>
+                  <input type="checkbox" id="mod-keepAwake" ${config.keepAwake !== true ? 'checked' : ''}>
                   <span class="tts-slider"></span>
                 </label>
               </div>
