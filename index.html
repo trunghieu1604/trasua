@@ -7627,7 +7627,7 @@
         <div class="lvs" style="text-align:left;margin:10px 0;background:rgba(0,0,0,0.03);padding:10px;border-radius:8px">
           <div><b>1.</b> Chạm biểu tượng <b>Menu (⋮) 3 chấm</b> ở góc phải trình duyệt.</div>
           <div><b>2.</b> Chọn <b>"Cài đặt ứng dụng"</b> hoặc <b>"Thêm vào Màn hình chính"</b>.</div>
-          <div><b>3.</b> Chọn <b>"Cài đặt"</b> để tạo biểu tượng App Native trên màn hình điện thoại.</div>
+          <div><b>3.</b> Chọn <b>"Cài đặt"</b> để cài game lên điện thoại.</div>
         </div>`;
 
       ask(`<div class="pbig">${ico('box')}</div><h2>📱 Cài Đặt Game </h2><p>Cài game ra màn hình chính điện thoại</p>${guideHtml}`, [['Đã hiểu', showSettings, 1]]);
@@ -7641,7 +7641,7 @@
       const canFullscreen = !isIOS && !!(document.documentElement.requestFullscreen || document.documentElement.webkitRequestFullscreen);
 
       const fsBtnHtml = (!isStandalone && canFullscreen) ? `<button class="setb" id="sFullscreen"><span>${ico('set')}</span>Full màn hình<small>${isFs ? 'Đang bật · bấm để tắt' : 'Đang tắt · bấm để bật'}</small></button>` : '';
-      const installBtnHtml = !isStandalone ? `<button class="setb" id="sInstallApp"><span>${ico('box')}</span>Cài Đặt Game<small>Cài PWA Native App cho điện thoại</small></button>` : '';
+      const installBtnHtml = !isStandalone ? `<button class="setb" id="sInstallApp"><span>${ico('set')}</span>Cài Đặt Game<small>Cài Game lên điện thoại</small></button>` : '';
 
       $('card').innerHTML = `<h2 id="sTitle" style="cursor:pointer;user-select:none">${ico('set')} Cài đặt</h2><div class="setl">
     ${fsBtnHtml}
