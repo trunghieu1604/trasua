@@ -5644,7 +5644,7 @@
     /* app đang nhận đơn: đã mở, có tablet, đủ sao */
     function appsOn() { let tb = S.tablets || 0; const r = rating(); return APPS.filter(a => { if (!appJoined(a)) return false; if (tb <= 0) return false; tb--; return r >= appMinRate(a) }) }
     const onlineActive = () => appsOn().length > 0;
-    function verLine() { return `<div class="verl"><button id="guide">${ico('book')} Hướng dẫn</button><button id="whatsnew">Phiên bản ${GAME_VERSION} · Có gì mới</button></div>` }
+    function verLine() { return `<div class="verl"><button id="guide">${ico('book')} Hướng dẫn</button><button id="whatsnew">Phiên bản ${GAME_VERSION} · Thông tin phiên bản</button></div>` }
     function showNews(isNew) {
       ask(`<h2>${isNew ? '🎉 Đã cập nhật lên ' + GAME_VERSION : 'Lịch sử cập nhật'}</h2><div class="news">${CHANGELOG.map((c, i) => `<div class="nv${i ? '' : ' cur'}"><div class="nh"><b>Phiên bản ${c.v}</b>${i ? '' : '<span class="tag">HIỆN TẠI</span>'}<small>${c.d}</small></div><ul>${c.items.map(t => `<li>${esc(t)}</li>`).join('')}</ul></div>`).join('')}</div>`, [['Đã hiểu', () => { }, 1]]);
     }
