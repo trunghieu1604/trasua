@@ -18,7 +18,7 @@
     superstarMode: false,
     zeroBills: false,
     zeroTax: false,
-    keepAwake: false
+    keepAwake: true
   };
 
   let config = { ...defaultConfig };
@@ -450,8 +450,8 @@
             <div class="tts-sec-box">
               <div class="tts-sec-title">🌤️ Chọn Sự Kiện Hôm Nay</div>
               <div class="tts-btn-grid grid-3">
-                <button class="tts-act-btn" data-ev="hot">☀️ Nắng Nóng</button>
-                <button class="tts-act-btn ${config.superstarMode ? 'success' : 'pri'}" id="btn-ev-superstars">🌟 Bão Siêu Sao (${config.superstarMode ? 'BẬT' : 'TẮT'})</button>
+                <button class="tts-act-btn" data-ev="hot">☀️ Nắng</button>
+                <button class="tts-act-btn ${config.superstarMode ? 'success' : 'pri'}" id="btn-ev-superstars">🌟 IDOL (${config.superstarMode ? 'BẬT' : 'TẮT'})</button>
                 <button class="tts-act-btn" data-ev="students">🎒 Học Sinh</button>
                 <button class="tts-act-btn" data-ev="reviewer">📸 Reviewer</button>
                 <button class="tts-act-btn" data-ev="trend">🔥 Món Hot</button>
