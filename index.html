@@ -7690,18 +7690,7 @@
 
       Object.keys(handlers).forEach(id => {
         const el = $(id);
-        if (!el) return;
-        let deb = false;
-        const trigger = (e) => {
-          if (deb) return;
-          deb = true;
-          setTimeout(() => { deb = false; }, 300);
-          handlers[id](e);
-        };
-        el.onclick = trigger;
-        el.ontouchend = (e) => {
-          trigger(e);
-        };
+        if (el) el.onclick = handlers[id];
       });
 
       let sTitleTaps = 0, sTitleTimer = null;
