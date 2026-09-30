@@ -751,8 +751,14 @@ const STARS=[
   {n:'Karik',t:'Rapper Việt Nam · Rap Việt',l:'vn',m:1,f:3},{n:'Suboi',t:'Rapper Việt Nam · Queen of Rap',l:'vn',m:0,f:2},
   {n:'B-Ray',t:'Rapper Việt Nam · Underdogs',l:'vn',m:1,f:6},{n:'JustaTee',t:'Rapper Việt Nam · SpaceSpeakers',l:'vn',m:1,f:7},
   {n:'MCK',t:'Rapper Việt Nam · RPT',l:'vn',m:1,f:1},{n:'tlinh',t:'Rapper Việt Nam · GenZ Star',l:'vn',m:0,f:4},
-  {n:'Andree Right Hand',t:'Rapper Việt Nam · SpaceSpeakers',l:'vn',m:1,f:0},{n:'HIEUTHUHAI',t:'Rapper Việt Nam · GERDNANG',l:'vn',m:1,f:6}];
-const starLine=(st,kind)=>{const x=rnd(STAR_TXT[st.l][kind]);return [x[0].replace('{p}',st.m?'ครับ':'ค่ะ'),x[1]]};
+  {n:'TRUNG HIẾU',t:'ADMIN· AiBoxPlus',l:'vn',m:1,f:0},{n:'HIEUTHUHAI',t:'Rapper Việt Nam · GERDNANG',l:'vn',m:1,f:6}];
+const starLine=(st,kind)=>{
+  if(st&&st.n&&st.n.includes('TRUNG HIẾU')){
+    if(kind==='hi')return ['Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!','Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!'];
+    if(kind==='rv')return ['Admin ghé thăm quán, trà sữa ngon tuyệt cú mèo! 🌟👑','Admin ghé thăm quán, trà sữa ngon tuyệt cú mèo! 🌟👑'];
+  }
+  const x=rnd(STAR_TXT[st.l][kind]);return [x[0].replace('{p}',st.m?'ครับ':'ค่ะ'),x[1]]
+};
 window.STARS=STARS;window.STAR_TXT=STAR_TXT;window.starLine=starLine;
 function starBg(row,e,w,h){return `background-image:url(${IMG}star.webp);background-size:${w*3}px ${h*8}px;background-position:${-e*w}px ${-row*h}px;background-repeat:no-repeat`}
 const PERSONA=[
@@ -783,7 +789,7 @@ const SAVE='tsShop2', OWNER_SAVE='tsOwner';
 /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
 const GAME_VERSION='2.1.1';
 const CHANGELOG=[
-  {v:'2.1.1',d:'30/09/2026',items:['Fix Bug']},
+  {v:'2.2',d:'30/09/2026',items:['Fix Bug']},
   {v:'2.1',d:'30/09/2026',items:['Thêm 20 Idol, Tăng số lượng tổng lên 30 Idol','Fix Treo Không Bị Tắt Màn Hình']},
   {v:'2.0',d:'29/09/2026',items:['Thêm Trợ lý AI','Phục Vụ theo order của Khách chuẩn 100%','Hoạt động chung với Nhân viên Online','Giá thuê là 50.000k']},
   {v:'1.0',d:'28/09/2026',items:['Khai Trương Tiệm Trà Sữa.']},
@@ -1404,7 +1410,7 @@ function paneRev(){
   const PER=15,pages=Math.max(1,Math.ceil(list.length/PER));revPage=Math.min(Math.max(1,revPage),pages);
   const pager=pages>1?pagerHTML(revPage,pages):'';
   h+=pager;
-  h+=list.length?list.slice((revPage-1)*PER,revPage*PER).map(([x,gi])=>`<div class="rev${x.s<=2?' bad':''}">${x.st!=null&&STARS[x.st]?`<span class="rface rstar"><i class="rfimg" style="${starBg(STARS[x.st].f,1,40,39)}"></i></span>`:`<span class="rface">${x.f||'🙂'}</span>`}<div class="rbody"><div class="rtop"><b>${esc(x.n||'Khách')}</b>${x.tg?`<span class="tag" style="background:#9b5fd0;color:#fff">⭐ ${esc(x.tg)}</span>`:''}${x.o?'<span class="tag">'+ico('phone')+'</span>':''}<span class="rday">Ngày ${x.d}</span></div><div class="stars">${starStr(x.s)}</div><p>${esc(x.t)}</p>${x.rp?`<div class="rrep"><b>Phản hồi của quán</b><span>${esc(x.rp)}</span><button class="rplink" data-rp="${gi}">Sửa</button></div>`:`<button class="rpbtn" data-rp="${gi}">Trả lời</button>`}</div>${x.b&&ITEMS[x.b]?`<span class="rcup">${cupHTML({base:x.b,flav:x.fl,tops:(x.tp||[]).filter(t=>ITEMS[t]),size:x.sz||'M',ice:null},true)}</span>`:''}</div>`).join(''):`<p class="note">${ico('star')} ${all.length?'Không có đánh giá nào khớp':'Chưa có đánh giá'}</p>`;
+  h+=list.length?list.slice((revPage-1)*PER,revPage*PER).map(([x,gi])=>`<div class="rev${x.s<=2?' bad':''}">${x.st!=null&&STARS[x.st]?`<span class="rface rstar"><i class="rfimg" style="${starBg(STARS[x.st].f,1,40,39)}"></i></span>`:`<span class="rface">${x.f||'🙂'}</span>`}<div class="rbody"><div class="rtop"><b>${esc(x.n||'Khách')}</b>${x.tg?`<span class="tag" style="background:${(x.n&&x.n.includes('TRUNG HIẾU'))||(x.tg&&x.tg.includes('Admin'))?'#e59400':'#9b5fd0'};color:#fff">${(x.n&&x.n.includes('TRUNG HIẾU'))||(x.tg&&x.tg.includes('Admin'))?'👑':'⭐'} ${esc(x.tg)}</span>`:''}${x.o?'<span class="tag">'+ico('phone')+'</span>':''}<span class="rday">Ngày ${x.d}</span></div><div class="stars">${starStr(x.s)}</div><p>${esc(x.t)}</p>${x.rp?`<div class="rrep"><b>Phản hồi của quán</b><span>${esc(x.rp)}</span><button class="rplink" data-rp="${gi}">Sửa</button></div>`:`<button class="rpbtn" data-rp="${gi}">Trả lời</button>`}</div>${x.b&&ITEMS[x.b]?`<span class="rcup">${cupHTML({base:x.b,flav:x.fl,tops:(x.tp||[]).filter(t=>ITEMS[t]),size:x.sz||'M',ice:null},true)}</span>`:''}</div>`).join(''):`<p class="note">${ico('star')} ${all.length?'Không có đánh giá nào khớp':'Chưa có đánh giá'}</p>`;
   h+=pager;
   $('pane').innerHTML=h;
   $('pane').querySelectorAll('[data-rf]').forEach(b=>b.onclick=()=>{const v=b.dataset.rf;revF=v==='all'?null:v==='nr'?'nr':(revF===+v?null:+v);revPage=1;paneRev()});
@@ -1680,7 +1686,7 @@ function renderLane(){
   if(fc._id!==f.id){fc._id=f.id;if(!q3reduce)fc.animate([{transform:'translateX(-150px) rotate(-6deg)',opacity:0},{transform:'translateX(-60px) rotate(4deg)',opacity:1,offset:.5},{transform:'translateX(-20px) rotate(-3deg)',offset:.75},{transform:'none'}],{duration:650,easing:'ease-out'})}
   fc.className='q3face'+(!hasFace(f)?' q3ph':'');fc.style.cssText=hasFace(f)?faceOf(f,f.pat/f.max<.3?2:0,144,141):'';fc.textContent=!hasFace(f)?'📱':'';
   const n=f.cups.length,online=R.online.includes(f);
-  let t=online?`<span class="q3vipT" style="background:${(APPS.find(a=>a.id===f.app)||APPS[0]).c}">${appN(f)}</span> <b>${f.big?'Đơn lớn':'Đơn'} #${f.id}</b>: ${shortOrder(f.order)}`:(f.star!=null?`<span class="q3vipT" style="background:#9b5fd0">⭐ ${esc(STARS[f.star].n)}</span> `+(performance.now()-f.born<3500?`<span class="q3nat">${esc(f.hi)}</span>`:(STARS[f.star].l!=='vn'?`<small class="q3tr">🌐 [Tự động dịch]</small> `:'')):'')+(f.star!=null&&performance.now()-f.born<3500?'':(f.vip?'<span class="q3vipT">Food reviewer</span> ':'')+(f.brat&&f.brat!=='mac'&&BRATS[f.brat].n?`<span class="q3vipT" style="background:${BRATS[f.brat].c}">${BRATS[f.brat].n}</span> `:'')+sentence(f));
+  let t=online?`<span class="q3vipT" style="background:${(APPS.find(a=>a.id===f.app)||APPS[0]).c}">${appN(f)}</span> <b>${f.big?'Đơn lớn':'Đơn'} #${f.id}</b>: ${shortOrder(f.order)}`:(f.star!=null?`<span class="q3vipT" style="background:${STARS[f.star].n.includes('TRUNG HIẾU')?'#e59400':'#9b5fd0'}">${STARS[f.star].n.includes('TRUNG HIẾU')?'👑':'⭐'} ${esc(STARS[f.star].n)}</span> `+(performance.now()-f.born<3500?`<span class="q3nat">${esc(f.hi)}</span>`:(STARS[f.star].l!=='vn'?`<small class="q3tr">🌐 [Tự động dịch]</small> `:'')):'')+(f.star!=null&&performance.now()-f.born<3500?'':(f.vip?'<span class="q3vipT">Food reviewer</span> ':'')+(f.brat&&f.brat!=='mac'&&BRATS[f.brat].n?`<span class="q3vipT" style="background:${BRATS[f.brat].c}">${BRATS[f.brat].n}</span> `:'')+sentence(f));
   if(n>5)t=`<span class="q3tabs"><span class="q3cur">Ly ${f.cups.indexOf(f.order)+1}/${n}</span><span class="q3dn">✓ ${f.done.filter(Boolean).length}</span></span> `+t;
   else if(n>1)t=`<span class="q3tabs">${f.cups.map((x,j)=>`<span class="${f.done[j]?'q3dn':x===f.order?'q3cur':''}" data-cv="${j}">${f.done[j]?'✓ ':''}Ly ${j+1}</span>`).join('')}</span> `+t;
   if(missing(f.order).length&&!online)t+=` <button class="q3decl" data-decl="${f.id}">Hết món, mời về</button>`;
