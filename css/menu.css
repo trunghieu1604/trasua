@@ -167,7 +167,7 @@
 }
 
 .tts-tab-btn:hover:not(.active) {
-  background: #334155;
+  background: #f7527b;
   color: #cbd5e1;
 }
 
@@ -294,9 +294,9 @@
 }
 
 .tts-act-btn {
-  background: #334155;
+  background: #e9c3c3;
   color: #faff1c;
-  border: 1px solid #475569;
+  border: 1px solid #f7527b;
   border-radius: 10px;
   padding: 9px 10px;
   font-size: 0.82rem;
@@ -311,8 +311,8 @@
 }
 
 .tts-act-btn:hover {
-  background: #475569;
-  border-color: #64748b;
+  background: #f7527b;
+  border-color: #f7527b;
   transform: translateY(-1px);
 }
 
@@ -321,7 +321,7 @@
 }
 
 .tts-act-btn.pri {
-  background: #f7527b;
+  background: #e9c3c3;
   border-color: #f7527b;
 }
 
@@ -330,21 +330,21 @@
 }
 
 .tts-act-btn.success {
-  background: #f7527b;
+  background: #e9c3c3;
   border-color: #f7527b;
 }
 
 .tts-act-btn.success:hover {
-  background: #475569;
+  background: #f7527b;
 }
 
 .tts-act-btn.warn {
-  background: #f7527b;
-  border-color: #f7527b5;
+  background: #765a5a;
+  border-color: #f7527b;
 }
 
 .tts-act-btn.danger {
-  background: #f7527b;
+  background: #765a5a;
   border-color: #f7527b;
 }
 
@@ -361,7 +361,7 @@
 
 .tts-input {
   flex: 1;
-  background: #f7527b;
+  background: #e9c3c3;
   border: 1px solid #f7527b;
   border-radius: 8px;
   padding: 8px 12px;
