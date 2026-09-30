@@ -781,8 +781,9 @@ const N_NICK=['Bé Na','Bơ','Mít','Sữa','Su Su','Bin','Tôm','Cún','Mèo Mu
 function genName(){return uniqName(()=>Math.random()<.5?rnd(NM_HO)+' '+rnd(NM_NU):rnd(NM_HO)+' '+rnd(NM_NAM))}
 const SAVE='tsShop2', OWNER_SAVE='tsOwner';
 /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-const GAME_VERSION='2.1';
+const GAME_VERSION='2.1.1';
 const CHANGELOG=[
+  {v:'2.1.1',d:'30/09/2026',items:['Fix Bug']},
   {v:'2.1',d:'30/09/2026',items:['Thêm 20 Idol, Tăng số lượng tổng lên 30 Idol','Fix Treo Không Bị Tắt Màn Hình']},
   {v:'2.0',d:'29/09/2026',items:['Thêm Trợ lý AI','Phục Vụ theo order của Khách chuẩn 100%','Hoạt động chung với Nhân viên Online','Giá thuê là 50.000k']},
   {v:'1.0',d:'28/09/2026',items:['Khai Trương Tiệm Trà Sữa.']},
@@ -1679,7 +1680,7 @@ function renderLane(){
   if(fc._id!==f.id){fc._id=f.id;if(!q3reduce)fc.animate([{transform:'translateX(-150px) rotate(-6deg)',opacity:0},{transform:'translateX(-60px) rotate(4deg)',opacity:1,offset:.5},{transform:'translateX(-20px) rotate(-3deg)',offset:.75},{transform:'none'}],{duration:650,easing:'ease-out'})}
   fc.className='q3face'+(!hasFace(f)?' q3ph':'');fc.style.cssText=hasFace(f)?faceOf(f,f.pat/f.max<.3?2:0,144,141):'';fc.textContent=!hasFace(f)?'📱':'';
   const n=f.cups.length,online=R.online.includes(f);
-  let t=online?`<span class="q3vipT" style="background:${(APPS.find(a=>a.id===f.app)||APPS[0]).c}">${appN(f)}</span> <b>${f.big?'Đơn lớn':'Đơn'} #${f.id}</b>: ${shortOrder(f.order)}`:(f.star!=null?`<span class="q3vipT" style="background:#9b5fd0">⭐ ${esc(STARS[f.star].n)}</span> `+(performance.now()-f.born<3500?`<span class="q3nat">${esc(f.hi)}</span>`:`<small class="q3tr">🌐 [Tự động dịch]</small> `):'')+(f.star!=null&&performance.now()-f.born<3500?'':(f.vip?'<span class="q3vipT">Food reviewer</span> ':'')+(f.brat&&f.brat!=='mac'&&BRATS[f.brat].n?`<span class="q3vipT" style="background:${BRATS[f.brat].c}">${BRATS[f.brat].n}</span> `:'')+sentence(f));
+  let t=online?`<span class="q3vipT" style="background:${(APPS.find(a=>a.id===f.app)||APPS[0]).c}">${appN(f)}</span> <b>${f.big?'Đơn lớn':'Đơn'} #${f.id}</b>: ${shortOrder(f.order)}`:(f.star!=null?`<span class="q3vipT" style="background:#9b5fd0">⭐ ${esc(STARS[f.star].n)}</span> `+(performance.now()-f.born<3500?`<span class="q3nat">${esc(f.hi)}</span>`:(STARS[f.star].l!=='vn'?`<small class="q3tr">🌐 [Tự động dịch]</small> `:'')):'')+(f.star!=null&&performance.now()-f.born<3500?'':(f.vip?'<span class="q3vipT">Food reviewer</span> ':'')+(f.brat&&f.brat!=='mac'&&BRATS[f.brat].n?`<span class="q3vipT" style="background:${BRATS[f.brat].c}">${BRATS[f.brat].n}</span> `:'')+sentence(f));
   if(n>5)t=`<span class="q3tabs"><span class="q3cur">Ly ${f.cups.indexOf(f.order)+1}/${n}</span><span class="q3dn">✓ ${f.done.filter(Boolean).length}</span></span> `+t;
   else if(n>1)t=`<span class="q3tabs">${f.cups.map((x,j)=>`<span class="${f.done[j]?'q3dn':x===f.order?'q3cur':''}" data-cv="${j}">${f.done[j]?'✓ ':''}Ly ${j+1}</span>`).join('')}</span> `+t;
   if(missing(f.order).length&&!online)t+=` <button class="q3decl" data-decl="${f.id}">Hết món, mời về</button>`;
@@ -2225,19 +2226,71 @@ function pauseAgain(){R.paused=false;pauseGame()}
 function closeEarly(){if(!R.running)return;R.online=[];R.t=0;endDay()}
 function resumeGame(){if(!R.running||!R.paused)return;R.paused=false;clearInterval(timer);timer=setInterval(tick,100);head()}
 document.addEventListener('gesturestart',e=>e.preventDefault());
-document.addEventListener('visibilitychange',()=>{if(document.hidden)pauseGame()});
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)requestWakeLock()});
-let _wakeLock=null;
+let _wakeLock=null,_wakeVideo=null,_wakeCanvas=null;
 async function requestWakeLock(){
-  if(window.modConfig && window.modConfig.keepAwake === false) return;
+  if(window.modConfig && window.modConfig.keepAwake === false){releaseWakeLock();return}
   try {
-    if('wakeLock' in navigator){
+    if('wakeLock' in navigator && (!_wakeLock || _wakeLock.released)){
       _wakeLock = await navigator.wakeLock.request('screen');
+      if(_wakeLock){
+        _wakeLock.addEventListener('release', () => {
+          _wakeLock = null;
+          if(!document.hidden && (!window.modConfig || window.modConfig.keepAwake !== false)){
+            setTimeout(requestWakeLock, 1000);
+          }
+        });
+      }
+    }
+  } catch(e){}
+  try {
+    if(!_wakeVideo && document.body){
+      _wakeVideo = document.createElement('video');
+      _wakeVideo.setAttribute('playsinline', '');
+      _wakeVideo.setAttribute('webkit-playsinline', '');
+      _wakeVideo.setAttribute('muted', '');
+      _wakeVideo.muted = true;
+      _wakeVideo.loop = true;
+      _wakeVideo.style.cssText = 'position:fixed;top:-100px;left:-100px;width:1px;height:1px;opacity:0.001;pointer-events:none;z-index:-9999;';
+      _wakeCanvas = document.createElement('canvas');
+      _wakeCanvas.width = 2; _wakeCanvas.height = 2;
+      const ctx = _wakeCanvas.getContext('2d');
+      if(ctx){
+        ctx.fillStyle = '#000000'; ctx.fillRect(0,0,2,2);
+        setInterval(() => {
+          if((!window.modConfig || window.modConfig.keepAwake !== false) && _wakeVideo && !_wakeVideo.paused){
+            ctx.fillStyle = ctx.fillStyle === '#000000' ? '#000001' : '#000000';
+            ctx.fillRect(0,0,1,1);
+          }
+        }, 1000);
+      }
+      if(_wakeCanvas.captureStream){
+        _wakeVideo.srcObject = _wakeCanvas.captureStream(1);
+      }
+      document.body.appendChild(_wakeVideo);
+    }
+    if(_wakeVideo && _wakeVideo.paused){
+      _wakeVideo.play().catch(()=>{});
     }
   } catch(e){}
 }
-requestWakeLock();
+function releaseWakeLock(){
+  try {
+    if(_wakeLock){_wakeLock.release().catch(()=>{});_wakeLock=null}
+    if(_wakeVideo){_wakeVideo.pause()}
+  } catch(e){}
+}
+document.addEventListener('visibilitychange',()=>{
+  if(!document.hidden){requestWakeLock()}else{pauseGame();releaseWakeLock()}
+});
+['pointerdown','touchstart','click','keydown'].forEach(evt=>{
+  window.addEventListener(evt,()=>{if(!window.modConfig||window.modConfig.keepAwake!==false)requestWakeLock()},{passive:true});
+});
+setInterval(()=>{
+  if(!document.hidden && (!window.modConfig || window.modConfig.keepAwake !== false)){requestWakeLock()}
+},4000);
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',requestWakeLock)}else{requestWakeLock()}
 window.requestWakeLock = requestWakeLock;
+window.releaseWakeLock = releaseWakeLock;
 
 const cropBg=(x,y,w,h,dw)=>{const k=dw/w;return `<div class="crop" style="width:${dw}px;height:${Math.round(h*k)}px;background:url(img/bg.jpg) ${-x*k}px ${-y*k}px/${768*k}px ${1376*k}px no-repeat"></div>`};
 function lvIntro(lv){
