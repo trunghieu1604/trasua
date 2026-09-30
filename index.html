@@ -618,7 +618,6 @@
       margin-left: 4px
     }
 
-    body.vpfix .modal,
     body.vpfix .splash {
       bottom: auto;
       height: var(--vpfix)
@@ -5188,13 +5187,12 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.3';
+    const GAME_VERSION = '2.2';
     const CHANGELOG = [
-	  { v: '2.3', d: '30/09/2026', items: ['Cơ chế AntiCheat, chống gian lận tiền bất chính'] },
-	  { v: '2.2', d: '29/09/2026', items: ['Sửa cơ chế phóng to màn trên iOS','Sửa nút bấm cài đặt game nhưng không cài đặt'] },
-	  { v: '2.1', d: '28/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
-      { v: '2.0', d: '27/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
-      { v: '1.0', d: '26/09/2026', items: ['Khai Trương Tiệm Trà Sữa.'] },
+	  { v: '2.2', d: '30/09/2026', items: ['Cơ chế AntiCheat, chống gian lận tiền bất chính'] },
+	  { v: '2.1', d: '29/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
+      { v: '2.0', d: '28/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
+      { v: '1.0', d: '27/09/2026', items: ['Khai Trương Tiệm Trà Sữa.'] },
     ];
 	
     /* ===== CẤU HÌNH CỦA CHỦ GAME (người chơi không chỉnh được) ===== */
@@ -7599,9 +7597,7 @@
       try {
         if (window.navigator.standalone === true) return true;
         if (window.matchMedia('(display-mode: standalone)').matches) return true;
-        if (window.matchMedia('(display-mode: fullscreen)').matches) return true;
         if (document.referrer && document.referrer.includes('android-app://')) return true;
-        if (localStorage.getItem('tts_pwa_installed') === '1') return true;
       } catch (e) {}
       return false;
     }
@@ -7646,7 +7642,7 @@
 
       const fsBtnHtml = (!isStandalone && canFullscreen) ? `<button class="setb" id="sFullscreen"><span>${ico('set')}</span>Full màn hình<small>${isFs ? 'Đang bật · bấm để tắt' : 'Đang tắt · bấm để bật'}</small></button>` : '';
       const installBtnHtml = !isStandalone ? `<button class="setb" id="sInstallApp"><span>${ico('box')}</span>Cài Đặt Game<small>Cài Game lên điện thoại</small></button>` : '';
-      $('card').innerHTML = `<h2 id="sTitle" style="cursor:pointer;user-select:none" title="Menu Ẩn">${ico('set')} Cài đặt</h2><div class="setl">
+      $('card').innerHTML = `<h2 id="sTitle" style="cursor:pointer;user-select:none">${ico('set')} Cài đặt</h2><div class="setl">
     ${fsBtnHtml}
     ${installBtnHtml}
     <button class="setb" id="sNews"><span>${ico('gift')}</span>Thông tin phiên bản<small>v${GAME_VERSION}</small></button>
