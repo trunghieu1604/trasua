@@ -1,4 +1,4 @@
-v2.2 30/09/2026 Cơ chế AntiCheat','Chống gian lận tiền bất chính.
+v2.2 30/09/2026 Cơ chế AntiCheat, Chống gian lận tiền bất chính.
 
 v2.1 29/09/2026 Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt.
 
