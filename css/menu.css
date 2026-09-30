@@ -47,15 +47,13 @@
 
 /* Modal Mod Menu */
 #tts-mod-modal {
+  display: none;
   position: fixed;
   inset: 0;
   background: rgba(15, 23, 42, 0.65);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
   z-index: 1000000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   padding: 14px;
   opacity: 0;
   pointer-events: none;
@@ -63,6 +61,9 @@
 }
 
 #tts-mod-modal.show {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   opacity: 1;
   pointer-events: auto;
 }
