@@ -275,7 +275,7 @@
           <button class="tts-tab-btn" data-tab="money">💰 Tiền Tệ</button>
           <button class="tts-tab-btn" data-tab="unlock">🔓 Mở Khóa</button>
           <button class="tts-tab-btn" data-tab="stock">📦 Kho Hàng</button>
-          <button class="tts-tab-btn" data-tab="gameplay">⚡ Gameplay</button>
+          <button class="tts-tab-btn" data-tab="gameplay">⚡ Menu VIP</button>
         </div>
 
         <!-- Modal Body Content -->
@@ -287,7 +287,7 @@
               
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Khiên Chống Trộm & Phạt (Anti-Theft)</div>
+                  <div class="tts-toggle-title">Khiên Chống Trộm & Phạt</div>
                   <div class="tts-toggle-desc">Chống trộm cạy két đêm, chặn phạt thuế, quản lý thị trường kiểm tra, lừa đảo điện thoại và sàn tiền ảo sập.</div>
                 </div>
                 <label class="tts-switch">
@@ -309,7 +309,7 @@
 
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Chặn Hoàn Toàn Khách Hãm (No Brats)</div>
+                  <div class="tts-toggle-title">Chặn Hoàn Toàn Khách Hãm Lồn</div>
                   <div class="tts-toggle-desc">Tắt sạch khách hối thúc, khách đổi ý, khách trả giá, khách khó tính và khách bùng.</div>
                 </div>
                 <label class="tts-switch">
@@ -337,7 +337,7 @@
               <div class="tts-sec-title">💰 Cộng Tiền & Giới Hạn Két</div>
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Tắt Giới Hạn Két (Anti Money Reset)</div>
+                  <div class="tts-toggle-title">Tắt Giới Hạn Két</div>
                   <div class="tts-toggle-desc">Ngăn game tự động trừ hoặc trộm cạy két khi két vượt ngưỡng kiểm tra.</div>
                 </div>
                 <label class="tts-switch">
@@ -353,7 +353,7 @@
               </div>
 
               <div class="tts-input-row">
-                <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="50000000">
+                <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="1000000">
                 <button class="tts-act-btn pri" id="btn-set-money">Đặt Tiền</button>
               </div>
             </div>
@@ -362,7 +362,7 @@
               <div class="tts-sec-title">💳 Nợ & Miễn Phí Vận Hành</div>
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Miễn Phí Mặt Bằng & Điện Nước (0đ)</div>
+                  <div class="tts-toggle-title">Miễn Phí Mặt Bằng & Điện Nước</div>
                   <div class="tts-toggle-desc">Không bao giờ bị trừ tiền thuê nhà và tiền điện nước mỗi ngày.</div>
                 </div>
                 <label class="tts-switch">
@@ -373,7 +373,7 @@
 
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Miễn 100% Thuế Kinh Doanh (0%)</div>
+                  <div class="tts-toggle-title">Miễn 100% Thuế Kinh Doanh</div>
                   <div class="tts-toggle-desc">Không phải nộp thuế GTGT & TNCN cuối ngày.</div>
                 </div>
                 <label class="tts-switch">
@@ -382,7 +382,7 @@
                 </label>
               </div>
 
-              <button class="tts-act-btn warn" id="btn-clear-debts">💳 Xoá Sạch Mọi Khoản Nợ (Ngân Hàng & Nợ Nóng)</button>
+              <button class="tts-act-btn warn" id="btn-clear-debts">💳 Xoá Sạch Mọi Khoản Nợ</button>
             </div>
           </div>
 
@@ -390,7 +390,7 @@
           <div class="tts-mod-pane" id="pane-unlock">
             <div class="tts-sec-box">
               <div class="tts-sec-title">⭐ Mở Khóa Siêu Tốc</div>
-              <button class="tts-act-btn success full-w" id="btn-unlock-all">🌟 SIÊU MỞ KHÓA TẤT CẢ (MENU, MÁY, STAFF, BRAND)</button>
+              <button class="tts-act-btn success full-w" id="btn-unlock-all">🌟 SIÊU MỞ KHÓA TẤT CẢ (100%)</button>
               
               <div class="tts-btn-grid">
                 <button class="tts-act-btn pri" id="btn-unlock-bases">🌟 Mở Toàn Bộ Cốt Trà</button>
@@ -407,7 +407,7 @@
           <div class="tts-mod-pane" id="pane-stock">
             <div class="tts-sec-box">
               <div class="tts-sec-title">📦 Nạp Kho Nguyên Liệu</div>
-              <button class="tts-act-btn success full-w" id="btn-fill-stock">📦 NẠP FULL KHO HÀNG (VĨNH VIỄN)</button>
+              <button class="tts-act-btn success full-w" id="btn-fill-stock">📦 NẠP FULL KHO HÀNG</button>
               <button class="tts-act-btn danger full-w" id="btn-clear-stock">🧹 Dọn Sạch Toàn Bộ Kho Hàng</button>
             </div>
           </div>
@@ -419,7 +419,7 @@
               
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Khách Vô Hạn Kiên Nhẫn (100% Full)</div>
+                  <div class="tts-toggle-title">Khách Vô Hạn Kiên Nhẫn</div>
                   <div class="tts-toggle-desc">Khách tại quán và tài xế online chờ mãi mãi, không bao giờ giận hay huỷ đơn.</div>
                 </div>
                 <label class="tts-switch">
@@ -430,7 +430,7 @@
 
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">💡 Giữ Màn Hình Luôn Sáng (Keep Awake)</div>
+                  <div class="tts-toggle-title">💡 Giữ Màn Hình Luôn Sáng</div>
                   <div class="tts-toggle-desc">Tự động kích hoạt Screen Wake Lock API để giữ điện thoại/App luôn sáng khi treo game.</div>
                 </div>
                 <label class="tts-switch">
@@ -448,7 +448,7 @@
             </div>
 
             <div class="tts-sec-box">
-              <div class="tts-sec-title">🌤️ Chọn Sự Kiện / Thời Tiết Hôm Nay</div>
+              <div class="tts-sec-title">🌤️ Chọn Sự Kiện Hôm Nay</div>
               <div class="tts-btn-grid grid-3">
                 <button class="tts-act-btn" data-ev="hot">☀️ Nắng Nóng</button>
                 <button class="tts-act-btn ${config.superstarMode ? 'success' : 'pri'}" id="btn-ev-superstars">🌟 Bão Siêu Sao (${config.superstarMode ? 'BẬT' : 'TẮT'})</button>
