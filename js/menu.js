@@ -441,7 +441,7 @@
 
               <div class="tts-btn-grid">
                 <button class="tts-act-btn ${config.autoServe ? 'success' : 'pri'}" id="btn-auto-serve">🤖 Tự Động Pha & Giao (${config.autoServe ? 'ĐANG BẬT' : 'ĐANG TẮT'})</button>
-                <button class="tts-act-btn pri" id="btn-set-5stars">⭐(IDOL) 30 Review 5★ </button>
+                <button class="tts-act-btn pri" id="btn-set-5stars">⭐(IDOL) Review 5★ </button>
                 <button class="tts-act-btn warn" id="btn-clear-badrev">🧹 Xoá Hết Đánh Giá Xấu</button>
                 <button class="tts-act-btn warn" id="btn-skip-day">⏩ Nhảy Sang Ngày Tiếp Theo</button>
               </div>
