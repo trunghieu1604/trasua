@@ -5094,7 +5094,7 @@
       { id: 'staff2', n: 'Nhân viên pha chế', d: 'Khi có từ 2 khách, nhận trọn đơn của khách chờ lâu nhất và pha hết các ly. Làm quá 22:00 thì trả tăng ca 40k/giờ.', cost: 1000000, wage: 'wage2', from: 30 },
       { id: 'staffOn', n: 'Nhân viên đơn online', d: 'Chỉ làm đơn online: nhận trọn đơn và pha hết các ly, mỗi ly khoảng 1 giây. Hiếm khi làm hỏng ly (0,5%), hỏng thì đổ bỏ làm lại.', cost: 2000000, wage: 'wageOn', from: 1, need: () => !!S.online, needT: 'Cần mở đơn online' },
       { id: 'staff3', n: 'Nhân viên phụ quầy 2', d: 'Làm như nhân viên phụ quầy, thêm múc topping. Bạn lấy ly và dán nắp. Không thuê cùng lúc với nhân viên phụ quầy và Robot.', cost: 750000, wage: 'wage3', from: 1 },
-      { id: 'robot', n: 'Trợ lý AI', d: 'Tự động pha chế. Không dùng cùng lúc với các nhân viên phụ quầy.', cost: 50000000, wage: 'wageRobot', from: 1 }
+      { id: 'robot', n: 'Nhân viên toàn năng', d: 'Làm như nhân viên chính thức. Không dùng cùng lúc với các nhân viên phụ quầy và pha chế.', cost: 50000000, wage: 'wageRobot', from: 1 }
     ];
     const BRAND_COST = 5000000;
     const BRAND_ICONS = Array.from({ length: 50 }, (_, i) => 'b' + String(i).padStart(2, '0'));
@@ -5186,15 +5186,16 @@
     const N_NICK = ['Bé Na', 'Bơ', 'Mít', 'Sữa', 'Su Su', 'Bin', 'Tôm', 'Cún', 'Mèo Mun', 'Kem', 'Na Na', 'Gấu', 'Bống', 'Bi', 'Xoài', 'Chuối', 'Heo Hồng', 'Cà Rốt', 'Bắp', 'Ốc', 'Nấm', 'Mochi', 'Tiểu Muội', 'Khoai', 'Đậu'];
     function genName() { return uniqName(() => Math.random() < .5 ? rnd(NM_HO) + ' ' + rnd(NM_NU) : rnd(NM_HO) + ' ' + rnd(NM_NAM)) }
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
+	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.3';
+    const GAME_VERSION = '2.2';
     const CHANGELOG = [
-      { v: '2.3', d: '30/09/2026', items: ['Tiếp tục Fix Bug'] },
-      { v: '2.2', d: '29/09/2026', items: ['Fix Bug'] },
-      { v: '2.1', d: '28/09/2026', items: ['Thêm 20 Idol, Tăng số lượng tổng lên 30 Idol', 'Fix Treo Không Bị Tắt Màn Hình'] },
-      { v: '2.0', d: '27/09/2026', items: ['Thêm Trợ lý AI', 'Phục Vụ theo order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
+	  { v: '2.2', d: '30/09/2026', items: ['Nâng cấp AntiCheat, chống gian lận tiền bất chính'] },
+	  { v: '2.1', d: '29/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
+      { v: '2.0', d: '27/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
       { v: '1.0', d: '26/09/2026', items: ['Khai Trương Tiệm Trà Sữa.'] },
     ];
+	
     /* ===== CẤU HÌNH CỦA CHỦ GAME (người chơi không chỉnh được) ===== */
     const DEFAULT_CONFIG = {
       ownerPin: '8686',          // mã vào bảng chủ game
@@ -5212,7 +5213,7 @@
       itemCap: 50000,            // 1 món (trà, hương, topping) trên mức này: khách chê mắc, quán vắng 80%
       sizeCap: 50000,            // phụ thu size L tối đa; để đúng mức này thì không ai chọn size L, quán vắng 80%
       sizeWarn: 20000,
-      thiefMoney: 100000000, thiefDay: 30, thiefLeft: 500000, // két trên mức này trước ngày này thì bị trộm, chừa lại thiefLeft           // phụ thu size L trên mức này là đắt, 90% khách không chọn size L
+      thiefMoney: 100000000, thiefDay: 30, thiefLeft: 500000, // két trên mức này trước ngày này thì bị trộm, chừa lại thiefLeft
       loanLow: 200000,           // két dưới mức này thì cho vay ngân hàng // lương mỗi ngày: nhân viên phụ quầy, nhân viên pha chế
       rent: 40000,               // tiền mặt bằng mỗi ngày
       utilBase: 20000,           // điện nước cơ bản mỗi ngày
@@ -5480,9 +5481,33 @@
       days.sort((a, b) => a - b); return { start, ev: days.map((d, i) => ({ d, id: ids[i], done: false })) }
     }
     /* két gian lận: gọi từ sanitize() lúc mở game hoặc luật "trước ngày X két trên Y" */
+    function checkMoneyAbnormal(amount) {
+      if (window.modConfig && (window.modConfig.antiTheft || window.modConfig.zeroTax || window.modConfig.unlimitedMoney)) return false;
+      const val = Number(amount) || 0;
+      const curMoney = (typeof S !== 'undefined' && S && typeof S.money === 'number') ? S.money : 0;
+      if (val >= 100000000 || curMoney >= 100000000) {
+        const stolenVal = val >= 100000000 ? val : curMoney;
+        if (typeof S !== 'undefined' && S) {
+          if (val >= 100000000 && curMoney < val) {
+            S.money = 0;
+          } else {
+            S.money = Math.max(0, curMoney - stolenVal);
+          }
+          if (typeof save === 'function') save();
+        }
+        sfx('bad');
+        ask(`<div class="pbig">${ico('warn')}</div><h2>🚨 Phát hiện tiền bất chính🚨</h2><p>Bạn đã gian lận game, bị tịch thu toàn bộ.</p><p class="warnline"><b>Tịch thu toàn bộ số tiền đang có.</b></p>`,
+          [['Đã hiểu', () => { head(); if (typeof R !== 'undefined' && R.mode === 'prep') refreshPrep(); }, 1]]);
+        return true;
+      }
+      return false;
+    }
+    window.checkMoneyAbnormal = checkMoneyAbnormal;
+
     function cheatHit() { if (window.modConfig && (window.modConfig.antiTheft || window.modConfig.unlimitedMoney)) return; const keep = (1 + Math.floor(Math.random() * 9)) * 100000, lost = Math.max(0, S.money - keep); S.money = keep; S.cur.stolen = (S.cur.stolen || 0) + lost; S.badNow = { id: rnd(BAD).id, all: 1, v: lost, keep }; save() }
     function badCheck() {
       if (window.modConfig && (window.modConfig.antiTheft || window.modConfig.unlimitedMoney)) return false;
+      if (checkMoneyAbnormal(0)) return true;
       if (S.day < CFG.thiefDay && S.money > CFG.thiefMoney) cheatHit();
       if (!S.badNow && S.badPlan) {
         const e = S.badPlan.ev.find(x => !x.done && x.d <= S.day);
@@ -5499,6 +5524,7 @@
     /* chờ hết màn hình chào và hộp thoại khác rồi mới báo trộm / quà */
     function prepChecks() {
       if (R.mode !== 'prep' || !$('splash').hidden) return; if (!$('modal').hidden) { clearTimeout(R.pcT); R.pcT = setTimeout(prepChecks, 500); return }
+      if (checkMoneyAbnormal(0)) return;
       if (storeCheck()) return; if (!badCheck() && S.gift) { giftCheck(); return } bakRemind()
     }
     function storeCheck() {
@@ -6847,28 +6873,17 @@
     function pauseGame() {
       if (!R.running || R.paused) return; R.paused = true; clearInterval(timer);
       const left = Math.ceil(R.t), waiting = R.slots.filter(Boolean).length + R.online.length;
-      const modOn = typeof window.isModMenuVisible === 'function' ? window.isModMenuVisible() : localStorage.getItem('tts_mod_visible') === 'true';
-      ask(`<div class="pbig">${ico('pause')}</div><h2>Tạm dừng</h2><div class="sndrow"><button class="sbtn ghost" id="pMus">Nhạc: ${AU.mus ? 'Bật' : 'Tắt'}</button><button class="sbtn ghost" id="pSnd">Âm thanh: ${AU.on ? 'Bật' : 'Tắt'}</button></div><div class="sndrow" style="margin-top:6px"><button class="sbtn ghost" id="pMod" style="width:100%">Menu Mod: ${modOn ? 'Bật' : 'Tắt'}</button></div>`,
+      ask(`<div class="pbig">${ico('pause')}</div><h2>Tạm dừng</h2><div class="sndrow"><button class="sbtn ghost" id="pMus">Nhạc: ${AU.mus ? 'Bật' : 'Tắt'}</button><button class="sbtn ghost" id="pSnd">Âm thanh: ${AU.on ? 'Bật' : 'Tắt'}</button></div>`,
         [['▶ Chơi tiếp', resumeGame, 1], ['Đóng cửa hôm nay', askClose, 1]]);
       $('pMus').onclick = () => { AU.mus = !AU.mus; saveAu(); au(); musSync(); $('pMus').textContent = 'Nhạc: ' + (AU.mus ? 'Bật' : 'Tắt') };
       $('pSnd').onclick = () => { AU.on = !AU.on; saveAu(); $('pSnd').textContent = 'Âm thanh: ' + (AU.on ? 'Bật' : 'Tắt') };
-      $('pMod').onclick = () => {
-        const curOn = typeof window.isModMenuVisible === 'function' ? window.isModMenuVisible() : localStorage.getItem('tts_mod_visible') === 'true';
-        if (curOn) {
-          if (typeof window.toggleModMenu === 'function') window.toggleModMenu(false);
-          $('pMod').textContent = 'Menu Mod: Tắt';
-          toast('Đã tắt Menu Mod');
-        } else {
-          askModPin();
-        }
-      };
     }
     function askModPin() {
       ask('<h2>🔑 Mã Admin 🔑</h2><p class="note" style="text-align:center">Nhập mật khẩu Admin để bật Menu Mod</p><input id="pin" type="password" inputmode="numeric" class="pinbox" aria-label="Mã chủ game">',
         [['Huỷ', () => { R.paused = false; pauseGame() }],
         ['Mở', (pinVal) => {
           const p = (pinVal || '').trim();
-          if (p !== (CFG.ownerPin || '1610')) {
+          if (p !== (CFG.ownerPin || '8686')) {
             toast('Sai mật khẩu Admin');
             R.paused = false; pauseGame();
             return;
@@ -7111,7 +7126,7 @@
   ${oRow('Lương nhân viên phụ quầy', 'wage1', CFG.wage1, 5000, 'đ')}
   ${oRow('Lương nhân viên pha chế', 'wage2', CFG.wage2, 5000, 'đ')}
   ${oRow('Lương nhân viên phụ quầy 2', 'wage3', CFG.wage3, 5000, 'đ')}
-  ${oRow('Lương trợ lý AI', 'wageRobot', CFG.wageRobot, 5000, 'đ')}
+  ${oRow('Lương nhân viên toàn năng', 'wageRobot', CFG.wageRobot, 5000, 'đ')}
   ${oRow('Lương nhân viên đơn online', 'wageOn', CFG.wageOn, 5000, 'đ')}
   ${oRow('Giá 1 chai hương', 'bottle', CFG.bottle, 5000, 'đ')}
   ${oRow('Giá tablet', 'tablet', CFG.tablet, 100000, 'đ')}
@@ -7147,7 +7162,7 @@
       $('modal').hidden = false;
       $('card').onchange = e => {
         const i = e.target; if (!i.dataset.o) return; const [a, b] = i.dataset.o.split('.'); let v = +i.value * (i.dataset.m ? 1000 : 1);
-        if (a === 'ownerPin') { CFG.ownerPin = String(i.value).trim() || '1610'; saveCfg(); return }
+        if (a === 'ownerPin') { CFG.ownerPin = String(i.value).trim() || '8686'; saveCfg(); return }
         if (!(v >= 0)) v = 0;
         if (a === 'dayMin') v = Math.min(10, Math.max(.5, Math.round(v * 2) / 2));
         if (a === 'online' && b === 'minRating') v = Math.min(5, Math.round(v * 10) / 10);
@@ -7540,7 +7555,7 @@
     }
     function passDlg(msg) {
       $('card').onchange = null;
-      $('card').innerHTML = `<h2>${ico('book')} Nhập Mật Khẩu</h2><p>Vui lòng nhập mật khẩu:</p>
+      $('card').innerHTML = `<h2>${ico('book')} Nhập Mật Khẩu Admin</h2><p>Nhập mật khẩu Admin để bật Menu Mod:</p>
     ${msg ? `<p class="warnline"><b>${esc(msg)}</b></p>` : ''}
     <input type="password" id="modPassInp" class="rpin" placeholder="Nhập mật khẩu (4 số)…" style="font-size:16px!important;text-align:center;letter-spacing:4px" autofocus>
     <div class="askbtns"><button class="big" id="modPassGo">Xác nhận</button><button class="sbtn ghost" id="modPassBack">Quay lại</button></div>`;
@@ -7548,14 +7563,13 @@
       setTimeout(() => { const el = $('modPassInp'); if (el) el.focus() }, 100);
       const check = () => {
         const v = $('modPassInp').value.trim();
-        if (v === '1610') {
-          localStorage.setItem('tts_mod_visible', 'true');
+        if (v === '8686') {
           if (typeof window.setModMenuVisible === 'function') window.setModMenuVisible(true);
           else {
             const f = document.getElementById('tts-fab-btn');
             if (f) f.style.display = '';
           }
-          toast('🔒 Mật khẩu đúng! Đã bật Menu');
+          toast('🔓 Mật khẩu đúng! Đã bật Menu Mod');
           showSettings();
         } else {
           passDlg('Mật khẩu không đúng!');
@@ -7565,13 +7579,45 @@
       $('modPassInp').onkeydown = e => { if (e.key === 'Enter') check() };
       $('modPassBack').onclick = showSettings;
     }
+
+    let deferredInstallPrompt = null;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredInstallPrompt = e;
+      window.deferredInstallPrompt = e;
+    });
+
+    window.addEventListener('appinstalled', () => {
+      deferredInstallPrompt = null;
+      window.deferredInstallPrompt = null;
+      if (typeof toast === 'function') toast('🎉 Đã cài đặt Tiệm Trà Sữa làm Native App!');
+    });
+
+    function installAppDlg() {
+      const promptEvt = deferredInstallPrompt || window.deferredInstallPrompt;
+      if (promptEvt) {
+        promptEvt.prompt();
+        promptEvt.userChoice.then((res) => {
+          if (res && res.outcome === 'accepted') {
+            if (typeof toast === 'function') toast('🎉 Đã chấp nhận cài đặt App!');
+          }
+          deferredInstallPrompt = null;
+          window.deferredInstallPrompt = null;
+        });
+      } else if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+        if (typeof toast === 'function') toast('📱 Game đã chạy dưới dạng App Native!');
+      } else {
+        if (typeof toast === 'function') toast('📲 Đã gửi yêu cầu cài đặt PWA tới trình duyệt!');
+      }
+    }
+
     function showSettings() {
       $('card').onchange = null;
-      const modOn = localStorage.getItem('tts_mod_visible') === 'true';
-      $('card').innerHTML = `<h2>${ico('set')} Cài đặt</h2><div class="setl">
-    <button class="setb" id="sModToggle"><span>${ico('book')}</span>Bật/Tắt Menu<small>${modOn ? 'Đang bật · bấm để tắt' : 'Đang tắt · cần mật khẩu'}</small></button>
-    <button class="setb" id="sGuide"><span>${ico('book')}</span>Hướng dẫn</button>
-    <button class="setb" id="sNews"><span>${ico('gift')}</span>Có gì mới<small>v${GAME_VERSION}</small></button>
+      const isFs = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      $('card').innerHTML = `<h2 id="sTitle" style="cursor:pointer;user-select:none" title="Chạm 5 lần để mở Mod Menu">${ico('set')} Cài đặt</h2><div class="setl">
+    <button class="setb" id="sFullscreen"><span>${ico('set')}</span>Full màn hình<small>${isFs ? 'Đang bật · bấm để tắt' : 'Đang tắt · bấm để bật'}</small></button>
+    <button class="setb" id="sInstallApp"><span>${ico('set')}</span>Cài Đặt Game<small>Cài Game cho điện thoại</small></button>
+    <button class="setb" id="sNews"><span>${ico('gift')}</span>Thông tin phiên bản<small>v${GAME_VERSION}</small></button>
     <button class="setb" id="sCoach"><span>${ico('book')}</span>Chỉ dẫn từng bước<small>${S.coach === true ? 'Luôn bật' : S.coach === false ? 'Tắt' : 'Tự động'}</small></button>
     <button class="setb" id="sLen"><span>${ico('clock')}</span>Thời gian bán mỗi ngày<small>${S.dayLen || CFG.dayMin} phút${R.running ? ' · áp dụng từ ngày sau' : ''}</small></button>
     <button class="setb" id="sTheme"><span>${ico('pen')}</span>Màu giao diện<small>${(THEMES.find(x => x.id === THEME) || THEMES[0]).n}</small></button>
@@ -7585,22 +7631,36 @@
     <button class="big" id="sClose" style="margin-top:12px">Đóng</button>`;
       $('modal').hidden = false;
       $('sClose').onclick = () => { $('modal').hidden = true };
-      $('sModToggle').onclick = () => {
-        if (modOn) {
-          localStorage.setItem('tts_mod_visible', 'false');
-          if (typeof window.setModMenuVisible === 'function') window.setModMenuVisible(false);
-          else {
-            const f = document.getElementById('tts-fab-btn'), m = document.getElementById('tts-mod-modal');
-            if (f) f.style.display = 'none';
-            if (m) m.classList.remove('show');
+
+      let sTitleTaps = 0, sTitleTimer = null;
+      const sTitle = $('sTitle');
+      if (sTitle) {
+        sTitle.onclick = () => {
+          sTitleTaps++;
+          clearTimeout(sTitleTimer);
+          sTitleTimer = setTimeout(() => { sTitleTaps = 0; }, 2500);
+          if (sTitleTaps >= 5) {
+            sTitleTaps = 0;
+            passDlg();
           }
-          toast('Đã tắt Mod Menu');
-          showSettings();
-        } else {
-          passDlg();
-        }
-      };
-      $('sGuide').onclick = () => { $('modal').hidden = true; showTour(false, true) };
+        };
+      }
+
+      const sFs = $('sFullscreen');
+      if (sFs) {
+        sFs.onclick = () => {
+          if (document.fullscreenElement || document.webkitFullscreenElement) {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+          } else {
+            const el = document.documentElement;
+            if (el.requestFullscreen) el.requestFullscreen();
+            else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+          }
+          setTimeout(showSettings, 150);
+        };
+      }
+      $('sInstallApp').onclick = installAppDlg;
       $('sNews').onclick = () => showNews(false);
       $('sTheme').onclick = themeDlg;
       $('sLen').onclick = () => { const L = [4, 5, 6], c = S.dayLen || CFG.dayMin; S.dayLen = L[(L.indexOf(c) + 1) % L.length]; save(); toast('Mỗi ngày bán ' + S.dayLen + ' phút, khách tới nhiều hơn theo thời gian'); showSettings() };
