@@ -6,4 +6,4 @@ v2.0 28/09/2026 Thêm Nhân Viên Toàn Năng, Phục Vụ theo Order của Khá
 
 v1.0 27/09/2026 Khai Trương Tiệm Trà Sữa.
 
-Hãy bấm vào nút Chơi Ngay để mở game: [![Chơi Ngay](https://img.shields.io/badge/Ch%C6%A1i%20Ngay-0078D4?style=flat-square)](https://byvn.net/ztr4)
+**Hãy bấm vào nút Chơi Ngay để mở game:** [![Chơi Ngay](https://img.shields.io/badge/Ch%C6%A1i%20Ngay-0078D4?style=flat-square)](https://byvn.net/ztr4)
