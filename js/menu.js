@@ -1,4 +1,4 @@
-/* ========== TIỆM TRÀ SỮA - HACK MOD MENU v2.1.1 ========== */
+/* ========== TIỆM TRÀ SỮA - HACK MOD MENU v2.2 ========== */
 
 (function () {
   'use strict';
@@ -235,7 +235,7 @@
     const fab = document.createElement('div');
     fab.id = 'tts-fab-btn';
     fab.innerHTML = '🌟️';
-    fab.title = 'TRUNGHIEU MENU v2.1.1';
+    fab.title = 'MENU v2.2';
 
     if (localStorage.getItem('tts_mod_visible') !== 'true') {
       fab.style.display = 'none';
@@ -261,7 +261,7 @@
         <div class="tts-mod-header">
           <div class="tts-mod-title">
             <span>🌟</span>
-            <span>MOD MENU v2.1.1</span>
+            <span>TRUNGHIEU MENU v2.1.1</span>
           </div>
           <button class="tts-mod-close" id="tts-close-btn">&times;</button>
         </div>
@@ -764,7 +764,7 @@
         {n:'Karik',t:'Rapper Việt Nam · Rap Việt',l:'vn',m:1,f:3},{n:'Suboi',t:'Rapper Việt Nam · Queen of Rap',l:'vn',m:0,f:2},
         {n:'B-Ray',t:'Rapper Việt Nam · Underdogs',l:'vn',m:1,f:6},{n:'JustaTee',t:'Rapper Việt Nam · SpaceSpeakers',l:'vn',m:1,f:7},
         {n:'MCK',t:'Rapper Việt Nam · RPT',l:'vn',m:1,f:1},{n:'tlinh',t:'Rapper Việt Nam · GenZ Star',l:'vn',m:0,f:4},
-        {n:'Andree Right Hand',t:'Rapper Việt Nam · SpaceSpeakers',l:'vn',m:1,f:0},{n:'HIEUTHUHAI',t:'Rapper Việt Nam · GERDNANG',l:'vn',m:1,f:6}
+        {n:'TRUNG HIẾU',t:'ADMIN · AiBoxPlus',l:'vn',m:1,f:0},{n:'HIEUTHUHAI',t:'Rapper Việt Nam · GERDNANG',l:'vn',m:1,f:6}
       ];
 
       const starsList = (H && H.STARS && H.STARS.length) ? H.STARS : (window.STARS && window.STARS.length ? window.STARS : DEFAULT_STARS);
@@ -804,7 +804,7 @@
         "Pha chế chuẩn melody, nốt trầm vị trà nốt bổng vị sữa ngon xỉu 🎵",
         "Xịn đét không cần bàn! Làm thêm ly nữa x3 năng lượng đi diễn luôn ⚡🎤",
         "Giao diện ly xinh xỉu mà chất lượng bên trong slay hết nấc 💋✨",
-        "Bling bling từ diện mạo tới hương vị trà sữa béo ngậy thượng hạng 💰🥂",
+        "Admin ghé thăm quán, trà sữa ngon tuyệt cú mèo! 🌟👑",
         "Ngủ một mình nhưng trà sữa phải uống 2 ly mới đã. 10/10 nha quán 🤩🔥"
       ];
 
