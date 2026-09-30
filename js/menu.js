@@ -424,7 +424,7 @@
 
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">💡 Giữ Màn Hình Luôn Sáng</div>
+                  <div class="tts-toggle-title">Giữ Màn Hình Luôn Sáng</div>
                   <div class="tts-toggle-desc">Tự động kích hoạt Screen Wake Lock API để giữ điện thoại/App luôn sáng khi treo game.</div>
                 </div>
                 <label class="tts-switch">
@@ -436,8 +436,8 @@
               <div class="tts-btn-grid">
                 <button class="tts-act-btn ${config.autoServe ? 'success' : 'pri'}" id="btn-auto-serve">🤖 Auto 100% (${config.autoServe ? 'BẬT' : 'TẮT'})</button>
                 <button class="tts-act-btn pri" id="btn-set-5stars">⭐(IDOL) Review 5★ </button>
-                <button class="tts-act-btn warn" id="btn-clear-badrev">🧹 Xoá Hết Đánh Giá Xấu</button>
-                <button class="tts-act-btn warn" id="btn-skip-day">⏩ Nhảy Sang Ngày Tiếp Theo</button>
+                <button class="tts-act-btn warn" id="btn-clear-badrev">🧹 Đánh Giá Xấu</button>
+                <button class="tts-act-btn warn" id="btn-skip-day">⏩ Sang Ngày Mới</button>
               </div>
             </div>
 
