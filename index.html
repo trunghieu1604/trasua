@@ -5607,7 +5607,7 @@
     const shopName = () => S.shopName || 'Tiệm Trà Sữa';
     function setName(v) { v = String(v || '').replace(/\s+/g, ' ').trim().slice(0, 30); S.shopName = v; document.title = shopName(); save() }
     function renameDlg() {
-      ask(`<h2>Đặt tên quán</h2><p>Tối đa 30 ký tự. Tên sẽ hiện trên biển hiệu, đánh giá và tổng kết.</p><input id="nameIn" class="pinbox nm" maxlength="30" value="${esc(S.shopName)}" placeholder="Ví dụ: Trà Sữa Nhà Mèo" aria-label="Tên quán">`,
+      ask(`<h2>Đặt tên quán</h2><p>Tối đa 30 ký tự. Tên sẽ hiện trên biển hiệu, đánh giá và tổng kết.</p><input id="nameIn" class="pinbox nm" maxlength="30" value="${esc(S.shopName)}" placeholder="Ví dụ: Trà Sữa AnDy" aria-label="Tên quán">`,
         [['Huỷ', () => { }], ['Lưu tên', () => { setName($('nameIn').value); toast('Đã đổi tên quán'); renderPrep() }, 1]]);
       setTimeout(() => { const i = $('nameIn'); if (i) { i.focus(); i.select() } }, 50);
     }
