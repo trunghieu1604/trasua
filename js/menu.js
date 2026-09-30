@@ -18,7 +18,7 @@
     superstarMode: false,
     zeroBills: false,
     zeroTax: false,
-    keepAwake: true
+    keepAwake: false,
   };
 
   let config = { ...defaultConfig };
