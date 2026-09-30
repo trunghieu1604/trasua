@@ -264,7 +264,7 @@
         <div class="tts-mod-header">
           <div class="tts-mod-title">
             <span>🌟</span>
-            <span>MENU ẨN - HACK GAME</span>
+            <span>MENU - HACK GAME</span>
           </div>
           <button class="tts-mod-close" id="tts-close-btn">&times;</button>
         </div>
