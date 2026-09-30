@@ -10,7 +10,7 @@
   border-radius: 50%;
   background: var(--bg);
   color: #fff;
-  border: 2px solid var(--ping);
+  border: 2px solid var(--pink);
   box-shadow: 0 4px 18px var(--pink), 0 0 12px var(--pink);
   display: flex;
   align-items: center;
@@ -29,7 +29,7 @@
 }
 
 #tts-fab-btn:hover {
-  box-shadow: 0 6px 24px rgba(37, 99, 235, 0.65), 0 0 20px rgba(96, 165, 250, 0.9);
+  box-shadow: 0 6px 24px var(--pink);, 0 0 20px var(--pink);;
 }
 
 #tts-fab-btn .badge {
@@ -69,9 +69,9 @@
 }
 
 .tts-mod-container {
-  background: #0f172a;
+  background: #f9f9f9;
   color: #f8fafc;
-  border: 1px solid #334155;
+  border: 1px solid #ffffff;
   border-radius: 20px;
   box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.08);
   width: 100%;
@@ -92,7 +92,7 @@
 /* Header */
 .tts-mod-header {
   padding: 14px 18px;
-  background: linear-gradient(90deg, #1e293b, #0f172a);
+  background: linear-gradient(90deg, #f7527b, #f7527b);
   border-bottom: 1px solid #334155;
   display: flex;
   align-items: center;
@@ -107,13 +107,13 @@
   font-weight: 800;
   font-size: 1.05rem;
   letter-spacing: 0.3px;
-  color: #b0bdce;
+  color: #faff1c;
 }
 
 .tts-mod-close {
-  background: #334155;
+  background: #f1edee;
   border: none;
-  color: #f7f7f7;
+  color: #f7527b;
   width: 30px;
   height: 30px;
   border-radius: 50%;
@@ -135,11 +135,11 @@
   display: flex;
   gap: 4px;
   padding: 8px 12px;
-  background: #1e293b;
+  background: #ffffff;
   overflow-x: auto;
   scrollbar-width: none;
   flex-shrink: 0;
-  border-bottom: 1px solid #334155;
+  border-bottom: 1px solid #f7527b;
 }
 
 .tts-mod-tabs::-webkit-scrollbar {
@@ -149,7 +149,7 @@
 .tts-tab-btn {
   background: transparent;
   border: 1px solid transparent;
-  color: #94a3b8;
+  color: #f7527b;
   padding: 7px 11px;
   font-size: 0.8rem;
   font-weight: 700;
@@ -160,9 +160,9 @@
 }
 
 .tts-tab-btn.active {
-  background: #475569;
-  color: #fff;
-  border-color: #475569;
+  background: #f7527b;
+  color: #faff1c;
+  border-color: #f7527b;
   box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
 }
 
@@ -193,8 +193,8 @@
 
 /* Section Box */
 .tts-sec-box {
-  background: #1e293b;
-  border: 1px solid #334155;
+  background: #f5e9e9;
+  border: 1px solid #f7527b;
   border-radius: 14px;
   padding: 12px;
   display: flex;
@@ -231,7 +231,7 @@
 .tts-toggle-title {
   font-size: 0.9rem;
   font-weight: 700;
-  color: #f1f5f9;
+  color: #f7527b;
 }
 
 .tts-toggle-desc {
@@ -257,7 +257,7 @@
   position: absolute;
   cursor: pointer;
   inset: 0;
-  background-color: #475569;
+  background-color: #e9c3c3;
   border-radius: 24px;
   transition: 0.2s;
 }
@@ -275,7 +275,7 @@
 }
 
 .tts-switch input:checked + .tts-slider {
-  background-color: #000000;
+  background-color: #f7527b;
 }
 
 .tts-switch input:checked + .tts-slider:before {
@@ -295,7 +295,7 @@
 
 .tts-act-btn {
   background: #334155;
-  color: #f8fafc;
+  color: #faff1c;
   border: 1px solid #475569;
   border-radius: 10px;
   padding: 9px 10px;
@@ -321,17 +321,17 @@
 }
 
 .tts-act-btn.pri {
-  background: #334155;
-  border-color: #334155;
+  background: #f7527b;
+  border-color: #f7527b;
 }
 
 .tts-act-btn.pri:hover {
-  background: #334155;
+  background: #f7527b;
 }
 
 .tts-act-btn.success {
-  background: #334155;
-  border-color: #334155;
+  background: #f7527b;
+  border-color: #f7527b;
 }
 
 .tts-act-btn.success:hover {
@@ -339,13 +339,13 @@
 }
 
 .tts-act-btn.warn {
-  background: #334155;
-  border-color: #334155;
+  background: #f7527b;
+  border-color: #f7527b5;
 }
 
 .tts-act-btn.danger {
-  background: #334155;
-  border-color: #334155;
+  background: #f7527b;
+  border-color: #f7527b;
 }
 
 .tts-act-btn.full-w {
@@ -361,11 +361,11 @@
 
 .tts-input {
   flex: 1;
-  background: #0f172a;
-  border: 1px solid #475569;
+  background: #f7527b;
+  border: 1px solid #f7527b;
   border-radius: 8px;
   padding: 8px 12px;
-  color: #f8fafc;
+  color: #faff1c;
   font-size: 0.9rem;
   font-weight: 700;
   outline: none;
@@ -379,8 +379,8 @@
 /* Footer status bar */
 .tts-mod-footer {
   padding: 10px 16px;
-  background: #0b1120;
-  border-top: 1px solid #1e293b;
+  background: #f7527b;
+  border-top: 1px solid #f7527b;
   font-size: 0.75rem;
   color: #64748b;
   display: flex;
@@ -390,7 +390,7 @@
 }
 
 .tts-status-tag {
-  color: #475569;
+  color: #faff1c;
   font-weight: 700;
 }
 
