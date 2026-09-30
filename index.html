@@ -787,12 +787,12 @@ const N_NICK=['Bé Na','Bơ','Mít','Sữa','Su Su','Bin','Tôm','Cún','Mèo Mu
 function genName(){return uniqName(()=>Math.random()<.5?rnd(NM_HO)+' '+rnd(NM_NU):rnd(NM_HO)+' '+rnd(NM_NAM))}
 const SAVE='tsShop2', OWNER_SAVE='tsOwner';
 /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-const GAME_VERSION='2.2';
+const GAME_VERSION='2.1';
 const CHANGELOG=[
-  {v:'2.2',d:'30/09/2026',items:['Fix Bug']},
-  {v:'2.1',d:'30/09/2026',items:['Thêm 20 Idol, Tăng số lượng tổng lên 30 Idol','Fix Treo Không Bị Tắt Màn Hình']},
-  {v:'2.0',d:'29/09/2026',items:['Thêm Trợ lý AI','Phục Vụ theo order của Khách chuẩn 100%','Hoạt động chung với Nhân viên Online','Giá thuê là 50.000k']},
-  {v:'1.0',d:'28/09/2026',items:['Khai Trương Tiệm Trà Sữa.']},
+  {v:'2.1',d:'30/09/2026',items:['Fix Bug']},
+  {v:'2.0',d:'29/09/2026',items:['Thêm 20 Idol, Tăng số lượng tổng lên 30 Idol','Fix Treo Không Bị Tắt Màn Hình']},
+  {v:'1.1',d:'28/09/2026',items:['Thêm Trợ lý AI','Phục Vụ theo order của Khách chuẩn 100%','Hoạt động chung với Nhân viên Online','Giá thuê là 50.000k']},
+  {v:'1.0',d:'27/09/2026',items:['Khai Trương Tiệm Trà Sữa.']},
 ];
 /* ===== CẤU HÌNH CỦA CHỦ GAME (người chơi không chỉnh được) ===== */
 const DEFAULT_CONFIG={
@@ -924,7 +924,7 @@ function migrate(d){const u=d.unlocked||{};
   Object.keys(refund).forEach(k=>{if(u[k])S.money+=refund[k]});
   ['khoaimon','dau','dao','tctrang','pudding','kemtrung'].forEach(k=>{delete S.stock[k];delete S.unlocked[k];delete S.sell[k]});
 }
-function loadFrom(d){const f=fresh();Object.keys(d.stock).forEach(k=>{if(typeof d.stock[k]==='number'){const q=d.stock[k];d.stock[k]=[];addStock(k,q,{day:d.day||1,stock:d.stock})}});S={...f,...d,stock:{...f.stock,...d.stock},sell:{...f.sell,...d.sell},unlocked:{...f.unlocked,...d.unlocked}};migrate(d);if(!d.cur)S.cur=newRec(S.day);if(S.seenLv==null)S.seenLv=levelOf(Math.max(1,S.day-1));if(S.evDay!==S.day)rollDay(S.day);S.hired=S.hired||{};STAFF.forEach(x=>{if(S.upg[x.id])S.hired[x.id]=true});if(S.upg.staff1&&S.upg.staff3)S.upg.staff1=false;if(S.upg.guard1&&S.upg.guard2)S.upg.guard1=false;if(S.online&&S.tablets==null)S.tablets=1;S.apps=S.apps||{};syncFlav();if(d.totalProfit==null)S.totalProfit=(S.history||[]).reduce((a,r)=>a+recRev(r)-recCost(r),0);if(!(d.lifeV>=2)){Object.keys(LIFE_OLD).forEach(k=>{const d=ITEMS[k].life-LIFE_OLD[k];(S.stock[k]||[]).forEach(b=>{if(b.exp<99999)b.exp+=d})});S.lifeV=2;save()}try{sanitize()}catch(e){}(S.reviews||[]).forEach(r=>{if(!r.k)r.k=(r.t||'').replace(/\p{Extended_Pictographic}|\uFE0F/gu,'').trim()});if(!d.badPlan){S.badPlan=mkBadPlan(S.day);save()}}
+function loadFrom(d){const f=fresh();Object.keys(d.stock).forEach(k=>{if(typeof d.stock[k]==='number'){const q=d.stock[k];d.stock[k]=[];addStock(k,q,{day:d.day||1,stock:d.stock})}});S={...f,...d,stock:{...f.stock,...d.stock},sell:{...f.sell,...d.sell},unlocked:{...f.unlocked,...d.unlocked}};migrate(d);if(!d.cur)S.cur=newRec(S.day);if(S.seenLv==null)S.seenLv=levelOf(Math.max(1,S.day-1));if(S.evDay!==S.day)rollDay(S.day);S.hired=S.hired||{};STAFF.forEach(x=>{if(S.upg[x.id])S.hired[x.id]=true});if(S.upg.staff1&&S.upg.staff3)S.upg.staff1=false;if(S.upg.guard1&&S.upg.guard2)S.upg.guard1=false;if(S.online&&S.tablets==null)S.tablets=1;S.apps=S.apps||{};syncFlav();if(d.totalProfit==null)S.totalProfit=(S.history||[]).reduce((a,r)=>a+recRev(r)-recCost(r),0);if(!(d.lifeV>=2)){Object.keys(LIFE_OLD).forEach(k=>{const d=ITEMS[k].life-LIFE_OLD[k];(S.stock[k]||[]).forEach(b=>{if(b.exp<99999)b.exp+=d})});S.lifeV=2;save()}try{sanitize()}catch(e){}(S.reviews||[]).forEach(r=>{if(!r.k)r.k=(r.t||'').replace(/\p{Extended_Pictographic}|\uFE0F/gu,'').trim();if(r.t&&r.t.includes(' [Tự động dịch] ')){const isVn=(r.st!=null&&STARS[r.st]&&STARS[r.st].l==='vn')||(r.n&&r.n.includes('TRUNG HIẾU'))||(r.tg&&(r.tg.includes('Rapper Việt Nam')||r.tg.includes('Admin')||r.tg.includes('ADMIN')));const parts=r.t.split(' [Tự động dịch] ');if(isVn||(parts.length===2&&parts[0].trim()===parts[1].trim())){r.t=parts[1].trim()}}});if(!d.badPlan){S.badPlan=mkBadPlan(S.day);save()}}
 function load(){let raw=null;try{raw=localStorage.getItem(SAVE)}catch(e){}
   if(raw){try{const d=JSON.parse(raw);if(d&&d.stock){loadFrom(d);return true}}catch(e){}
     /* đọc lỗi: cất bản cũ riêng, không ghi đè */try{localStorage.setItem(SAVE+'_rescue',raw)}catch(e){}R.loadErr=true}
@@ -1117,7 +1117,7 @@ function reviewText(why,c,st,extra){
     const pool=TAIL_MOOD[MOOD[why]||'ok'].filter(x=>x.trim()!==lastTail);t+=rnd(pool.length?pool:TAIL_MOOD.ok)}
   return {t,k:strip(t)};
 }
-function addReview(st,why,online,c,extra){const sr=c&&c.star!=null;if(sr)st=5;const r=sr?(x=>({t:x[0]+' [Tự động dịch] '+x[1],k:'★'+c.star+Math.random()}))(starLine(STARS[c.star],'rv')):reviewText(why,c,st,extra),o=c&&c.cups?c.cups[0]:null;
+function addReview(st,why,online,c,extra){const sr=c&&c.star!=null;if(sr)st=5;const r=sr?(x=>{const isVn=(STARS[c.star]&&STARS[c.star].l==='vn')||(c.name&&c.name.includes('TRUNG HIẾU'));return{t:isVn?x[1]:(x[0]+' [Tự động dịch] '+x[1]),k:'★'+c.star+Math.random()}})(starLine(STARS[c.star],'rv')):reviewText(why,c,st,extra),o=c&&c.cups?c.cups[0]:null;
   S.reviews.unshift({s:st,t:r.t,k:r.k,d:S.day,o:!!online,...(sr?{st:c.star,tg:STARS[c.star].t}:{}),n:c?c.name:'Khách',f:(c&&c.face)||'🙂',b:o?o.base:null,fl:o?o.flav:null,tp:o?o.tops:[],ch:o?!!o.cheese:false,sz:o?o.size:'M'});
   S.revTotal=Math.max(S.revTotal||0,S.reviews.length-1)+1;if(S.reviews.length>2500)S.reviews.length=2500;R.today.stars.push(st)}
 
