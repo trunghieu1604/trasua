@@ -1,4 +1,4 @@
-/* ========== TIỆM TRÀ SỮA - HACK MOD MENU ========== */
+/* ========== TIỆM TRÀ SỮA - HACK MOD MENU========== */
 
 (function () {
   'use strict';
@@ -438,8 +438,8 @@
 
               <div class="tts-btn-grid">
                 <button class="tts-act-btn ${config.autoServe ? 'success' : 'pri'}" id="btn-auto-serve">🤖 Tự Động Pha & Giao (${config.autoServe ? 'ĐANG BẬT' : 'ĐANG TẮT'})</button>
-                <button class="tts-act-btn pri" id="btn-set-5stars">⭐ Nạp 30 Review 5★ Từ Idol & Rapper</button>
-                <button class="tts-act-btn warn" id="btn-clear-badrev">🧹 Xoá Hết Đánh Giá Xấu (1-2 Sao)</button>
+                <button class="tts-act-btn pri" id="btn-set-5stars">⭐(IDOL) 30 Review 5★ </button>
+                <button class="tts-act-btn warn" id="btn-clear-badrev">🧹 Xoá Hết Đánh Giá Xấu</button>
                 <button class="tts-act-btn warn" id="btn-skip-day">⏩ Nhảy Sang Ngày Tiếp Theo</button>
               </div>
             </div>
@@ -764,7 +764,7 @@
         {n:'Karik',t:'Rapper Việt Nam · Rap Việt',l:'vn',m:1,f:3},{n:'Suboi',t:'Rapper Việt Nam · Queen of Rap',l:'vn',m:0,f:2},
         {n:'B-Ray',t:'Rapper Việt Nam · Underdogs',l:'vn',m:1,f:6},{n:'JustaTee',t:'Rapper Việt Nam · SpaceSpeakers',l:'vn',m:1,f:7},
         {n:'MCK',t:'Rapper Việt Nam · RPT',l:'vn',m:1,f:1},{n:'tlinh',t:'Rapper Việt Nam · GenZ Star',l:'vn',m:0,f:4},
-        {n:'TRUNG HIẾU',t:'ADMIN · AiBoxPlus',l:'vn',m:1,f:0},{n:'HIEUTHUHAI',t:'Rapper Việt Nam · GERDNANG',l:'vn',m:1,f:6}
+        {n:'TRUNG HIẾU',t:'ADMINISTRATOR · BÁ CHỦ',l:'vn',m:1,f:0},{n:'HIEUTHUHAI',t:'Rapper Việt Nam · GERDNANG',l:'vn',m:1,f:6},{n:'LƯỢNG NGUYỄN',t:'VIP MEMBER',l:'vn',m:1,f:0}
       ];
 
       const starsList = (H && H.STARS && H.STARS.length) ? H.STARS : (window.STARS && window.STARS.length ? window.STARS : DEFAULT_STARS);
@@ -799,7 +799,7 @@
         "Trà sữa đậm vị như lời rap, uống một ngụm là thấy bình yên giữa xô xát phố thị 🎤🌿",
         "Bigcityboy nhưng vẫn nghiện vị trà sữa béo ngậy ngọt ngào này 🌹🔥",
         "Flow trà sữa đỉnh đét, trân châu giòn sần sật uống là dính liền 💯",
-        "Queen of Rap duyệt ly này! Vị trà đậm chất, hậu vị ngọt thanh chuẩn bài 👑🧋",
+        "Queen of Rap duyệt ly này! Vị trà đậm chất, hậu vị ngọt thanh chuẩn bài 💋👑",
         "Diss ai thì diss chứ trà sữa quán này ngon quá không diss nổi 5★ 🔥",
         "Pha chế chuẩn melody, nốt trầm vị trà nốt bổng vị sữa ngon xỉu 🎵",
         "Xịn đét không cần bàn! Làm thêm ly nữa x3 năng lượng đi diễn luôn ⚡🎤",
@@ -809,7 +809,7 @@
       ];
 
       starsList.forEach((st, idx) => {
-        const revText = UNIQUE_IDOL_REVIEWS[idx % UNIQUE_IDOL_REVIEWS.length];
+        const revText = (st.n && st.n.includes('LƯỢNG NGUYỄN')) ? "Trà quá ngon, sẽ ủng hộ dài dài" : UNIQUE_IDOL_REVIEWS[idx % UNIQUE_IDOL_REVIEWS.length];
         const b = bases[idx % bases.length];
         const tp = [topsList[idx % topsList.length]];
 
