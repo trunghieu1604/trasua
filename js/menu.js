@@ -264,7 +264,7 @@
         <div class="tts-mod-header">
           <div class="tts-mod-title">
             <span>🌟</span>
-            <span>TRUNGHIEU MENU</span>
+            <span>MENU ẨN - HACK GAME</span>
           </div>
           <button class="tts-mod-close" id="tts-close-btn">&times;</button>
         </div>
@@ -298,7 +298,7 @@
 
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Bảo Vệ VIP (100% Bắt Trộm & Bùng Tiền)</div>
+                  <div class="tts-toggle-title">Bảo Vệ VIP (Trộm & Bùng)</div>
                   <div class="tts-toggle-desc">Tóm gọn 100% khách ôm ly chạy trốn (bùng tiền) và khách kì kèo trả giá, thu hồi đủ 100% tiền.</div>
                 </div>
                 <label class="tts-switch">
@@ -347,14 +347,14 @@
               </div>
 
               <div class="tts-btn-grid grid-3">
-                <button class="tts-act-btn success" id="btn-add-10m">+10 Triệu</button>
-                <button class="tts-act-btn success" id="btn-add-100m">+100 Triệu</button>
-                <button class="tts-act-btn success" id="btn-add-1b">+1 Tỷ VNĐ</button>
+                <button class="tts-act-btn success" id="btn-add-10m">+10M</button>
+                <button class="tts-act-btn success" id="btn-add-100m">+100M</button>
+                <button class="tts-act-btn success" id="btn-add-1b">+1B</button>
               </div>
 
               <div class="tts-input-row">
                 <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="1000000">
-                <button class="tts-act-btn pri" id="btn-set-money">Đặt Tiền</button>
+                <button class="tts-act-btn pri" id="btn-set-money">✔</button>
               </div>
             </div>
 
@@ -463,7 +463,7 @@
 
         <!-- Footer -->
         <div class="tts-mod-footer">
-          <span class="tts-status-tag">● Trạng thái: Sẵn Sàng</span>
+          <span class="tts-status-tag">● Trạng thái: Đã Sẵn Sàng - MenuMod tạo bởi Trung Hiếu</span>
         </div>
       </div>
     `;
