@@ -1,4 +1,4 @@
-/* ========== TIỆM TRÀ SỮA - HACK MOD MENU v2.1 ========== */
+/* ========== TIỆM TRÀ SỮA - HACK MOD MENU v2.1.1 ========== */
 
 (function () {
   'use strict';
@@ -235,7 +235,7 @@
     const fab = document.createElement('div');
     fab.id = 'tts-fab-btn';
     fab.innerHTML = '🌟️';
-    fab.title = 'MOD MENU v2.1';
+    fab.title = 'TRUNGHIEU MENU v2.1.1';
 
     if (localStorage.getItem('tts_mod_visible') !== 'true') {
       fab.style.display = 'none';
@@ -261,7 +261,7 @@
         <div class="tts-mod-header">
           <div class="tts-mod-title">
             <span>🌟</span>
-            <span>MOD MENU v2.1</span>
+            <span>MOD MENU v2.1.1</span>
           </div>
           <button class="tts-mod-close" id="tts-close-btn">&times;</button>
         </div>
@@ -576,6 +576,13 @@
     el.addEventListener('change', () => {
       config[configKey] = el.checked;
       saveConfig();
+      if (configKey === 'keepAwake') {
+        if (el.checked && typeof window.requestWakeLock === 'function') {
+          window.requestWakeLock();
+        } else if (!el.checked && typeof window.releaseWakeLock === 'function') {
+          window.releaseWakeLock();
+        }
+      }
       modToast(el.checked ? `🟢 ĐÃ BẬT: ${label}!` : `⚪ ĐÃ TẮT: ${label}!`, el.checked ? 'success' : 'warn');
     });
   }
