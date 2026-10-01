@@ -7471,7 +7471,7 @@
         case 29: // Chăm Sóc VIP
           cur = Math.min((S.reviews || []).filter(r => r.st != null).length, 5); target = 5; ok = cur >= target; txt = `${cur}/5 lượt VIP`; break;
         case 30: // Huyền Thoại Trà Sữa (30/30 Thành tích)
-          cur = ACHIEVEMENTS.slice(0, 29).filter(a => getAchievementStatus(a).ok).length; target = 29; ok = cur >= 29; txt = `${cur}/29 thành tích trước`; break;
+          cur = ACHIEVEMENTS.slice(0, 29).filter(a => getAchievementStatus(a).ok).length; target = 29; ok = cur >= 29; txt = `${cur}/29 thành tích`; break;
       }
 
       const pct = Math.min(100, Math.round((cur / target) * 100));
