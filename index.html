@@ -5360,11 +5360,11 @@
       { id: 'ac', n: 'Máy lạnh', d: 'Khách ít chê khi phải chờ', cost: 900000, i: ico('upsnow') }
     ];
     const STAFF = [
-      { id: 'staff1', n: 'Nhân viên phụ quầy', d: 'Bạn lấy ly, bỏ topping và dán nắp. Nhân viên rót trà, cho hương, đường và đá. Không dùng cùng lúc với Nhân viên phụ quầy 2 và Nhân viên toàn năng.', cost: 500000, wage: 'wage1', from: 1 },
-      { id: 'staff2', n: 'Nhân viên pha chế', d: 'Khi có từ 2 khách, nhận trọn đơn của khách chờ lâu nhất và pha hết các ly. Làm quá 22:00 thì trả tăng ca 40k/giờ. Không dùng cùng lúc với Nhân viên toàn năng.', cost: 1000000, wage: 'wage2', from: 30 },
-      { id: 'staffOn', n: 'Nhân viên đơn online', d: 'Chỉ làm đơn online: nhận trọn đơn và pha hết các ly, mỗi ly khoảng 1 giây. Hoạt động chung được với Nhân viên toàn năng.', cost: 2000000, wage: 'wageOn', from: 1, need: () => !!S.online, needT: 'Cần mở đơn online' },
-      { id: 'staff3', n: 'Nhân viên phụ quầy 2', d: 'Làm như nhân viên phụ quầy, thêm múc topping. Bạn lấy ly và dán nắp. Không dùng cùng lúc với Nhân viên phụ quầy và Nhân viên toàn năng.', cost: 750000, wage: 'wage3', from: 1 },
-      { id: 'robot', n: 'Nhân viên toàn năng', d: 'Tự động phục vụ tất cả khách tại quầy.', cost: 0, wage: 'wageRobot', from: 1, need: () => countDoneAch() >= 30, needT: () => 'Tiến độ hoàn thành: (' + countDoneAch() + '/30)' }
+      { id: 'staff1', n: 'Nhân viên phụ quầy', d: 'Bạn lấy ly, bỏ topping và dán nắp. Nhân viên rót trà, cho hương, đường và đá. Không dùng cùng lúc với Nhân viên phụ quầy 2 và Nhân viên Lượng toàn năng.', cost: 500000, wage: 'wage1', from: 1 },
+      { id: 'staff2', n: 'Nhân viên pha chế', d: 'Khi có từ 2 khách, nhận trọn đơn của khách chờ lâu nhất và pha hết các ly. Làm quá 22:00 thì trả tăng ca 40k/giờ. Không dùng cùng lúc với Nhân viên Lượng toàn năng.', cost: 1000000, wage: 'wage2', from: 30 },
+      { id: 'staffOn', n: 'Nhân viên đơn online', d: 'Chỉ làm đơn online: nhận trọn đơn và pha hết các ly, mỗi ly khoảng 1 giây. Hoạt động chung được với Nhân viên Lượng toàn năng.', cost: 2000000, wage: 'wageOn', from: 1, need: () => !!S.online, needT: 'Cần mở đơn online' },
+      { id: 'staff3', n: 'Nhân viên phụ quầy 2', d: 'Làm như nhân viên phụ quầy, thêm múc topping. Bạn lấy ly và dán nắp. Không dùng cùng lúc với Nhân viên phụ quầy và Nhân viên Lượng toàn năng.', cost: 750000, wage: 'wage3', from: 1 },
+      { id: 'robot', n: 'Nhân viên Lượng toàn năng', d: 'Tự động phục vụ tất cả khách tại quầy.', cost: 0, wage: 'wageRobot', from: 1, need: () => countDoneAch() >= 30, needT: () => 'Tiến độ hoàn thành: (' + countDoneAch() + '/30)' }
     ];
     const BRAND_COST = 5000000;
     const BRAND_ICONS = Array.from({ length: 50 }, (_, i) => 'b' + String(i).padStart(2, '0'));
@@ -5457,12 +5457,12 @@
     const GAME_VERSION = '2.3';
     const CHANGELOG = [
 	  {v:'2.3', d: '01/10/2026', items: ['Thêm BXH Quán và Danh Hiệu']},
-	  {v:'2.2', d: '01/10/2026', items: ['Thêm 30 Thành Tích','Ngưng cho thuê Nhân Viên Toàn Năng','Nhân Viên Toàn Năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
+	  {v:'2.2', d: '01/10/2026', items: ['Thêm 30 Thành Tích','Ngưng cho thuê Nhân viên Lượng toàn năng','Nhân viên Lượng toàn năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
 	  {v:'2.1', d: '30/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
 	  {v:'2.0.8', d: '29/09/2026', items: ['Fix lỗi','Fix màu']},
 	  {v:'2.0.7', d: '28/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
 	  {v:'2.0.6', d: '27/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
-      {v:'2.0.5', d: '26/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
+      {v:'2.0.5', d: '26/09/2026', items: ['Thêm Nhân viên Lượng toàn năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
 	  {v:'2.0.4',d:'24/09/2026',items:['Hương mua theo chai ở Nâng cấp > Hương: 200k một chai dùng cho 45 ly, hạn 7 ngày kể từ ngày mua. Mua bao nhiêu chai thì 45 ly nhân lên. Hết chai phải mua chai mới, chai quá hạn bị đổ bỏ. Kho không còn nấu hương theo phần','Đơn online Soppi: cần mua tablet (7 triệu, ở Trang bị) thì đơn mới đổ về. Quán đã mở online được tặng sẵn 1 tablet','Đơn online nhận thêm tối đa bằng số chỗ ở quầy: 3 khách, mở rộng quầy thì 4 (tổng 6 hoặc 8 khách). Đơn online khoảng 20% tổng khách. Tài xế chờ tối đa 1 phút 30 giây, có tài xế nam và nữ','Mỗi 30 ngày có 1 đơn lớn Soppi 5–10 ly vào ngày ngẫu nhiên','Nhân viên đơn online (thuê 2 triệu, lương 250k/ngày): chỉ làm đơn online, mỗi ly khoảng 1 giây','Vay ngân hàng tối đa 1 triệu, lãi 25%/năm','Máy dán nắp tự động dán nhanh hơn','Hướng dẫn thêm trang Đường và đá (Cài đặt > Hướng dẫn)','Khách ngôi sao: cứ 30 ngày có 1 idol Kpop hoặc diễn viên Thái, Trung ghé quán vào ngày ngẫu nhiên. Nói tiếng nước mình kèm [Tự động dịch], trả gấp 3 tiền và luôn để 5 sao','Mã sao lưu còn 8 số, mỗi quán một mã riêng không trùng ai. Sao lưu lại vẫn giữ nguyên mã. Khôi phục bằng 8 số cần có mạng, mã dài cũ vẫn dùng được','Tem thương hiệu hiện đủ tên quán. Chọn được kiểu chữ thẳng hàng, cong phía trên hoặc cong phía dưới']},
 	  {v:'2.0.3',d:'24/09/2026',items:['Thêm Nhân viên phụ quầy 2 (thuê 750k, lương 150k/ngày): làm như nhân viên phụ quầy, thêm múc topping. Không thuê cùng lúc với nhân viên phụ quầy, thuê người này thì người kia tự nghỉ (gọi đi làm lại không tốn tiền)','Sửa lỗi trên iPhone: sau khi bật bàn phím (trả lời đánh giá, đặt tên quán…) rồi tắt, quầy pha bị thu nhỏ còn nửa màn hình và nút Mở cửa nhảy lên giữa màn hình. Game giờ tự nhận ra và trả về đủ màn hình','Sửa lỗi đánh giá đầy 2.500 thì như đứng yên: bộ nhớ lưu game bị đầy nên đánh giá và tiến trình mới có thể không được lưu. Bản lưu nay gọn hơn và tự dọn bản dự phòng cũ khi thiếu chỗ','Số đánh giá trên đầu màn hình giờ là tổng số đánh giá từ trước tới nay, vẫn tăng khi đã quá 2.500 (tab Đánh giá vẫn giữ 2.500 đánh giá mới nhất)']},
       {v:'2.0.2',d:'23/09/2026',items:['Nhân viên phụ quầy: bạn lấy ly, bỏ topping và dán nắp (có máy dán nắp tự động thì máy tự dán). Nhân viên rót trà, cho hương, đường và đá. Bỏ topping được ngay trong lúc nhân viên đang pha']},
@@ -6124,9 +6124,9 @@
         if (hi) {
           const u = STAFF.find(x => x.id === hi.dataset.hire); S.hired = S.hired || {}; let rest = '';
           if (u.id === 'robot') { if (S.upg.staff1 || S.upg.staff2 || S.upg.staff3) rest = '. Nhân viên phụ quầy 1, 2 và pha chế được cho nghỉ'; S.upg.staff1 = false; S.upg.staff2 = false; S.upg.staff3 = false; }
-          else if (u.id === 'staff1') { if (S.upg.robot || S.upg.staff3) rest = S.upg.robot ? '. Nhân viên toàn năng được cho nghỉ' : '. Nhân viên phụ quầy 2 được cho nghỉ'; S.upg.robot = false; S.upg.staff3 = false; }
-          else if (u.id === 'staff2') { if (S.upg.robot) rest = '. Nhân viên toàn năng được cho nghỉ'; S.upg.robot = false; }
-          else if (u.id === 'staff3') { if (S.upg.robot || S.upg.staff1) rest = S.upg.robot ? '. Nhân viên toàn năng được cho nghỉ' : '. Nhân viên phụ quầy được cho nghỉ'; S.upg.robot = false; S.upg.staff1 = false; }
+          else if (u.id === 'staff1') { if (S.upg.robot || S.upg.staff3) rest = S.upg.robot ? '. Nhân viên Lượng toàn năng được cho nghỉ' : '. Nhân viên phụ quầy 2 được cho nghỉ'; S.upg.robot = false; S.upg.staff3 = false; }
+          else if (u.id === 'staff2') { if (S.upg.robot) rest = '. Nhân viên Lượng toàn năng được cho nghỉ'; S.upg.robot = false; }
+          else if (u.id === 'staff3') { if (S.upg.robot || S.upg.staff1) rest = S.upg.robot ? '. Nhân viên Lượng toàn năng được cho nghỉ' : '. Nhân viên phụ quầy được cho nghỉ'; S.upg.robot = false; S.upg.staff1 = false; }
           else { const oth = { guard1: 'guard2', guard2: 'guard1' }[u.id], othU = oth && S.upg[oth] ? STAFF.find(x => x.id === oth) : null; if (othU) rest = '. ' + othU.n + ' được cho nghỉ'; if (oth) S.upg[oth] = false; }
           if (S.hired[u.id]) { S.upg[u.id] = true; save(); toast(u.n + ' đi làm lại' + rest); refreshPrep(); return }
           if (S.money < u.cost) { return }
@@ -7517,9 +7517,9 @@
           <h2 style="color:#e85d8a;font-weight:900;font-size:1.35rem;margin-bottom:8px">CHÚC MỪNG BẠN!</h2>
           <p style="font-size:1.02rem;line-height:1.45;color:#4a3227;margin-bottom:14px">Bạn đã xuất sắc hoàn thành trọn vẹn <b>30/30 Thành Tích</b> và nhận được phần thưởng cao quý nhất:</p>
           <div style="background:#fff3cd;border:2px dashed #f0ad4e;padding:12px;border-radius:14px;font-size:1.2rem;font-weight:900;color:#8a6d3b;margin-bottom:14px">
-            🤖 NHÂN VIÊN TOÀN NĂNG
+            🤖 Nhân viên Lượng toàn năng
           </div>
-          <p style="font-size:.9rem;color:#7a5a48;line-height:1.4">Nhân viên toàn năng sẽ tự động phục vụ tất cả khách tại quầy. Vào mục <b>Nâng cấp ➔ Nhân viên</b> để kích hoạt đi làm ngay nhé!</p>
+          <p style="font-size:.9rem;color:#7a5a48;line-height:1.4">Nhân viên Lượng toàn năng sẽ tự động phục vụ tất cả khách tại quầy. Vào mục <b>Nâng cấp ➔ Nhân viên</b> để kích hoạt đi làm ngay nhé!</p>
         </div>
       `, [
         ['Đã nhận quà 🚀', () => { S.claimedRobotPopup = true; save(); sfx('cash'); refreshPrep(); }, 1]
@@ -7556,11 +7556,11 @@
         <div style="display:flex;justify-content:center;align-items:center;margin:12px 0;">
           ${S.claimedRobotPopup ? `
             <button disabled style="background:linear-gradient(135deg,#4caf50 0%,#2e7d32 100%);color:#fff;padding:10px 22px;font-weight:900;font-size:0.95rem;border-radius:12px;border:none;box-shadow:0 3px 8px rgba(46,125,50,0.3);display:flex;align-items:center;gap:6px;opacity:0.95;cursor:default;">
-              ✅ ĐÃ NHẬN (Nhân Viên Toàn Năng)
+              ✅ ĐÃ NHẬN (Nhân viên Lượng toàn năng)
             </button>
           ` : doneCount >= 30 ? `
             <button id="btnClaimRobot" style="background:linear-gradient(135deg,#e85d8a 0%,#c24c69 100%);color:#fff;padding:11px 24px;font-weight:900;font-size:0.98rem;border-radius:12px;cursor:pointer;border:none;box-shadow:0 4px 12px rgba(232,93,138,0.4);display:flex;align-items:center;gap:6px;">
-              🎁 Nhận Quà (Nhân Viên Toàn Năng)
+              🎁 Nhận Quà (Nhân viên Lượng toàn năng)
             </button>
           ` : `
             <button disabled style="background:#e9ecef;color:#6c757d;padding:10px 20px;font-weight:bold;font-size:0.9rem;border-radius:12px;border:1px solid #ced4da;opacity:0.9;cursor:not-allowed;">
@@ -7571,7 +7571,7 @@
 
         <div style="margin-top:10px;">
           <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:bold;color:#8a6d3b;margin-bottom:4px;">
-            <span>🎁 Phần thưởng: <b>Nhân Viên Toàn Năng</b></span>
+            <span>🎁 Phần thưởng: <b>Nhân viên Lượng toàn năng</b></span>
             <span>${doneCount}/30 Thành tích (${overallPct}%)</span>
           </div>
           <div class="ach-bar-bg" style="height:10px;background:rgba(0,0,0,0.08);">
@@ -7731,7 +7731,7 @@
   ${oRow('Lương nhân viên phụ quầy', 'wage1', CFG.wage1, 5000, 'đ')}
   ${oRow('Lương nhân viên pha chế', 'wage2', CFG.wage2, 5000, 'đ')}
   ${oRow('Lương nhân viên phụ quầy 2', 'wage3', CFG.wage3, 5000, 'đ')}
-  ${oRow('Lương nhân viên toàn năng', 'wageRobot', CFG.wageRobot, 5000, 'đ')}
+  ${oRow('Lương Nhân viên Lượng toàn năng', 'wageRobot', CFG.wageRobot, 5000, 'đ')}
   ${oRow('Lương nhân viên đơn online', 'wageOn', CFG.wageOn, 5000, 'đ')}
   ${oRow('Giá 1 chai hương', 'bottle', CFG.bottle, 5000, 'đ')}
   ${oRow('Giá tablet', 'tablet', CFG.tablet, 100000, 'đ')}
