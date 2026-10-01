@@ -790,7 +790,7 @@
         { n: 'HÒA MINZY 🌟', t: 'Trà sữa ở đây siêu ngon tuyệt vời!', s: 5, tg: 'CA SỸ', d: S.day, st: 2, o: true },
         { n: 'SƠN TÙNG M-TP 🌟', t: 'Vừa ngon vừa phục vụ nhanh chuẩn 5 sao!', s: 5, tg: 'CA SỸ', d: S.day, st: 3, o: true },
         { n: 'THÙY TIÊN 🌟', t: '10 điểm không có nhưng!', s: 5, tg: 'HOA HẬU', d: S.day, st: 4, o: true },
-        { n: 'JUN VŨ 🌟', t: 'Quán đỉnh kịch trần luôn nha anh em!', s: 5, tg: 'DIỄN VIÊN', d: S.day, st: 5, o: true }
+        { n: 'JUN VŨ 🌟', t: 'Quán đỉnh kịch trần luôn nha!', s: 5, tg: 'DIỄN VIÊN', d: S.day, st: 5, o: true }
       ];
       while (reviews.length < 50) {
         reviews.push({
