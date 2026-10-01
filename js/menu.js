@@ -704,29 +704,48 @@
     document.getElementById('btn-unlock-all').onclick = () => {
       const S = getS();
       if (!S) return;
+
+      // 1. BXH 2000 điểm (TOP 1)
+      S.rankPts = 2000;
+
+      // 2. Mở khóa nguyên liệu & kho hàng
       if (getH().BASE_KEYS) getH().BASE_KEYS.forEach((k) => (S.unlocked[k] = true));
-      if (getH().FLAV_KEYS) {
-        getH().FLAV_KEYS.forEach((k) => {
-          S.unlocked[k] = true;
-          if (!S.stock[k] || S.stock[k].length === 0) {
-            S.stock[k] = [{ q: 99, exp: 99999 }];
-          }
-        });
-        if (getH().syncFlav) getH().syncFlav();
-      }
+      if (getH().FLAV_KEYS) getH().FLAV_KEYS.forEach((k) => (S.unlocked[k] = true));
       if (getH().TOP_KEYS) getH().TOP_KEYS.forEach((k) => (S.unlocked[k] = true));
+      if (getH().ITEMS) {
+        Object.keys(getH().ITEMS).forEach((k) => {
+          S.stock[k] = [{ q: 999, exp: 99999 }];
+        });
+      }
+      if (getH().syncFlav) getH().syncFlav();
+
+      // 3. Mở khóa máy móc, trang bị, quầy 4, nâng cấp
+      S.upg = S.upg || {};
       if (getH().UPG) getH().UPG.forEach((u) => (S.upg[u.id] = true));
+      S.upg.slot4 = true;
+      S.upg.sealer = true;
+      S.upg.sign = true;
+      S.upg.ads = true;
+      S.upg.seats = true;
+      S.upg.ac = true;
+      S.upg.brandKit = true;
+
+      // 4. Nhân viên & Auto Robot
       if (getH().STAFF) {
+        S.hired = S.hired || {};
         getH().STAFF.forEach((s) => {
           S.upg[s.id] = true;
-          if (S.hired) S.hired[s.id] = true;
+          S.hired[s.id] = true;
         });
         S.upg.staff1 = false;
+        S.upg.staff2 = true;
         S.upg.staff3 = true;
+        S.upg.robot = true;
       }
+
+      // 5. App Baemin & Tablet & Brand
       S.online = true;
-      S.tablets = 1;
-      S.upg.brandKit = true;
+      S.tablets = 3;
       S.brand = {
         i: 'b00',
         c: '#ffffff',
@@ -734,7 +753,57 @@
         fr: 'round',
         s: 'Ngon từ giọt đầu'
       };
-      commitState('🌟 ĐÃ MỞ KHÓA TOÀN BỘ 100% GAME!');
+
+      // 6. Thông số tổng quát & Tài chính
+      S.day = Math.max(S.day || 1, 30);
+      S.best = Math.max(S.best || 0, 30);
+      S.served = Math.max(S.served || 0, 1000);
+      S.totalRev = Math.max(S.totalRev || 0, 15000000);
+      S.totalProfit = Math.max(S.totalProfit || 0, 10000000);
+      S.money = Math.max(S.money || 0, 50000000);
+      S.loan = null;
+      S.hot = null;
+      S.claimedRobotPopup = false;
+      S.seenLv = 3;
+
+      // 7. Tạo Lịch sử 30 ngày để đạt đủ mọi thành tích doanh số
+      S.history = S.history || [];
+      while (S.history.length < 30) {
+        const d = S.history.length + 1;
+        S.history.push({
+          day: d,
+          served: 40,
+          lost: 0,
+          gift: d === 1 ? 50000 : 0,
+          sales: {
+            L: { q: 5, a: 35000 },
+            tra: { q: 10, a: 220000 },
+            matcha: { q: 5, a: 150000 },
+            cheese: { q: 3, a: 30000 }
+          }
+        });
+      }
+
+      // 8. Tạo Đánh giá 5 sao chuẩn (Có Admin, VIP, Online)
+      const reviews = [
+        { n: 'ADMIN TRUNG HIẾU 👑', t: 'Tiệm trà sữa đẳng cấp nhất! Đầy đủ 30/30 thành tích.', s: 5, tg: 'Admin', d: S.day, st: 1, o: true },
+        { n: 'Ca Sĩ Sơn Tùng M-TP 🌟', t: 'Trà sữa ở đây siêu ngon tuyệt vời!', s: 5, tg: 'Khách VIP', d: S.day, st: 2, o: true },
+        { n: 'Hoa Hậu Thùy Tiên 🌟', t: 'Vừa ngon vừa phục vụ nhanh chuẩn 5 sao!', s: 5, tg: 'Khách VIP', d: S.day, st: 3, o: true },
+        { n: 'Streamer Độ Mixi 🌟', t: '10 điểm không có nhưng!', s: 5, tg: 'Khách VIP', d: S.day, st: 4, o: true },
+        { n: 'Rapper Hieuthuhai 🌟', t: 'Quán đỉnh kịch trần luôn nha anh em!', s: 5, tg: 'Khách VIP', d: S.day, st: 5, o: true }
+      ];
+      while (reviews.length < 50) {
+        reviews.push({
+          n: `Khách Hàng VIP #${reviews.length + 1}`,
+          t: 'Quán tuyệt vời, trà thơm ngon 5 sao!',
+          s: 5,
+          d: Math.max(1, S.day - (reviews.length % 5)),
+          o: reviews.length < 20
+        });
+      }
+      S.reviews = reviews;
+
+      commitState('🌟 ĐÃ MỞ KHÓA FULL GAME 100%! (30/30 Thành Tích & TOP 1 BXH 2000 pt)');
     };
 
     // 3. Kho Hàng
