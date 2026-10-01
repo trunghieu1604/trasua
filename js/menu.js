@@ -787,9 +787,9 @@
       // 8. Tạo Đánh giá 5 sao chuẩn (Có Admin, VIP, Online)
       const reviews = [
         { n: 'TRUNG HIẾU', t: 'Tiệm trà sữa đẳng cấp nhất! BAN PHÁT ĐẶC ÂN.', s: 5, tg: 'ADMIN · TRÙM GAME 👑', d: S.day, st: 1, o: true },
-        { n: 'SƠN TÙNG M-TP 🌟', t: 'Trà sữa ở đây siêu ngon tuyệt vời!', s: 5, tg: 'CA SỸ', d: S.day, st: 2, o: true },
-        { n: 'HÒA MINZY 🌟', t: 'Vừa ngon vừa phục vụ nhanh chuẩn 5 sao!', s: 5, tg: 'CA SỸ', d: S.day, st: 3, o: true },
-        { n: 'BÙI ANH TUẤN 🌟', t: '10 điểm không có nhưng!', s: 5, tg: 'CA SỸ', d: S.day, st: 4, o: true },
+        { n: 'HÒA MINZY 🌟', t: 'Trà sữa ở đây siêu ngon tuyệt vời!', s: 5, tg: 'CA SỸ', d: S.day, st: 2, o: true },
+        { n: 'SƠN TÙNG M-TP 🌟', t: 'Vừa ngon vừa phục vụ nhanh chuẩn 5 sao!', s: 5, tg: 'CA SỸ', d: S.day, st: 3, o: true },
+        { n: 'THÙY TIÊN 🌟', t: '10 điểm không có nhưng!', s: 5, tg: 'HOA HẬU', d: S.day, st: 4, o: true },
         { n: 'JUN VŨ 🌟', t: 'Quán đỉnh kịch trần luôn nha anh em!', s: 5, tg: 'DIỄN VIÊN', d: S.day, st: 5, o: true }
       ];
       while (reviews.length < 50) {
