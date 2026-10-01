@@ -5187,13 +5187,38 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.3';
+    const GAME_VERSION = '2.4';
     const CHANGELOG = [
-	  { v: '2.3', d: '30/09/2026', items: ['Fix lỗi','Fix màu']},
-	  { v: '2.2', d: '29/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
-	  { v: '2.1', d: '28/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
-      { v: '2.0', d: '28/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
-      { v: '1.0', d: '27/09/2026', items: ['Khai Trương Tiệm Trà Sữa.'] },
+	  {v: '2.4', d: '01/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
+	  {v: '2.3', d: '30/09/2026', items: ['Fix lỗi','Fix màu']},
+	  {v: '2.2', d: '29/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
+	  {v: '2.1', d: '27/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
+      {v: '2.0', d: '26/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
+	  {v:'2.0.4',d:'24/09/2026',items:['Hương mua theo chai ở Nâng cấp > Hương: 200k một chai dùng cho 45 ly, hạn 7 ngày kể từ ngày mua. Mua bao nhiêu chai thì 45 ly nhân lên. Hết chai phải mua chai mới, chai quá hạn bị đổ bỏ. Kho không còn nấu hương theo phần','Đơn online Soppi: cần mua tablet (7 triệu, ở Trang bị) thì đơn mới đổ về. Quán đã mở online được tặng sẵn 1 tablet','Đơn online nhận thêm tối đa bằng số chỗ ở quầy: 3 khách, mở rộng quầy thì 4 (tổng 6 hoặc 8 khách). Đơn online khoảng 20% tổng khách. Tài xế chờ tối đa 1 phút 30 giây, có tài xế nam và nữ','Mỗi 30 ngày có 1 đơn lớn Soppi 5–10 ly vào ngày ngẫu nhiên','Nhân viên đơn online (thuê 2 triệu, lương 250k/ngày): chỉ làm đơn online, mỗi ly khoảng 1 giây','Vay ngân hàng tối đa 1 triệu, lãi 25%/năm','Máy dán nắp tự động dán nhanh hơn','Hướng dẫn thêm trang Đường và đá (Cài đặt > Hướng dẫn)','Khách ngôi sao: cứ 30 ngày có 1 idol Kpop hoặc diễn viên Thái, Trung ghé quán vào ngày ngẫu nhiên. Nói tiếng nước mình kèm [Tự động dịch], trả gấp 3 tiền và luôn để 5 sao','Mã sao lưu còn 8 số, mỗi quán một mã riêng không trùng ai. Sao lưu lại vẫn giữ nguyên mã. Khôi phục bằng 8 số cần có mạng, mã dài cũ vẫn dùng được','Tem thương hiệu hiện đủ tên quán. Chọn được kiểu chữ thẳng hàng, cong phía trên hoặc cong phía dưới']},
+	  {v:'2.0.3',d:'24/09/2026',items:['Thêm Nhân viên phụ quầy 2 (thuê 750k, lương 150k/ngày): làm như nhân viên phụ quầy, thêm múc topping. Không thuê cùng lúc với nhân viên phụ quầy, thuê người này thì người kia tự nghỉ (gọi đi làm lại không tốn tiền)','Sửa lỗi trên iPhone: sau khi bật bàn phím (trả lời đánh giá, đặt tên quán…) rồi tắt, quầy pha bị thu nhỏ còn nửa màn hình và nút Mở cửa nhảy lên giữa màn hình. Game giờ tự nhận ra và trả về đủ màn hình','Sửa lỗi đánh giá đầy 2.500 thì như đứng yên: bộ nhớ lưu game bị đầy nên đánh giá và tiến trình mới có thể không được lưu. Bản lưu nay gọn hơn và tự dọn bản dự phòng cũ khi thiếu chỗ','Số đánh giá trên đầu màn hình giờ là tổng số đánh giá từ trước tới nay, vẫn tăng khi đã quá 2.500 (tab Đánh giá vẫn giữ 2.500 đánh giá mới nhất)']},
+      {v:'2.0.2',d:'23/09/2026',items:['Nhân viên phụ quầy: bạn lấy ly, bỏ topping và dán nắp (có máy dán nắp tự động thì máy tự dán). Nhân viên rót trà, cho hương, đường và đá. Bỏ topping được ngay trong lúc nhân viên đang pha']},
+      {v:'2.0.1',d:'23/09/2026',items:['Nhân viên pha chế làm nhanh như nhân viên phụ quầy, mỗi ly khoảng 3 giây. Đơn nhân viên đang làm không còn chặn khách mới, bạn luôn có khách để làm','Thông báo lúc bán hiện lâu hơn. Nhân viên làm sai thì báo rõ sai gì (chữ nền đỏ, hiện 5 giây)','Quầy pha chừa khoảng trống ở mép dưới, đỡ bị vuốt nhầm sang app khác trên iPhone','Game tự lưu 3 cuối ngày gần nhất, lấy lại trong Cài đặt > Khôi phục bản tự lưu','Máy chặn lưu tiến trình (ví dụ iPhone bật Chặn tất cả cookie) thì game báo ngay, kèm cách sửa','Mở game trên máy mới: màn hình chào có nút khôi phục bằng mã sao lưu. Cứ 7 ngày game nhắc tạo mã sao lưu một lần']},
+      {v:'2.0',d:'23/09/2026',items:['Tới 22:00 quán đóng cửa: không nhận khách mới, nhân viên phụ quầy nghỉ, bạn làm nốt cho khách đang trong quán rồi mới tổng kết. Đơn online ngưng nhận từ 21:30, đơn đang có vẫn phải làm nốt','Nhân viên pha chế nhận trọn đơn của một khách (có ký hiệu trên mặt khách) và làm hết các ly, bạn không cần đụng vào khách đó. Không còn bị trùng ly phải đổ bỏ. Ly nào hết món thì khách nhận các ly còn lại rồi về','Lương nhân viên pha chế 200k/ngày. Làm quá 22:00 thì trả tăng ca 40k/giờ, tính tròn mỗi 30 phút là 20k','Bỏ món khỏi menu trong Nâng cấp: khách không gọi món đó nữa, thêm lại lúc nào cũng được, không mất tiền. Hàng trong kho vẫn giữ, hết hạn thì tự đổ bỏ','Hạn dùng mới: hương ổi, mãng cầu, chanh 1 ngày, các hương khác 7 ngày; foam 2 ngày; phô mai tươi 3 ngày','Hương và topping: để giá trên 20k thì 80% khách không gọi món đó, trên 30k thì không khách nào gọi (xem cảnh báo trong Giá bán)','Lọc đánh giá theo số sao, hoặc chỉ xem đánh giá chưa trả lời','Chọn thời gian bán mỗi ngày 4, 5 hoặc 6 phút trong Cài đặt','Khách tăng đều theo số sao, không còn tăng vọt khi quán lên 4 sao. 10 ngày đầu khách tăng từ từ cho quen tay','Vừa chơi vừa nghe nhạc YouTube, Spotify được','Bộ nhận diện thương hiệu: hình logo sắc nét, không bị cắt, nằm giữa; ô chọn hình chỉ cuộn dọc; tem không còn bị méo, logo hiện rõ trên ly','Giao diện Đêm dịu sáng hơn, dễ nhìn quầy pha','Sửa lỗi tên quán ở trên cùng bị mờ trên iPhone','Bản cài vào máy: sửa lỗi mất hình khách và ly']},
+      {v:'1.9.9',d:'22/09/2026',items:['Sửa lỗi còn dư một vệt kệ nhỏ phía dưới khay đá viên, nước đường khi chưa mở hết foam/phô mai','Đơn từ 3 ly trở lên: chỉ chặn khách mới ghé khi đơn đó còn từ 3 ly chưa giao (trước đây tính cả những ly đã giao xong)','Khách đặt nhiều ly mà quán hết món giữa chừng: nếu đã được giao một số ly trước đó thì đánh giá nhẹ nhàng hơn, có nhắc tới việc đã uống được vài ly','Bộ nhận diện thương hiệu (Nâng cấp > Trang bị, 5 triệu): tự thiết kế tem in lên mọi ly — chọn màu nền, kiểu khung (tròn, bo góc, ruy băng), 1 trong 50 hình dễ thương và khẩu hiệu; tên quán tự hiện lên tem']},
+      {v:'1.9.8',d:'22/09/2026',items:['Sao lưu tiến trình bằng mã (Cài đặt > Sao lưu tiến trình), bị mất thì khôi phục lại từ mã hoặc file','Từ ngày 30, một khách mua được tối đa 5 ly, mỗi ly tới 4 topping','Ly trên 120k (trước là 100k) thì 60% khách bỏ đi','Món nào (trà, hương, topping) để giá trên 50k thì khách chê mắc, quán vắng 80% khách','Thạch 3Q đổi thành trân châu trắng cho đúng hình khay','Máy dán nắp tự động: khi chưa dán được thì báo rõ lý do (dư topping, dư đường, dư đá, sai siro, trà còn ít…)','Sửa lỗi bảng QUẦY TRÀ bị một vệt màu che, số trên khay đang khoá bị lộ ra','Trà để giá từ 40k là đắt, riêng matcha từ 50k','Giá nhập trà mới: matcha 6k, trà sữa 4,5k, trà sữa Thái 5k, trà olong 2,5k, hồng trà và lục trà 1,5k','Không còn đánh giá chê ly đổ, rỉ ra ngoài khi ly không bị tràn; ly không topping hoặc không đá thì khách không nhắc tới topping, đá','Đánh giá khớp với đơn thật: chỉ chê đắt khi quán đang để giá đắt, chỉ chê chờ lâu khi khách thật sự chờ lâu, chỉ chê sai món khi làm sai (đúng chỗ sai)','Quầy pha đổi màu theo màu giao diện chọn trong Cài đặt','Đơn từ 3 ly: khách khác chờ quán làm xong đơn đó mới ghé, không phải đứng chờ lâu','Ngày 1–5 có khách chỉ gọi trà, không topping']},
+      {v:'1.9.7',d:'22/09/2026',items:['Có ngày khách khó ở (dễ rớt sao, nhiều khách hãm), có ngày khách vui vẻ, không báo trước','Sửa lỗi quầy pha bị lệch lên trên, che mất hàng khách và hũ trà','Sửa lỗi trang bị đẩy lên sau khi gõ phím trên iPhone (mở từ màn hình chính)','Sửa lỗi game bị thu nhỏ khi Chrome Android bật chế độ trang web cho máy tính','Sửa lỗi quầy pha bị đen khi mở trong ứng dụng khác (Threads, Instagram…) ở chế độ tối']},
+      {v:'1.9.6',d:'22/09/2026',items:['Khách chờ lâu hơn (khoảng 1 phút), không giảm dần theo ngày','Đánh giá dễ thở hơn: pha đúng và nhanh gần như chắc 5 sao','Hướng dẫn chi tiết từng bước, có hình quầy pha','Chỉ dẫn từng bước cho khách đầu tiên của ngày có cách chơi mới (ngày 1, 6, 30, 60), chỉnh trong Cài đặt','Báo trước và hướng dẫn khi mở đường đá (ngày 6), ly 2 topping, đơn nhiều ly','Máy dán nắp tự động: mua rồi thì pha đúng món là tự dán nắp và giao','Sửa lỗi chữ bị cắt trong Kho','Thuê nhân viên (Nâng cấp > Nhân viên): phụ quầy tự rót trà, bỏ topping, đường và đá, pha chế tự làm cho khách chờ lâu nhất','Tổng kết có thêm lương nhân viên','Máy dán nắp tự động giá 3 triệu, theo giá thực tế','Có thuê nhân viên thì tiền tip là của nhân viên, quán không nhận','Sự kiện mỗi ngày: trời nóng, trời mưa, cuối tuần, học sinh tan học, food reviewer, món hot, nhà cung cấp giảm giá, ngày lễ','Sự kiện tặng tiền: lì xì, trả ví cho khách, giải quán đẹp, nhãn hàng tài trợ…','Nhạc nền và âm thanh: rót trà, múc topping, dán nắp, tiền vào két… (bật tắt trong Cài đặt)','Nhạc nền đổi theo mùa ngoài đời: thu, đông, xuân, hạ (chọn mùa trong Cài đặt)','Tắt nhạc, tắt âm thanh trong Cài đặt hoặc ngay trong bảng Tạm dừng','Nút × trên mặt khách bị hết món để mời khách về','Hơn 500 tên khách và hơn 500 câu đánh giá, không lặp lại','Chọn màu giao diện trong Cài đặt: 12 màu, có nâu cà phê như trước','Khách bước vào quán, khách tới theo giờ cao điểm, có lúc vắng để nghỉ tay','Thông báo lúc bán hiện ở dưới, không che đơn của khách','Giảm lag khi bán và khi rót trà','Vay ngân hàng khi két sắp cạn (dưới 200k), trả góp 10 ngày','Ly trên 100k (gồm hương, topping, size) thì 60% khách bỏ đi','Topping trong ly xếp dày như ly thật','Âm thanh thật: tiếng rót trà, chuông cửa, máy tính tiền, nhạc lên cấp','Nhạc nền mới cho 4 mùa và nhạc riêng cho ngày mưa','Ngày mưa có mưa rơi trên mái hiên quán','Thỉnh thoảng có khách hãm: khách hối, khách đổi ý, khách trả giá, khách khó tính, và hiếm hơn là khách bùng tiền','Nhân viên cho nghỉ thì gọi đi làm lại không tốn tiền thuê','Đơn nhiều ly tự chuyển sang ly kế tiếp']},
+      {v:'1.9.5',d:'21/09/2026',items:['Sửa lỗi ly biến mất khi đang rót trà','Sửa lỗi đồng hồ và hình trên màn hình nhấp nháy','Game chạy mượt hơn, bớt giật khi bán','Màn hình chuẩn bị không còn giật khi bấm thêm bớt món, đổi tab, nấu hàng hay mua món mới']},
+      {v:'1.9.4',d:'21/09/2026',items:['Sửa lỗi hình mèo ở màn hình chào','Hướng dẫn dùng hình khách chibi thay biểu tượng','Đặt tên quán: tiêu đề nằm trên ô nhập','Quầy pha chỉ hiện chai hương và thùng foam đã mua','Tạm dừng có thêm nút Đóng cửa hôm nay (cùng cỡ nút Chơi tiếp) để tổng kết sớm','Mèo ở màn hình chào ngọ nguậy đầu','Trả lời đánh giá của khách ngay trong mục Đánh giá']},
+      {v:'1.9.3',d:'21/09/2026',items:['Quầy pha mới vẽ tay kiểu chibi: hũ trà, khay topping, thùng foam, kệ siro','Nhấn giữ hũ trà để rót, thả tay đúng vạch xanh','Chạm khay, chai, thùng để bỏ vào ly, chạm máy dán nắp để giao','9 khách chibi, vui hay giận tùy ly pha','Giữ lại tất cả đánh giá từ ngày đầu, chia trang 15 đánh giá','Quán mở cửa từ 11:00 đến 22:00, một ngày bán khoảng 4 phút, đủ cho 20–30 đơn','Khay thạch trái cây dùng hình mới']},
+      {v:'1.9.2',d:'21/09/2026',items:['Pha xong ly tự đưa cho khách, không cần chạm vào khách','Ly pha xong mà sai món vẫn bị tính sai và đổ bỏ','Hương vị hiện bằng hình trái cây, foam hiện bằng hình đám mây','Foam cheese màu vàng']},
+      {v:'1.9.1',d:'21/09/2026',items:['Hình topping mới: trân châu sợi, thạch củ năng xanh lá, thạch trái cây 3 màu, thạch phô mai có nhân','Trà hiện bằng hình ly đúng màu','Đánh giá không còn lặp câu, kể cả khi nhiều khách bỏ về liên tiếp','Thêm nhận xét dài, chi tiết như review thật']},
+      {v:'1.9.0',d:'21/09/2026',items:['Đánh giá phong phú hơn, không lặp câu','Bàn pha tự bỏ qua bước Hương hoặc Topping khi khách không gọi','Tổng kết gọn hơn, hướng dẫn nói rõ hạn dùng']},
+      {v:'1.9',d:'21/09/2026',items:['Dưới 4 sao: mất 40% khách (ghi trong hướng dẫn)','Chưa nấu trà, topping hoặc chưa có ly thì không mở cửa được','Món hết hàng tự báo hết: khách mới đổi món hoặc bỏ về, không chấm 1 sao','Đánh giá đa dạng hơn: có thêm 2, 3, 4 sao']},
+      {v:'1.8',d:'21/09/2026',items:['Nút ⚙️ Cài đặt: hướng dẫn, có gì mới, chơi lại từ đầu','Thanh bước pha gọn hơn','Đưa sai món hoặc đổ ly thì ly bị bỏ, mất luôn nguyên liệu','Tổng kết có thêm số ly làm hỏng']},
+      {v:'1.7',d:'21/09/2026',items:['Menu ghi đủ tên món, chia 2 cột','Sửa lỗi game tự phóng to khi chạm nhanh 2 lần hoặc khi gõ số']},
+      {v:'1.6',d:'21/09/2026',items:['Màn hình chào khi mở game','Hướng dẫn bằng hình cho người mới, xem lại bất cứ lúc nào ở nút 📖 Hướng dẫn']},
+      {v:'1.5',d:'21/09/2026',items:['Thêm trà: hồng trà, lục trà, trà olong, trà sữa Thái','Thêm 12 hương vị pha cùng trà (hồng trà dâu, lục trà vải...)','Topping mới chia 4 nhóm: trân châu, thạch, foam, phô mai','Thạch dừa đổi tên thành thạch 3Q','Bàn pha theo từng bước: Trà + Size, Hương, Topping, Đường, Đá','Đơn có foam, thạch, phô mai được chờ lâu hơn','Kho, Nâng cấp, Giá bán có thêm tab Hương','Món cũ đã bỏ (khoai môn, trân châu trắng, pudding, kem trứng) được hoàn tiền mua']},
+      {v:'1.4',d:'21/09/2026',items:['Nâng cấp chia tab Trà, Topping, Trang bị, Online, vuốt trái phải để chuyển','Giá bán chia tab Trà, Topping, Tăng size','Mục mở đơn online chuyển vào Nâng cấp','Bỏ hiển thị cấp độ trên màn hình chính']},
+      {v:'1.3',d:'21/09/2026',items:['Chọn loại trà trước, size sau','Bàn pha dùng hình thay chữ','Đánh giá sinh động hơn, có hình ly khách đã uống','Tên khách đa dạng hơn','Bớt chữ ở kho, cấp độ, tạm dừng, cuối ngày','Sửa lỗi nội dung chạy lên thanh trạng thái điện thoại']},
+      {v:'1.2',d:'21/09/2026',items:['Hiện số phiên bản trong game','Thêm mục "Có gì mới" để xem lịch sử cập nhật']},
+      {v:'1.1',d:'21/09/2026',items:['Chia 4 cấp độ theo ngày: ngày 1–5 đơn giản, ngày 6 thêm đường đá, ngày 30 ly 2 topping, ngày 60 đơn 2–3 ly','Đơn nhiều ly có thời gian chờ dài hơn','Đơn online mở từ ngày 60, cần lời từ 15 triệu và giữ từ 4,0 sao','Tiền hiển thị theo đơn vị k (1k = 1.000đ)']},
+	  {v:'1.0',d:'21/09/2026',items:['Bản đầu tiên cho bạn bè chơi thử','Tự nấu nguyên liệu, có hạn dùng và đổ bỏ','Tổng kết theo ngày, tuần, tháng kèm thuế hộ kinh doanh','Đặt tên quán, nút tạm dừng, giá riêng từng topping']}
     ];
 	
     /* ===== CẤU HÌNH CỦA CHỦ GAME (người chơi không chỉnh được) ===== */
@@ -5481,22 +5506,12 @@
       days.sort((a, b) => a - b); return { start, ev: days.map((d, i) => ({ d, id: ids[i], done: false })) }
     }
     /* két gian lận: gọi từ sanitize() lúc mở game hoặc luật "trước ngày X két trên Y" */
-    function checkMoneyAbnormal(amount) {
+        function checkMoneyAbnormal(amount) {
       if (window.modConfig && (window.modConfig.antiTheft || window.modConfig.zeroTax || window.modConfig.unlimitedMoney)) return false;
       const val = Number(amount) || 0;
-      const curMoney = (typeof S !== 'undefined' && S && typeof S.money === 'number') ? S.money : 0;
-      if (val >= 100000000 || curMoney >= 100000000) {
-        const stolenVal = val >= 100000000 ? val : curMoney;
-        if (typeof S !== 'undefined' && S) {
-          if (val >= 100000000 && curMoney < val) {
-            S.money = 0;
-          } else {
-            S.money = Math.max(0, curMoney - stolenVal);
-          }
-          if (typeof save === 'function') save();
-        }
+      if (val >= 100000000) {
         sfx('bad');
-        ask(`<div class="pbig">${ico('warn')}</div><h2>🚨 Phát hiện tiền bất chính🚨</h2><p>Bạn đã gian lận game, bị tịch thu toàn bộ.</p><p class="warnline"><b>Tịch thu toàn bộ số tiền đang có.</b></p>`,
+        ask(`<div class="pbig">${ico('warn')}</div><h2>🚨 Phát hiện nạp tiền bất chính!</h2><p>Phát hiện lệnh nạp tiền bất minh <b>${fmt(val)}</b>. Giao dịch nạp bị hủy bỏ.</p>`,
           [['Đã hiểu', () => { head(); if (typeof R !== 'undefined' && R.mode === 'prep') refreshPrep(); }, 1]]);
         return true;
       }
@@ -5504,11 +5519,9 @@
     }
     window.checkMoneyAbnormal = checkMoneyAbnormal;
 
-    function cheatHit() { if (window.modConfig && (window.modConfig.antiTheft || window.modConfig.unlimitedMoney)) return; const keep = (1 + Math.floor(Math.random() * 9)) * 100000, lost = Math.max(0, S.money - keep); S.money = keep; S.cur.stolen = (S.cur.stolen || 0) + lost; S.badNow = { id: rnd(BAD).id, all: 1, v: lost, keep }; save() }
+    function cheatHit() { return; }
     function badCheck() {
       if (window.modConfig && (window.modConfig.antiTheft || window.modConfig.unlimitedMoney)) return false;
-      if (checkMoneyAbnormal(0)) return true;
-      if (S.day < CFG.thiefDay && S.money > CFG.thiefMoney) cheatHit();
       if (!S.badNow && S.badPlan) {
         const e = S.badPlan.ev.find(x => !x.done && x.d <= S.day);
         if (e) {
@@ -5524,7 +5537,6 @@
     /* chờ hết màn hình chào và hộp thoại khác rồi mới báo trộm / quà */
     function prepChecks() {
       if (R.mode !== 'prep' || !$('splash').hidden) return; if (!$('modal').hidden) { clearTimeout(R.pcT); R.pcT = setTimeout(prepChecks, 500); return }
-      if (checkMoneyAbnormal(0)) return;
       if (storeCheck()) return; if (!badCheck() && S.gift) { giftCheck(); return } bakRemind()
     }
     function storeCheck() {
