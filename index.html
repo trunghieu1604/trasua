@@ -7438,12 +7438,16 @@
       const g = { spoil: { n: 0, v: 0 }, sales: {}, tips: 0, onl: 0, fee: 0, equip: [], ing: {}, waste: {}, rent: 0, util: 0, tax: 0, served: 0, lost: 0, starSum: 0, starN: 0 };
       const addMap = (m, src, f) => Object.entries(src).forEach(([k, x]) => { const y = m[k] = m[k] || {}; Object.keys(x).forEach(p => y[p] = (y[p] || 0) + x[p]) });
       recs.forEach(r => {
-        addMap(g.sales, r.sales); addMap(g.ing, r.ing); addMap(g.waste, r.waste); g.equip.push(...r.equip.map(e => ({ ...e, d: r.day }))); if (r.spoil) { g.spoil.n += r.spoil.n; g.spoil.v += r.spoil.v }
+        addMap(g.sales, r.sales || {}); addMap(g.ing, r.ing || {}); addMap(g.waste, r.waste || {}); g.equip.push(...(r.equip || []).map(e => ({ ...e, d: r.day }))); if (r.spoil) { g.spoil.n += r.spoil.n; g.spoil.v += r.spoil.v }
         ['tips', 'staffTip', 'gift', 'loanInt', 'onl', 'fee', 'rent', 'util', 'wage', 'ot', 'bad', 'tax', 'served', 'lost', 'starSum', 'starN'].forEach(p => g[p] = (g[p] || 0) + (r[p] || 0))
       });
       return g;
     }
+    window.sumSetMode = function(m) { R.sumMode = m; R.sumIdx = null; paneSum(); };
+    window.sumNavTo = function(bIdx) { R.sumIdx = bIdx; paneSum(); };
+
     function paneSum() {
+      const paneEl = $('pane'); if (paneEl) paneEl.onclick = null; // xóa onclick của tab trước để tránh xung đột
       const H = S.history;
       if (!H || !H.length) { $('pane').innerHTML = '<div class="sec">Tổng kết</div><p class="note">Chưa có dữ liệu. Bán xong ngày đầu tiên là có tổng kết ở đây.</p>'; return }
       const mode = R.sumMode || 'day', size = { day: 1, week: 7, month: 30 }[mode] || 1;
@@ -7469,9 +7473,10 @@
       const cost = g.rent + g.util + (g.wage || 0) + (g.loanInt || 0) + eqTot + g.fee + ingTot + g.tax, profit = rev - cost;
       const avg = g.starN ? (g.starSum / g.starN).toFixed(1).replace('.', ',') : '–';
       const bestB = baseK.map(k => [k, (g.sales[k] || {}).q || 0]).sort((a, b) => b[1] - a[1]), bestT = topK.map(k => [k, (g.sales[k] || {}).q || 0]).sort((a, b) => b[1] - a[1]);
-      const wasteRows = Object.entries(g.waste);
-      let h = `<div class="segtabs">${[['day', 'Theo ngày'], ['week', 'Theo tuần'], ['month', 'Theo tháng']].map(([m, l]) => `<button class="chip${mode === m ? ' on' : ''}" data-sm="${m}">${l}</button>`).join('')}</div>
-  <div class="pnav"><button class="sbtn" data-nav="-1" ${pi > 0 ? '' : 'disabled'} aria-label="Kỳ trước">‹</button><b>${label}</b><button class="sbtn" data-nav="1" ${pi < blocks.length - 1 ? '' : 'disabled'} aria-label="Kỳ sau">›</button></div>
+      const prevIdx = pi > 0 ? blocks[pi - 1] : null;
+      const nextIdx = pi < blocks.length - 1 ? blocks[pi + 1] : null;
+      let h = `<div class="segtabs">${[['day', 'Theo ngày'], ['week', 'Theo tuần'], ['month', 'Theo tháng']].map(([m, l]) => `<button class="chip${mode === m ? ' on' : ''}" onclick="window.sumSetMode('${m}')">${l}</button>`).join('')}</div>
+  <div class="pnav"><button class="sbtn" ${pi > 0 ? `onclick="window.sumNavTo(${prevIdx})"` : 'disabled'} aria-label="Kỳ trước">‹</button><b>${label}</b><button class="sbtn" ${pi < blocks.length - 1 ? `onclick="window.sumNavTo(${nextIdx})"` : 'disabled'} aria-label="Kỳ sau">›</button></div>
   ${mode === 'day' && recs.length > 0 && recs[0].ev && EVS[recs[0].ev.id] ? `<div class="fore">${ico(EVS[recs[0].ev.id].ic)} Sự kiện: <b>${EVS[recs[0].ev.id].n}</b></div>` : ''}
   <div class="kpis"><div><b>${g.served}</b>ly bán</div><div><b>${g.lost}</b>khách bỏ về</div><div><b>${avg}★</b>đánh giá</div></div>
   ${bestB[0] && bestB[0][1] ? `<div class="fore">🔥 Bán chạy: <b>${iname(bestB[0][0])}</b>${bestT[0] && bestT[0][1] ? `, topping <b>${iname(bestT[0][0])}</b>` : ''}. Ít khách gọi: <b>${iname(bestB[bestB.length - 1][0])}</b>${bestT.length > 1 ? `, <b>${iname(bestT[bestT.length - 1][0])}</b>` : ''}.</div>` : ''}
@@ -7498,30 +7503,6 @@
   <div class="ttot neg"><span>Tổng chi phí</span><span>${vn(cost)}k</span></div>
   <div class="final ${profit < 0 ? 'neg' : 'pos'}"><span>Lợi nhuận sau thuế<small>Doanh thu − chi phí</small></span><span>${profit < 0 ? '−' : ''}${vn(Math.abs(profit))}k</span></div>`;
       $('pane').innerHTML = h;
-      
-      $('pane').onclick = e => {
-        const m = e.target.closest('[data-sm]'), n = e.target.closest('[data-nav]');
-        if (m) { R.sumMode = m.dataset.sm; R.sumIdx = null; paneSum(); }
-        if (n && !n.disabled) { R.sumIdx = blocks[pi + +n.dataset.nav]; paneSum(); }
-      };
-
-      $('pane').querySelectorAll('[data-sm]').forEach(b => {
-        b.onclick = (e) => {
-          e.stopPropagation();
-          R.sumMode = b.dataset.sm;
-          R.sumIdx = null;
-          paneSum();
-        };
-      });
-
-      $('pane').querySelectorAll('[data-nav]').forEach(b => {
-        b.onclick = (e) => {
-          e.stopPropagation();
-          if (b.disabled) return;
-          R.sumIdx = blocks[pi + +b.dataset.nav];
-          paneSum();
-        };
-      });
     }
 
     /* ---------- THÀNH TÍCH ---------- */
