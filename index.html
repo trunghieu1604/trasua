@@ -5227,7 +5227,7 @@
           </div>
         </button>
       </div>
-      <div class="h-m"><small id="hName"></small><span id="hMoney">0đ</span></div>
+      <div class="h-m"><small id="hName"></small><small id="hTitle" style="color:var(--pink);font-weight:bold;font-size:0.72rem;margin-left:4px;"></small><span id="hMoney">0đ</span></div>
       <div class="h-r"><span class="stars" id="hStars">☆☆☆☆☆</span><small id="hRate">0,0</small></div>
     </header>
     <div class="awning"></div>
@@ -5273,7 +5273,7 @@
       { id: 27, title: 'Phục Vụ Siêu Tốc', desc: 'Phục vụ thành công 10 đơn hàng giao tận nơi online', icon: '⚡', reward: 'Huy hiệu Tốc Độ Ánh Sáng', group: 'Kinh doanh' },
       { id: 28, title: 'Doanh Thu Triệu Đô', desc: 'Tích lũy tổng doanh thu tiệm đạt mốc 10.000.000đ', icon: '💰', reward: 'Huy hiệu Triệu Phú Trà Sữa', group: 'Kinh doanh' },
       { id: 29, title: 'Chăm Sóc VIP', desc: 'Phục vụ 5 lượt khách mời Ngôi Sao hoặc Khách VIP', icon: '🌟', reward: 'Huy hiệu Phục Vụ VIP', group: 'Đánh giá' },
-      { id: 30, title: 'Huyền Thoại Trà Sữa', desc: 'Hoàn thành tất cả 29 thành tích trước đó để đạt mốc 30/30 Thành tích', icon: '👑', reward: 'Mở khóa Nhân Viên Toàn Năng (Miễn phí)', group: 'Đặc biệt' }
+      { id: 30, title: 'Trùm BXH - TOP 1', desc: 'Vươn lên vị trí TOP 1 trên Bảng Xếp Hạng Tiệm Trà Sữa', icon: '🏆', reward: 'Huy hiệu Vua Trà Sữa', group: 'BXH' }
     ];
 
     /* ---------- DATA ---------- */
@@ -5454,8 +5454,9 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.2';
+    const GAME_VERSION = '2.3';
     const CHANGELOG = [
+	  {v:'2.3', d: '01/10/2026', items: ['Thêm BXH Quán và Danh Hiệu']},
 	  {v:'2.2', d: '01/10/2026', items: ['Thêm 30 Thành Tích','Ngưng cho thuê Nhân Viên Toàn Năng','Nhân Viên Toàn Năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
 	  {v:'2.1', d: '30/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
 	  {v:'2.0.8', d: '29/09/2026', items: ['Fix lỗi','Fix màu']},
@@ -5607,7 +5608,7 @@
     const wpick = (arr, w) => { let r = Math.random() * w.reduce((a, b) => a + b, 0); for (let i = 0; i < arr.length; i++) { r -= w[i]; if (r <= 0) return arr[i] } return arr[0] };
     const newRec = d => ({ spoil: { n: 0, v: 0 }, day: d, sales: {}, tips: 0, onl: 0, fee: 0, equip: [], ing: {}, waste: {}, rent: 0, util: 0, tax: 0, served: 0, lost: 0, starSum: 0, starN: 0 });
     function fresh() {
-      const s = { lifeV: 2, off: {}, badPlan: mkBadPlan(1), money: CFG.startMoney, day: 1, stock: {}, unlocked: {}, upg: {}, sell: { ...DEF_SELL }, reviews: [], served: 0, best: 0, totalRev: 0, totalProfit: 0, online: false, shopName: '', history: [], cur: newRec(1), yearRev: 0, taxYear: 0 };
+      const s = { lifeV: 2, off: {}, badPlan: mkBadPlan(1), money: CFG.startMoney, day: 1, stock: {}, unlocked: {}, upg: {}, sell: { ...DEF_SELL }, reviews: [], served: 0, best: 0, totalRev: 0, totalProfit: 0, online: false, shopName: '', history: [], cur: newRec(1), yearRev: 0, taxYear: 0, rankPts: 0 };
       Object.keys(ITEMS).forEach(k => { s.stock[k] = []; s.unlocked[k] = ITEMS[k].unlock === 0 });
       return s;
     }
@@ -5896,8 +5897,25 @@
     function gameClock() { const tot = dayLen() * 60, el = Math.max(0, 1 - R.t / tot), m = 11 * 60 + Math.floor(el * 660 / 5) * 5; return String(Math.floor(m / 60) % 24).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0') }
     const _hd = {};
     function setTxt(id, v) { if (_hd[id] !== v) { _hd[id] = v; $(id).textContent = v } }
+    function getRankTitle(rank) {
+      if (rank === 1) return 'Đệ Nhất Tiệm Trà Sữa';
+      if (rank <= 3) return 'Tiệm Trà Sữa Huyền Thoại';
+      if (rank <= 5) return 'Tiệm Trà Sữa Nổi Tiếng';
+      if (rank <= 8) return 'Tiệm Trà Sữa Triển Vọng';
+      if (rank <= 10) return 'Tiệm Trà Sữa Mới Mở';
+      return '';
+    }
+    function getPlayerRankAndTitle() {
+      const playerPts = S ? (S.rankPts || 0) : 0;
+      const virtuals = [{ pts: 1200 }, { pts: 950 }, { pts: 900}, { pts: 850 }, { pts: 800 }, { pts: 700 }, { pts: 650 }, { pts: 600 }, { pts: 550 }, { pts: 500 }];
+      const list = [...virtuals, { pts: playerPts, isPlayer: true }].sort((a, b) => b.pts - a.pts);
+      const rank = list.findIndex(x => x.isPlayer) + 1;
+      return { rank, title: getRankTitle(rank) };
+    }
     function head() {
       setTxt('hName', shopName());
+      const pTitle = getPlayerRankAndTitle().title;
+      setTxt('hTitle', pTitle ? ' · ' + pTitle : '');
       setTxt('hDay', String(S.day));
       const sub = R.mode === 'sell' ? 'sell' : 'prep';
       if (_hd.subMode !== sub) { _hd.subMode = sub; _hd.clk = null; $('hSub').innerHTML = sub === 'sell' ? ico('clock') + ' <span id="hClk"></span>' : 'Chuẩn bị' }
@@ -6000,7 +6018,7 @@
     }
     function renderPrep() {
       R.mode = 'prep'; if (AU.ctx) musSync(); document.body.classList.remove('selling');
-      const tabs = [['kho', 'box', 'Kho'], ['nangcap', 'tools', 'Nâng cấp'], ['gia', 'price', 'Giá bán'], ['danhgia', 'star', 'Đánh giá'], ['tongket', 'chart', 'Tổng kết'], ['thanhtich', 'trophy', 'Thành tích']];
+      const tabs = [['kho', 'box', 'Kho'], ['nangcap', 'tools', 'Nâng cấp'], ['gia', 'price', 'Giá bán'], ['danhgia', 'star', 'Đánh giá'], ['tongket', 'chart', 'Tổng kết'], ['bxh', 'chartup', 'BXH Quán'], ['thanhtich', 'trophy', 'Thành tích']];
       $('view').innerHTML = menuBoard() +
         `<div class="tabs" role="tablist">${tabs.map(([k, ic, l]) => `<button class="tab${R.tab === k ? ' on' : ''}" data-tab="${k}" role="tab"><span class="ti">${ico(ic)}</span>${l}</button>`).join('')}</div>
      <div class="pane" id="pane"></div>
@@ -6008,13 +6026,13 @@
       $('view').querySelector('.tabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (!b) return; if (b.dataset.tab === 'thanhtich') handleAchTap(); if (b.dataset.tab !== R.tab) switchTab(b.dataset.tab); };
       $('rename').onclick = renameDlg;
       bindBoard();
-      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum })[R.tab]();
+      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum, bxh: paneBxh })[R.tab]();
       renderObar(true); head();
       setTimeout(prepChecks, 300);
     }
     function refreshPrep(board) {
       if (board) { const b = document.querySelector('.board'), sg = document.querySelector('.sign'); if (b && sg) { const t = document.createElement('div'); t.innerHTML = menuBoard(); sg.replaceWith(t.querySelector('.sign')); b.replaceWith(t.querySelector('.board')); $('rename').onclick = renameDlg; bindBoard() } }
-      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum })[R.tab](); renderObar(); head()
+      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum, bxh: paneBxh })[R.tab](); renderObar(); head()
     }
     function obarHTML() { const t = planTotal(); return t ? `<button class="big" id="cook" ${t > S.money ? 'disabled' : ''}>${t > S.money ? 'Không đủ tiền · ' : 'Nấu & nhập · '}${fmt(t)}</button>` : (missingPrep().length ? `<button class="big blocked" id="open">${ico('warn')} Chưa nấu ${missingPrep().map(m => m[0]).join(' · ')}</button>` : `<button class="big" id="open">Mở cửa ngày ${S.day}</button>`) }
     function renderObar(force) {
@@ -6025,7 +6043,7 @@
     }
     function switchTab(k) {
       R.tab = k; document.querySelectorAll('#view .tabs [data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === k));
-      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum })[k](); renderObar()
+      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum, bxh: paneBxh })[k](); renderObar()
     }
     function itemIcon(k) {
       const it = ITEMS[k];
@@ -7081,6 +7099,14 @@
         const toStaff = STAFF.some(x => S.upg[x.id] && !x.guard);
         if (toStaff) { S.cur.staffTip = (S.cur.staffTip || 0) + tip } else { S.cur.tips += tip; S.money += tip; S.totalRev += tip; R.today.tips += tip }
         if (rv.s >= 5) setTimeout(() => sfx('star'), 250); addReview(rv.s, rv.why, false, c); if (c.vip) { addReview(rv.s, rv.why, false, c); addReview(rv.s, rv.why, false, c) } fl(el, toStaff ? `+${fmt(p)}  ${'★'.repeat(rv.s)}` : `+${fmt(p + tip)}  ${'★'.repeat(rv.s)}`, false);
+        const isAdmin = (c.name && c.name.toUpperCase().includes('TRUNG HIẾU')) || (c.tg && c.tg.includes('ADMIN'));
+        if (isAdmin) {
+          S.rankPts = (S.rankPts || 0) + 50;
+          toast('👑 +50 Điểm BXH (Admin Trung Hiếu)!', 3500, 1);
+        } else if (c.star != null) {
+          S.rankPts = (S.rankPts || 0) + 40;
+          toast('⭐ +40 Điểm BXH (Idol VIP)!', 3500, 1);
+        }
         R.slots[i] = null; renderStreet(); renderCup(); renderPanel();
       } else {
         sfx('bad'); if (c.vip) { addReview(1, 'wrong', false, c); addReview(2, 'wrong', false, c); addReview(1, 'wrong', false, c); c.vip = false }
@@ -7295,7 +7321,7 @@
       const cost = recCost(r), profit = rev - cost, avg = r.starN ? r.starSum / r.starN : 0, wv = waste.reduce((a, x) => a + x.v, 0);
       S.history.push(r); if (S.history.length > 400) S.history.shift(); S.totalProfit = (S.totalProfit || 0) + profit;
       const broke = S.money < 0;
-      let justOnline = false; if (!broke) { S.best = Math.max(S.best || 0, S.day); S.day++; S.cur = newRec(S.day); rollDay(S.day); if (!S.online && onlineCheck().every(x => x.ok)) { S.online = true; justOnline = true } }
+      let justOnline = false; if (!broke) { S.rankPts = (S.rankPts || 0) + 10; S.best = Math.max(S.best || 0, S.day); S.day++; S.cur = newRec(S.day); rollDay(S.day); if (!S.online && onlineCheck().every(x => x.ok)) { S.online = true; justOnline = true } }
       save(); autoBak();
       const nextLv = !broke && levelOf(S.day) > levelOf(S.day - 1) ? levelOf(S.day) : 0;
       const showCard = () => {
@@ -7470,8 +7496,8 @@
           cur = Math.min(S.totalRev || 0, 10000000); target = 10000000; ok = (S.totalRev || 0) >= 10000000; txt = `${fmt(cur)}/${fmt(target)}`; break;
         case 29: // Chăm Sóc VIP
           cur = Math.min((S.reviews || []).filter(r => r.st != null).length, 5); target = 5; ok = cur >= target; txt = `${cur}/5 lượt VIP`; break;
-        case 30: // Huyền Thoại Trà Sữa (30/30 Thành tích)
-          cur = ACHIEVEMENTS.slice(0, 29).filter(a => getAchievementStatus(a).ok).length; target = 29; ok = cur >= 29; txt = `${cur}/29 thành tích`; break;
+        case 30: // Trùm BXH - TOP 1
+          const r30 = getPlayerRankAndTitle().rank; ok = r30 === 1; cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã đạt TOP 1' : `Đang Hạng #${r30}`; break;
       }
 
       const pct = Math.min(100, Math.round((cur / target) * 100));
@@ -7483,27 +7509,30 @@
     }
     window.countDoneAch = countDoneAch;
 
+    function showRobotRewardModal() {
+      sfx('levelup');
+      ask(`
+        <div style="text-align:center;padding:12px 4px">
+          <div style="font-size:3.5rem;line-height:1;margin-bottom:10px">🎉🤖👑</div>
+          <h2 style="color:#e85d8a;font-weight:900;font-size:1.35rem;margin-bottom:8px">CHÚC MỪNG BẠN!</h2>
+          <p style="font-size:1.02rem;line-height:1.45;color:#4a3227;margin-bottom:14px">Bạn đã xuất sắc hoàn thành trọn vẹn <b>30/30 Thành Tích</b> và nhận được phần thưởng cao quý nhất:</p>
+          <div style="background:#fff3cd;border:2px dashed #f0ad4e;padding:12px;border-radius:14px;font-size:1.2rem;font-weight:900;color:#8a6d3b;margin-bottom:14px">
+            🤖 NHÂN VIÊN TOÀN NĂNG
+          </div>
+          <p style="font-size:.9rem;color:#7a5a48;line-height:1.4">Nhân viên toàn năng sẽ tự động phục vụ tất cả khách tại quầy. Vào mục <b>Nâng cấp ➔ Nhân viên</b> để kích hoạt đi làm ngay nhé!</p>
+        </div>
+      `, [
+        ['Đã nhận quà 🚀', () => { S.claimedRobotPopup = true; save(); sfx('cash'); refreshPrep(); }, 1]
+      ]);
+    }
+    window.showRobotRewardModal = showRobotRewardModal;
+
     function checkRobotPopup() {
       if (typeof countDoneAch !== 'function') return;
       if (countDoneAch() >= 30 && !S.claimedRobotPopup) {
-        S.claimedRobotPopup = true;
+        // S.claimedRobotPopup set on click
         save();
-        setTimeout(() => {
-          sfx('levelup');
-          ask(`
-            <div style="text-align:center;padding:12px 4px">
-              <div style="font-size:3.5rem;line-height:1;margin-bottom:10px">🎉🤖👑</div>
-              <h2 style="color:#e85d8a;font-weight:900;font-size:1.35rem;margin-bottom:8px">CHÚC MỪNG BẠN!</h2>
-              <p style="font-size:1.02rem;line-height:1.45;color:#4a3227;margin-bottom:14px">Bạn đã xuất sắc hoàn thành trọn vẹn <b>30/30 Thành Tích</b> và nhận được phần thưởng cao quý nhất:</p>
-              <div style="background:#fff3cd;border:2px dashed #f0ad4e;padding:12px;border-radius:14px;font-size:1.2rem;font-weight:900;color:#8a6d3b;margin-bottom:14px">
-                🤖 NHÂN VIÊN TOÀN NĂNG (MIỄN PHÍ)
-              </div>
-              <p style="font-size:.9rem;color:#7a5a48;line-height:1.4">Nhân viên toàn năng sẽ tự động phục vụ tất cả khách tại quầy. Vào mục <b>Nâng cấp ➔ Nhân viên</b> để kích hoạt đi làm ngay nhé!</p>
-            </div>
-          `, [
-            ['Nhận thưởng ngay 🚀', () => { sfx('cash'); refreshPrep(); }, 1]
-          ]);
-        }, 200);
+        setTimeout(showRobotRewardModal, 200);
       }
     }
     window.checkRobotPopup = checkRobotPopup;
@@ -7515,13 +7544,39 @@
       const doneCount = statuses.filter(s => s.st.ok).length;
       const overallPct = Math.round((doneCount / all.length) * 100);
 
-      let h = `<div class="ach-header">
-        <div class="ach-title-row">
-          <div class="ach-main-title">${ico('trophy')} Thành Tích Quán (${doneCount}/${all.length})</div>
-          <div class="ach-badge-tag${doneCount === all.length ? '' : ' inprog'}">${doneCount === all.length ? '✅ Hoàn thành 100%' : '⏳ Đạt ' + overallPct + '%'}</div>
+      let h = `
+
+      <div style="background:linear-gradient(135deg,#fff8e7 0%,#ffeec2 100%);border:2px solid #f0ad4e;border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(240,173,78,0.25);">
+        <div style="text-align:center;margin-bottom:8px;">
+          <div style="font-size:2.5rem;line-height:1;margin-bottom:4px;">👑</div>
+          <div class="ach-main-title" style="font-weight:900;font-size:1.1rem;color:#8a6d3b;cursor:pointer;">Huyền Thoại Trà Sữa (Phần Thưởng 30/30 Thành Tích)</div>
+          <div style="font-size:0.85rem;color:#7a5a48;margin-top:2px;">Hoàn thành tất cả 30 thành tích bên dưới để nhận phần thưởng cao quý nhất</div>
         </div>
-        <div class="ach-bar-bg">
-          <div class="ach-bar-fill" style="width: ${overallPct}%"></div>
+
+        <div style="display:flex;justify-content:center;align-items:center;margin:12px 0;">
+          ${S.claimedRobotPopup ? `
+            <button disabled style="background:linear-gradient(135deg,#4caf50 0%,#2e7d32 100%);color:#fff;padding:10px 22px;font-weight:900;font-size:0.95rem;border-radius:12px;border:none;box-shadow:0 3px 8px rgba(46,125,50,0.3);display:flex;align-items:center;gap:6px;opacity:0.95;cursor:default;">
+              ✅ ĐÃ NHẬN (Nhân Viên Toàn Năng)
+            </button>
+          ` : doneCount >= 30 ? `
+            <button id="btnClaimRobot" style="background:linear-gradient(135deg,#e85d8a 0%,#c24c69 100%);color:#fff;padding:11px 24px;font-weight:900;font-size:0.98rem;border-radius:12px;cursor:pointer;border:none;box-shadow:0 4px 12px rgba(232,93,138,0.4);display:flex;align-items:center;gap:6px;">
+              🎁 Nhận Quà (Nhân Viên Toàn Năng)
+            </button>
+          ` : `
+            <button disabled style="background:#e9ecef;color:#6c757d;padding:10px 20px;font-weight:bold;font-size:0.9rem;border-radius:12px;border:1px solid #ced4da;opacity:0.9;cursor:not-allowed;">
+              🔒 Cần 30/30 Thành tích (${doneCount}/30)
+            </button>
+          `}
+        </div>
+
+        <div style="margin-top:10px;">
+          <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:bold;color:#8a6d3b;margin-bottom:4px;">
+            <span>🎁 Phần thưởng: <b>Nhân Viên Toàn Năng</b></span>
+            <span>${doneCount}/30 Thành tích (${overallPct}%)</span>
+          </div>
+          <div class="ach-bar-bg" style="height:10px;background:rgba(0,0,0,0.08);">
+            <div class="ach-bar-fill" style="width: ${overallPct}%; background: linear-gradient(90deg, #f08a5d, #e85d8a);"></div>
+          </div>
         </div>
       </div>
       <div class="ach-grid">
@@ -7547,6 +7602,8 @@
       </div>`;
 
       $('pane').innerHTML = h;
+      const btnClaim = $('pane').querySelector('#btnClaimRobot');
+      if (btnClaim) btnClaim.onclick = showRobotRewardModal;
       const achTitle = $('pane').querySelector('.ach-main-title');
       if (achTitle) achTitle.onclick = handleAchTap;
       $('pane').querySelectorAll('[data-af]').forEach(b => {
@@ -7555,6 +7612,106 @@
           paneThanhtich();
         };
       });
+    }
+
+    function paneBxh() {
+      const playerPts = S.rankPts || 0;
+      const playerName = shopName() || 'Tiệm Trà Sữa';
+      const playerRate = rating();
+      
+      const virtuals = [
+        { n: 'Trà Sữa Phúc Long Đậm Vị', pts: 1200, rate: 4.9, avatar: '🏆' },
+        { n: 'Koi Thé Hoàng Gia', pts: 950, rate: 4.8, avatar: '👑' },
+        { n: 'Gong Cha Đẳng Cấp', pts: 900, rate: 4.7, avatar: '⭐' },
+        { n: 'Trà Sữa Tocotoco Phố', pts: 850, rate: 4.6, avatar: '🍵' },
+        { n: 'The Alley Hươu Vàng', pts: 800, rate: 4.5, avatar: '🦌' },
+        { n: 'Trà Sữa Chị Mười Ba', pts: 700, rate: 4.4, avatar: '💃' },
+        { n: 'Ding Tea Hà Nội', pts: 650, rate: 4.3, avatar: '🍡' },
+        { n: 'Mixue Ice Cream & Tea', pts: 600, rate: 4.2, avatar: '🍦' },
+        { n: 'Trà Sữa Thầy Lộc', pts: 550, rate: 4.1, avatar: '🥤' },
+        { n: 'Trà Sữa Chuồng Mèo', pts: 500, rate: 4.0, avatar: '🐱' },
+        { n: 'Trà Sữa Chú Béo', pts: 460, rate: 3.9, avatar: '🐻' },
+        { n: 'Trà Sữa Bobapop Sài Gòn', pts: 420, rate: 3.8, avatar: '🥤' },
+        { n: 'Sharetea Góc Phố', pts: 380, rate: 3.7, avatar: '🍹' },
+        { n: 'Trà Sữa Tươi Nhà Làm', pts: 340, rate: 3.6, avatar: '🥛' },
+        { n: 'Trà Sữa Đô Đô 21K', pts: 300, rate: 3.5, avatar: '🐼' },
+        { n: 'Trà Sữa Cổng Trường', pts: 260, rate: 3.4, avatar: '🏫' },
+        { n: 'Trà Sữa Bông Thỏ', pts: 220, rate: 3.3, avatar: '🐰' },
+        { n: 'Trà Sữa Cáo Nhỏ', pts: 180, rate: 3.2, avatar: '🦊' },
+        { n: 'Trà Sữa Xe Cẩy Phố Cổ', pts: 140, rate: 3.1, avatar: '🚲' },
+        { n: 'Trà Sữa Góc Vỉa Hè', pts: 100, rate: 3.0, avatar: '🛵' }
+      ];
+
+      const list = [
+        ...virtuals,
+        { n: playerName, pts: playerPts, rate: playerRate, avatar: '🏪', isPlayer: true }
+      ];
+
+      list.sort((a, b) => b.pts - a.pts);
+
+      const playerRank = list.findIndex(x => x.isPlayer) + 1;
+
+      let h = `
+        <div class="ach-header" style="background:linear-gradient(135deg,#fff3cd 0%,#ffe8a1 100%);border-color:#f0ad4e;">
+          <div class="ach-title-row">
+            <div class="ach-main-title" style="color:#8a6d3b;font-weight:900;">🏆 BẢNG XẾP HẠNG TIỆM TRÀ SỮA</div>
+            <div class="ach-badge-tag" style="background:#e85d8a;color:#fff;font-weight:900;">HẠNG #${playerRank}</div>
+          </div>
+          <div style="font-size:0.95rem;color:#6b4a38;margin-top:6px;font-weight:bold;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;">
+            <div>Điểm uy tín: <span style="font-size:1.2rem;color:#e85d8a;font-weight:900;">${playerPts} pt</span></div>
+            <div style="background:#fff;border:1px solid #f0ad4e;padding:3px 10px;border-radius:12px;color:#8a6d3b;font-size:0.85rem;font-weight:bold;">
+              🎖️ Danh hiệu: <b>${getRankTitle(playerRank) || 'Chưa có (Cần Top 10)'}</b>
+            </div>
+          </div>
+        </div>
+
+        <div style="background:var(--panel);border:1.5px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;font-size:0.88rem;color:var(--soft);">
+          <div style="font-weight:bold;color:var(--ink);margin-bottom:6px;">⚡ Cách tích điểm xếp hạng:</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center;">
+            <div style="background:rgba(239,111,142,0.1);padding:6px;border-radius:8px;border:1px solid rgba(239,111,142,0.25);">
+              <div style="font-size:1rem;font-weight:900;color:#e85d8a;">+10 ĐIỂM</div>
+              <small style="font-size:0.75rem;color:var(--soft);">Xong 1 ngày</small>
+            </div>
+            <div style="background:rgba(240,138,93,0.1);padding:6px;border-radius:8px;border:1px solid rgba(240,138,93,0.25);">
+              <div style="font-size:1rem;font-weight:900;color:#f08a5d;">+40 ĐIỂM</div>
+              <small style="font-size:0.75rem;color:var(--soft);">Idol ghé quán</small>
+            </div>
+            <div style="background:rgba(106,168,79,0.1);padding:6px;border-radius:8px;border:1px solid rgba(106,168,79,0.25);">
+              <div style="font-size:1rem;font-weight:900;color:#6aa84f;">+50 ĐIỂM</div>
+              <small style="font-size:0.75rem;color:var(--soft);">Admin ghé quán</small>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          ${list.map((item, idx) => {
+            const rank = idx + 1;
+            const isP = item.isPlayer;
+            const medal = rank === 1 ? '🥇' : rank === 2 ? '🥈' : rank === 3 ? '🥉' : `#${rank}`;
+            const bg = isP ? 'background:linear-gradient(135deg,#fff8e7 0%,#ffeec2 100%);border:2px solid #f0ad4e;box-shadow:0 3px 10px rgba(240,173,78,0.3);' : 'background:var(--panel);border:1px solid var(--line);';
+            const rTitle = getRankTitle(rank);
+            return `
+              <div style="${bg}border-radius:12px;padding:10px 14px;display:flex;align-items:center;justify-content:space-between;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                  <div style="font-size:1.1rem;font-weight:900;min-width:32px;text-align:center;color:${rank <= 3 ? '#e85d8a' : 'var(--soft)'};">${medal}</div>
+                  <div style="font-size:1.4rem;">${item.avatar}</div>
+                  <div>
+                    <div style="font-weight:bold;font-size:0.95rem;color:${isP ? '#c0643c' : 'var(--ink)'};">${esc(item.n)} ${isP ? '<span style="font-size:0.75rem;background:#e85d8a;color:#fff;padding:1px 6px;border-radius:8px;margin-left:4px;">Bạn</span>' : ''}</div>
+                    ${rTitle ? `<div style="font-size:0.78rem;color:${isP ? '#c0643c' : '#7a5a48'};font-weight:bold;margin-top:1px;">🏅 ${rTitle}</div>` : ''}
+                    <div style="font-size:0.75rem;color:var(--soft);">⭐ ${item.rate.toFixed(1).replace('.', ',')} sao</div>
+                  </div>
+                </div>
+                <div style="text-align:right;">
+                  <div style="font-weight:900;font-size:1.05rem;color:#e85d8a;">${item.pts} pt</div>
+                  <small style="font-size:0.72rem;color:var(--soft);">Điểm uy tín</small>
+                </div>
+              </div>
+            `;
+          }).join('')}
+        </div>
+      `;
+
+      $('pane').innerHTML = h;
     }
 
     /* ---------- OWNER PANEL ---------- */
