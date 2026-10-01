@@ -7321,7 +7321,7 @@
       const cost = recCost(r), profit = rev - cost, avg = r.starN ? r.starSum / r.starN : 0, wv = waste.reduce((a, x) => a + x.v, 0);
       S.history.push(r); if (S.history.length > 400) S.history.shift(); S.totalProfit = (S.totalProfit || 0) + profit;
       const broke = S.money < 0;
-      let justOnline = false; if (!broke) { S.rankPts = (S.rankPts || 0) + 10; S.best = Math.max(S.best || 0, S.day); S.day++; S.cur = newRec(S.day); rollDay(S.day); if (!S.online && onlineCheck().every(x => x.ok)) { S.online = true; justOnline = true } }
+      let justOnline = false; if (!broke) { S.rankPts = (S.rankPts || 0) + 30; S.best = Math.max(S.best || 0, S.day); S.day++; S.cur = newRec(S.day); rollDay(S.day); if (!S.online && onlineCheck().every(x => x.ok)) { S.online = true; justOnline = true } }
       save(); autoBak();
       const nextLv = !broke && levelOf(S.day) > levelOf(S.day - 1) ? levelOf(S.day) : 0;
       const showCard = () => {
@@ -7669,7 +7669,7 @@
           <div style="font-weight:bold;color:var(--ink);margin-bottom:6px;">⚡ Cách tích điểm xếp hạng:</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center;">
             <div style="background:rgba(239,111,142,0.1);padding:6px;border-radius:8px;border:1px solid rgba(239,111,142,0.25);">
-              <div style="font-size:1rem;font-weight:900;color:#e85d8a;">+10 ĐIỂM</div>
+              <div style="font-size:1rem;font-weight:900;color:#e85d8a;">+30 ĐIỂM</div>
               <small style="font-size:0.75rem;color:var(--soft);">Xong 1 ngày</small>
             </div>
             <div style="background:rgba(240,138,93,0.1);padding:6px;border-radius:8px;border:1px solid rgba(240,138,93,0.25);">
