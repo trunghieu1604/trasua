@@ -5917,7 +5917,7 @@
     const _hd = {};
     function setTxt(id, v) { if (_hd[id] !== v) { _hd[id] = v; $(id).textContent = v } }
     function getRankTitle(rank) {
-      if (rank === 1) return '👑 Đỉnh Cao Vinh Quang 👑';
+      if (rank === 1) return 'TOP 1 BXH';
       if (rank <= 3) return 'Tiệm Trà Sữa Huyền Thoại';
       if (rank <= 5) return 'Tiệm Trà Sữa Nổi Tiếng';
       if (rank <= 8) return 'Tiệm Trà Sữa Triển Vọng';
@@ -7753,7 +7753,7 @@
           <div style="font-size:0.95rem;color:#6b4a38;margin-top:6px;font-weight:bold;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px;">
             <div>Điểm uy tín: <span style="font-size:1.2rem;color:#e85d8a;font-weight:900;">${playerPts} pt</span></div>
             <div style="background:#fff;border:1px solid #f0ad4e;padding:3px 10px;border-radius:12px;color:#8a6d3b;font-size:0.85rem;font-weight:bold;">
-              🎖️ Danh hiệu: <b>${getRankTitle(playerRank) || 'Chưa có (Cần Top 10)'}</b>
+              Danh hiệu: <b>${getRankTitle(playerRank) || 'Chưa có (Cần Top 10)'}</b>
             </div>
           </div>
         </div>
