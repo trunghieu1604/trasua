@@ -5034,7 +5034,7 @@
 
     /* ---------- THÀNH TÍCH ---------- */
     .ach-header {
-      background: linear-gradient(135deg, #fff7ea 0%, #ffeed5 100%);
+      background: linear-gradient(135deg, #ef7f98 0%, #f7527b 100%);
       border: 2px solid #e2b887;
       border-radius: 14px;
       padding: 12px 14px;
@@ -5113,12 +5113,12 @@
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
     }
     .ach-card.done {
-      border-color: #81c784;
-      background: linear-gradient(180deg, #ffffff 0%, #f4fbf5 100%);
+      border-color: #f6ecd6;
+      background: linear-gradient(180deg, #f6ecd6 0%, #f6ecd6 100%);
     }
     .ach-card.pending {
-      border-color: #e0d0c0;
-      background: #fdfcfb;
+      border-color: #f6ecd6;
+      background: #f6ecd6;
     }
     .ach-icon-box {
       width: 44px;
@@ -5180,7 +5180,7 @@
       border-radius: 3px;
     }
     .ach-card.done .ach-card-bar-fill {
-      background: linear-gradient(90deg, #66bb6a, #4caf50);
+      background: linear-gradient(90deg, #ef7f98, #f7527b);
     }
     .ach-ftr {
       display: flex;
@@ -5197,11 +5197,11 @@
       gap: 3px;
     }
     .ach-status {
-      color: #2e7d32;
-      background: #e8f5e9;
+      color: #f7527b;
+      background: #fff;
       padding: 2px 6px;
       border-radius: 6px;
-      border: 1px solid #a5d6a7;
+      border: 1px solid #f7527b;
     }
     .ach-status.pending {
       color: #d84315;
@@ -5454,8 +5454,9 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.4';
+    const GAME_VERSION = '2.5';
     const CHANGELOG = [
+	  {v:'2.5',d:'01/10/2026', items: ['Chỉnh lại màu sắc cho hợp với chủ đề của game']},
 	  {v:'2.4',d:'01/10/2026', items: ['Fix lỗi Thành Tích bị mất sau khi đã hoàn thành','Fix lỗi Thống Kê không hoạt động']},
 	  {v:'2.3',d:'01/10/2026', items: ['Thêm BXH Quán và Danh Hiệu']},
 	  {v:'2.2',d:'30/10/2026', items: ['Thêm 30 Thành Tích','Ngưng cho thuê Nhân viên Lượng toàn năng','Nhân viên Lượng toàn năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
@@ -7638,7 +7639,7 @@
 
       let h = `
 
-      <div style="background:linear-gradient(135deg,#fff8e7 0%,#ffeec2 100%);border:2px solid #f0ad4e;border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(240,173,78,0.25);">
+      <div style="background:linear-gradient(135deg,#f6ecd6 0%,#f6ecd6 100%);border:2px solid #c24c69;border-radius:14px;padding:14px;margin-bottom:14px;box-shadow:0 4px 12px rgba(240,173,78,0.25);">
         <div style="text-align:center;margin-bottom:8px;">
           <div style="font-size:2.5rem;line-height:1;margin-bottom:4px;">👑</div>
           <div class="ach-main-title" style="font-weight:900;font-size:1.1rem;color:#8a6d3b;cursor:pointer;">Huyền Thoại Trà Sữa (Phần Thưởng 30/30 Thành Tích)</div>
@@ -7647,8 +7648,8 @@
 
         <div style="display:flex;justify-content:center;align-items:center;margin:12px 0;">
           ${S.claimedRobotPopup ? `
-            <button disabled style="background:linear-gradient(135deg,#4caf50 0%,#2e7d32 100%);color:#fff;padding:10px 22px;font-weight:900;font-size:0.95rem;border-radius:12px;border:none;box-shadow:0 3px 8px rgba(46,125,50,0.3);display:flex;align-items:center;gap:6px;opacity:0.95;cursor:default;">
-              ✅ ĐÃ NHẬN PHẦN THƯỞNG
+            <button disabled style="background:linear-gradient(135deg,#ef7f98 0%,#f7527b 100%);color:#fff;padding:10px 22px;font-weight:900;font-size:0.95rem;border-radius:12px;border:none;box-shadow:0 3px 8px rgba(46,125,50,0.3);display:flex;align-items:center;gap:6px;opacity:0.95;cursor:default;">
+              ĐÃ NHẬN PHẦN THƯỞNG
             </button>
           ` : doneCount >= 30 ? `
             <button id="btnClaimRobot" style="background:linear-gradient(135deg,#e85d8a 0%,#c24c69 100%);color:#fff;padding:11px 24px;font-weight:900;font-size:0.98rem;border-radius:12px;cursor:pointer;border:none;box-shadow:0 4px 12px rgba(232,93,138,0.4);display:flex;align-items:center;gap:6px;">
@@ -7686,7 +7687,7 @@
               </div>
               <div class="ach-ftr">
                 <span class="ach-reward">🎁 ${esc(a.reward)}</span>
-                <span class="ach-status ${st.ok ? 'done' : 'pending'}">${st.ok ? '✅ Hoàn thành' : '⏳ ' + esc(st.txt)}</span>
+                <span class="ach-status ${st.ok ? 'done' : 'pending'}">${st.ok ? 'Hoàn thành' : '⏳ ' + esc(st.txt)}</span>
               </div>
             </div>
           </div>
@@ -7760,16 +7761,16 @@
         <div style="background:var(--panel);border:1.5px solid var(--line);border-radius:12px;padding:12px;margin-bottom:12px;font-size:0.88rem;color:var(--soft);">
           <div style="font-weight:bold;color:var(--ink);margin-bottom:6px;">⚡ Cách tích điểm xếp hạng:</div>
           <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;text-align:center;">
-            <div style="background:rgba(239,111,142,0.1);padding:6px;border-radius:8px;border:1px solid rgba(239,111,142,0.25);">
-              <div style="font-size:1rem;font-weight:900;color:#e85d8a;">+30 ĐIỂM</div>
+            <div style="background:#ef7f9800;padding:6px;border-radius:8px;border:1px solid rgba(239,111,142,0.25);">
+              <div style="font-size:1rem;font-weight:900;color:#e85d8ab5;">+30 ĐIỂM</div>
               <small style="font-size:0.75rem;color:var(--soft);">Xong 1 ngày</small>
             </div>
             <div style="background:rgba(240,138,93,0.1);padding:6px;border-radius:8px;border:1px solid rgba(240,138,93,0.25);">
               <div style="font-size:1rem;font-weight:900;color:#f08a5d;">+40 ĐIỂM</div>
               <small style="font-size:0.75rem;color:var(--soft);">Idol ghé quán</small>
             </div>
-            <div style="background:rgba(106,168,79,0.1);padding:6px;border-radius:8px;border:1px solid rgba(106,168,79,0.25);">
-              <div style="font-size:1rem;font-weight:900;color:#6aa84f;">+50 ĐIỂM</div>
+            <div style="background:#ef7f9830;padding:6px;border-radius:8px;border:1px solid rgba(106,168,79,0.25);">
+              <div style="font-size:1rem;font-weight:900;color:#f7527b;">+50 ĐIỂM</div>
               <small style="font-size:0.75rem;color:var(--soft);">Admin ghé quán</small>
             </div>
           </div>
