@@ -5454,22 +5454,23 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.3';
+    const GAME_VERSION = '2.4';
     const CHANGELOG = [
-	  {v:'2.3', d: '01/10/2026', items: ['Thêm BXH Quán và Danh Hiệu']},
-	  {v:'2.2', d: '01/10/2026', items: ['Thêm 30 Thành Tích','Ngưng cho thuê Nhân viên Lượng toàn năng','Nhân viên Lượng toàn năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
-	  {v:'2.1', d: '30/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
-	  {v:'2.0.8', d: '29/09/2026', items: ['Fix lỗi','Fix màu']},
-	  {v:'2.0.7', d: '28/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
-	  {v:'2.0.6', d: '27/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
-      {v:'2.0.5', d: '26/09/2026', items: ['Thêm Nhân viên Lượng toàn năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
+	  {v:'2.4',d:'01/10/2026', items: ['Fix lỗi Thành Tích bị mất sau khi đã hoàn thành','Fix lỗi Thống Kê không hoạt động']},
+	  {v:'2.3',d:'01/10/2026', items: ['Thêm BXH Quán và Danh Hiệu']},
+	  {v:'2.2',d:'30/10/2026', items: ['Thêm 30 Thành Tích','Ngưng cho thuê Nhân viên Lượng toàn năng','Nhân viên Lượng toàn năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
+	  {v:'2.1',d:'30/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
+	  {v:'2.0.8',d:'29/09/2026', items: ['Fix lỗi','Fix màu']},
+	  {v:'2.0.7',d:'28/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
+	  {v:'2.0.6',d:'27/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
+      {v:'2.0.5',d:'26/09/2026', items: ['Thêm Nhân viên Lượng toàn năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
 	  {v:'2.0.4',d:'24/09/2026',items:['Hương mua theo chai ở Nâng cấp > Hương: 200k một chai dùng cho 45 ly, hạn 7 ngày kể từ ngày mua. Mua bao nhiêu chai thì 45 ly nhân lên. Hết chai phải mua chai mới, chai quá hạn bị đổ bỏ. Kho không còn nấu hương theo phần','Đơn online Soppi: cần mua tablet (7 triệu, ở Trang bị) thì đơn mới đổ về. Quán đã mở online được tặng sẵn 1 tablet','Đơn online nhận thêm tối đa bằng số chỗ ở quầy: 3 khách, mở rộng quầy thì 4 (tổng 6 hoặc 8 khách). Đơn online khoảng 20% tổng khách. Tài xế chờ tối đa 1 phút 30 giây, có tài xế nam và nữ','Mỗi 30 ngày có 1 đơn lớn Soppi 5–10 ly vào ngày ngẫu nhiên','Nhân viên đơn online (thuê 2 triệu, lương 250k/ngày): chỉ làm đơn online, mỗi ly khoảng 1 giây','Vay ngân hàng tối đa 1 triệu, lãi 25%/năm','Máy dán nắp tự động dán nhanh hơn','Hướng dẫn thêm trang Đường và đá (Cài đặt > Hướng dẫn)','Khách ngôi sao: cứ 30 ngày có 1 idol Kpop hoặc diễn viên Thái, Trung ghé quán vào ngày ngẫu nhiên. Nói tiếng nước mình kèm [Tự động dịch], trả gấp 3 tiền và luôn để 5 sao','Mã sao lưu còn 8 số, mỗi quán một mã riêng không trùng ai. Sao lưu lại vẫn giữ nguyên mã. Khôi phục bằng 8 số cần có mạng, mã dài cũ vẫn dùng được','Tem thương hiệu hiện đủ tên quán. Chọn được kiểu chữ thẳng hàng, cong phía trên hoặc cong phía dưới']},
 	  {v:'2.0.3',d:'24/09/2026',items:['Thêm Nhân viên phụ quầy 2 (thuê 750k, lương 150k/ngày): làm như nhân viên phụ quầy, thêm múc topping. Không thuê cùng lúc với nhân viên phụ quầy, thuê người này thì người kia tự nghỉ (gọi đi làm lại không tốn tiền)','Sửa lỗi trên iPhone: sau khi bật bàn phím (trả lời đánh giá, đặt tên quán…) rồi tắt, quầy pha bị thu nhỏ còn nửa màn hình và nút Mở cửa nhảy lên giữa màn hình. Game giờ tự nhận ra và trả về đủ màn hình','Sửa lỗi đánh giá đầy 2.500 thì như đứng yên: bộ nhớ lưu game bị đầy nên đánh giá và tiến trình mới có thể không được lưu. Bản lưu nay gọn hơn và tự dọn bản dự phòng cũ khi thiếu chỗ','Số đánh giá trên đầu màn hình giờ là tổng số đánh giá từ trước tới nay, vẫn tăng khi đã quá 2.500 (tab Đánh giá vẫn giữ 2.500 đánh giá mới nhất)']},
       {v:'2.0.2',d:'23/09/2026',items:['Nhân viên phụ quầy: bạn lấy ly, bỏ topping và dán nắp (có máy dán nắp tự động thì máy tự dán). Nhân viên rót trà, cho hương, đường và đá. Bỏ topping được ngay trong lúc nhân viên đang pha']},
       {v:'2.0.1',d:'23/09/2026',items:['Nhân viên pha chế làm nhanh như nhân viên phụ quầy, mỗi ly khoảng 3 giây. Đơn nhân viên đang làm không còn chặn khách mới, bạn luôn có khách để làm','Thông báo lúc bán hiện lâu hơn. Nhân viên làm sai thì báo rõ sai gì (chữ nền đỏ, hiện 5 giây)','Quầy pha chừa khoảng trống ở mép dưới, đỡ bị vuốt nhầm sang app khác trên iPhone','Game tự lưu 3 cuối ngày gần nhất, lấy lại trong Cài đặt > Khôi phục bản tự lưu','Máy chặn lưu tiến trình (ví dụ iPhone bật Chặn tất cả cookie) thì game báo ngay, kèm cách sửa','Mở game trên máy mới: màn hình chào có nút khôi phục bằng mã sao lưu. Cứ 7 ngày game nhắc tạo mã sao lưu một lần']},
       {v:'2.0',d:'23/09/2026',items:['Tới 22:00 quán đóng cửa: không nhận khách mới, nhân viên phụ quầy nghỉ, bạn làm nốt cho khách đang trong quán rồi mới tổng kết. Đơn online ngưng nhận từ 21:30, đơn đang có vẫn phải làm nốt','Nhân viên pha chế nhận trọn đơn của một khách (có ký hiệu trên mặt khách) và làm hết các ly, bạn không cần đụng vào khách đó. Không còn bị trùng ly phải đổ bỏ. Ly nào hết món thì khách nhận các ly còn lại rồi về','Lương nhân viên pha chế 200k/ngày. Làm quá 22:00 thì trả tăng ca 40k/giờ, tính tròn mỗi 30 phút là 20k','Bỏ món khỏi menu trong Nâng cấp: khách không gọi món đó nữa, thêm lại lúc nào cũng được, không mất tiền. Hàng trong kho vẫn giữ, hết hạn thì tự đổ bỏ','Hạn dùng mới: hương ổi, mãng cầu, chanh 1 ngày, các hương khác 7 ngày; foam 2 ngày; phô mai tươi 3 ngày','Hương và topping: để giá trên 20k thì 80% khách không gọi món đó, trên 30k thì không khách nào gọi (xem cảnh báo trong Giá bán)','Lọc đánh giá theo số sao, hoặc chỉ xem đánh giá chưa trả lời','Chọn thời gian bán mỗi ngày 4, 5 hoặc 6 phút trong Cài đặt','Khách tăng đều theo số sao, không còn tăng vọt khi quán lên 4 sao. 10 ngày đầu khách tăng từ từ cho quen tay','Vừa chơi vừa nghe nhạc YouTube, Spotify được','Bộ nhận diện thương hiệu: hình logo sắc nét, không bị cắt, nằm giữa; ô chọn hình chỉ cuộn dọc; tem không còn bị méo, logo hiện rõ trên ly','Giao diện Đêm dịu sáng hơn, dễ nhìn quầy pha','Sửa lỗi tên quán ở trên cùng bị mờ trên iPhone','Bản cài vào máy: sửa lỗi mất hình khách và ly']},
       {v:'1.9.9',d:'22/09/2026',items:['Sửa lỗi còn dư một vệt kệ nhỏ phía dưới khay đá viên, nước đường khi chưa mở hết foam/phô mai','Đơn từ 3 ly trở lên: chỉ chặn khách mới ghé khi đơn đó còn từ 3 ly chưa giao (trước đây tính cả những ly đã giao xong)','Khách đặt nhiều ly mà quán hết món giữa chừng: nếu đã được giao một số ly trước đó thì đánh giá nhẹ nhàng hơn, có nhắc tới việc đã uống được vài ly','Bộ nhận diện thương hiệu (Nâng cấp > Trang bị, 5 triệu): tự thiết kế tem in lên mọi ly — chọn màu nền, kiểu khung (tròn, bo góc, ruy băng), 1 trong 50 hình dễ thương và khẩu hiệu; tên quán tự hiện lên tem']},
-      {v:'1.9.8',d:'22/09/2026',items:['Sao lưu tiến trình bằng mã (Cài đặt > Sao lưu tiến trình), bị mất thì khôi phục lại từ mã hoặc file','Từ ngày 30, một khách mua được tối đa 5 ly, mỗi ly tới 4 topping','Ly trên 120k (trước là 100k) thì 60% khách bỏ đi','Món nào (trà, hương, topping) để giá trên 50k thì khách chê mắc, quán vắng 80% khách','Thạch 3Q đổi thành trân châu trắng cho đúng hình khay','Máy dán nắp tự động: khi chưa dán được thì báo rõ lý do (dư topping, dư đường, dư đá, sai siro, trà còn ít…)','Sửa lỗi bảng QUẦY TRÀ bị một vệt màu che, số trên khay đang khoá bị lộ ra','Trà để giá từ 40k là đắt, riêng matcha từ 50k','Giá nhập trà mới: matcha 6k, trà sữa 4,5k, trà sữa Thái 5k, trà olong 2,5k, hồng trà và lục trà 1,5k','Không còn đánh giá chê ly đổ, rỉ ra ngoài khi ly không bị tràn; ly không topping hoặc không đá thì khách không nhắc tới topping, đá','Đánh giá khớp với đơn thật: chỉ chê đắt khi quán đang để giá đắt, chỉ chê chờ lâu khi khách thật sự chờ lâu, chỉ chê sai món khi làm sai (đúng chỗ sai)','Quầy pha đổi màu theo màu giao diện chọn trong Cài đặt','Đơn từ 3 ly: khách khác chờ quán làm xong đơn đó mới ghé, không phải đứng chờ lâu','Ngày 1–5 có khách chỉ gọi trà, không topping']},
+      {v:'1.9.8' ,d:'22/09/2026',items:['Sao lưu tiến trình bằng mã (Cài đặt > Sao lưu tiến trình), bị mất thì khôi phục lại từ mã hoặc file','Từ ngày 30, một khách mua được tối đa 5 ly, mỗi ly tới 4 topping','Ly trên 120k (trước là 100k) thì 60% khách bỏ đi','Món nào (trà, hương, topping) để giá trên 50k thì khách chê mắc, quán vắng 80% khách','Thạch 3Q đổi thành trân châu trắng cho đúng hình khay','Máy dán nắp tự động: khi chưa dán được thì báo rõ lý do (dư topping, dư đường, dư đá, sai siro, trà còn ít…)','Sửa lỗi bảng QUẦY TRÀ bị một vệt màu che, số trên khay đang khoá bị lộ ra','Trà để giá từ 40k là đắt, riêng matcha từ 50k','Giá nhập trà mới: matcha 6k, trà sữa 4,5k, trà sữa Thái 5k, trà olong 2,5k, hồng trà và lục trà 1,5k','Không còn đánh giá chê ly đổ, rỉ ra ngoài khi ly không bị tràn; ly không topping hoặc không đá thì khách không nhắc tới topping, đá','Đánh giá khớp với đơn thật: chỉ chê đắt khi quán đang để giá đắt, chỉ chê chờ lâu khi khách thật sự chờ lâu, chỉ chê sai món khi làm sai (đúng chỗ sai)','Quầy pha đổi màu theo màu giao diện chọn trong Cài đặt','Đơn từ 3 ly: khách khác chờ quán làm xong đơn đó mới ghé, không phải đứng chờ lâu','Ngày 1–5 có khách chỉ gọi trà, không topping']},
       {v:'1.9.7',d:'22/09/2026',items:['Có ngày khách khó ở (dễ rớt sao, nhiều khách hãm), có ngày khách vui vẻ, không báo trước','Sửa lỗi quầy pha bị lệch lên trên, che mất hàng khách và hũ trà','Sửa lỗi trang bị đẩy lên sau khi gõ phím trên iPhone (mở từ màn hình chính)','Sửa lỗi game bị thu nhỏ khi Chrome Android bật chế độ trang web cho máy tính','Sửa lỗi quầy pha bị đen khi mở trong ứng dụng khác (Threads, Instagram…) ở chế độ tối']},
       {v:'1.9.6',d:'22/09/2026',items:['Khách chờ lâu hơn (khoảng 1 phút), không giảm dần theo ngày','Đánh giá dễ thở hơn: pha đúng và nhanh gần như chắc 5 sao','Hướng dẫn chi tiết từng bước, có hình quầy pha','Chỉ dẫn từng bước cho khách đầu tiên của ngày có cách chơi mới (ngày 1, 6, 30, 60), chỉnh trong Cài đặt','Báo trước và hướng dẫn khi mở đường đá (ngày 6), ly 2 topping, đơn nhiều ly','Máy dán nắp tự động: mua rồi thì pha đúng món là tự dán nắp và giao','Sửa lỗi chữ bị cắt trong Kho','Thuê nhân viên (Nâng cấp > Nhân viên): phụ quầy tự rót trà, bỏ topping, đường và đá, pha chế tự làm cho khách chờ lâu nhất','Tổng kết có thêm lương nhân viên','Máy dán nắp tự động giá 3 triệu, theo giá thực tế','Có thuê nhân viên thì tiền tip là của nhân viên, quán không nhận','Sự kiện mỗi ngày: trời nóng, trời mưa, cuối tuần, học sinh tan học, food reviewer, món hot, nhà cung cấp giảm giá, ngày lễ','Sự kiện tặng tiền: lì xì, trả ví cho khách, giải quán đẹp, nhãn hàng tài trợ…','Nhạc nền và âm thanh: rót trà, múc topping, dán nắp, tiền vào két… (bật tắt trong Cài đặt)','Nhạc nền đổi theo mùa ngoài đời: thu, đông, xuân, hạ (chọn mùa trong Cài đặt)','Tắt nhạc, tắt âm thanh trong Cài đặt hoặc ngay trong bảng Tạm dừng','Nút × trên mặt khách bị hết món để mời khách về','Hơn 500 tên khách và hơn 500 câu đánh giá, không lặp lại','Chọn màu giao diện trong Cài đặt: 12 màu, có nâu cà phê như trước','Khách bước vào quán, khách tới theo giờ cao điểm, có lúc vắng để nghỉ tay','Thông báo lúc bán hiện ở dưới, không che đơn của khách','Giảm lag khi bán và khi rót trà','Vay ngân hàng khi két sắp cạn (dưới 200k), trả góp 10 ngày','Ly trên 100k (gồm hương, topping, size) thì 60% khách bỏ đi','Topping trong ly xếp dày như ly thật','Âm thanh thật: tiếng rót trà, chuông cửa, máy tính tiền, nhạc lên cấp','Nhạc nền mới cho 4 mùa và nhạc riêng cho ngày mưa','Ngày mưa có mưa rơi trên mái hiên quán','Thỉnh thoảng có khách hãm: khách hối, khách đổi ý, khách trả giá, khách khó tính, và hiếm hơn là khách bùng tiền','Nhân viên cho nghỉ thì gọi đi làm lại không tốn tiền thuê','Đơn nhiều ly tự chuyển sang ly kế tiếp']},
       {v:'1.9.5',d:'21/09/2026',items:['Sửa lỗi ly biến mất khi đang rót trà','Sửa lỗi đồng hồ và hình trên màn hình nhấp nháy','Game chạy mượt hơn, bớt giật khi bán','Màn hình chuẩn bị không còn giật khi bấm thêm bớt món, đổi tab, nấu hàng hay mua món mới']},
@@ -5608,7 +5609,7 @@
     const wpick = (arr, w) => { let r = Math.random() * w.reduce((a, b) => a + b, 0); for (let i = 0; i < arr.length; i++) { r -= w[i]; if (r <= 0) return arr[i] } return arr[0] };
     const newRec = d => ({ spoil: { n: 0, v: 0 }, day: d, sales: {}, tips: 0, onl: 0, fee: 0, equip: [], ing: {}, waste: {}, rent: 0, util: 0, tax: 0, served: 0, lost: 0, starSum: 0, starN: 0 });
     function fresh() {
-      const s = { lifeV: 2, off: {}, badPlan: mkBadPlan(1), money: CFG.startMoney, day: 1, stock: {}, unlocked: {}, upg: {}, sell: { ...DEF_SELL }, reviews: [], served: 0, best: 0, totalRev: 0, totalProfit: 0, online: false, shopName: '', history: [], cur: newRec(1), yearRev: 0, taxYear: 0, rankPts: 0 };
+      const s = { lifeV: 2, off: {}, badPlan: mkBadPlan(1), money: CFG.startMoney, day: 1, stock: {}, unlocked: {}, upg: {}, sell: { ...DEF_SELL }, reviews: [], served: 0, best: 0, totalRev: 0, totalProfit: 0, online: false, shopName: '', history: [], cur: newRec(1), yearRev: 0, taxYear: 0, rankPts: 0, achDone: {} };
       Object.keys(ITEMS).forEach(k => { s.stock[k] = []; s.unlocked[k] = ITEMS[k].unlock === 0 });
       return s;
     }
@@ -5621,7 +5622,7 @@
       Object.keys(refund).forEach(k => { if (u[k]) S.money += refund[k] });
       ['khoaimon', 'dau', 'dao', 'tctrang', 'pudding', 'kemtrung'].forEach(k => { delete S.stock[k]; delete S.unlocked[k]; delete S.sell[k] });
     }
-    function loadFrom(d) { const f = fresh(); Object.keys(d.stock).forEach(k => { if (typeof d.stock[k] === 'number') { const q = d.stock[k]; d.stock[k] = []; addStock(k, q, { day: d.day || 1, stock: d.stock }) } }); S = { ...f, ...d, stock: { ...f.stock, ...d.stock }, sell: { ...f.sell, ...d.sell }, unlocked: { ...f.unlocked, ...d.unlocked } }; migrate(d); if (!d.cur) S.cur = newRec(S.day); if (S.seenLv == null) S.seenLv = levelOf(Math.max(1, S.day - 1)); if (S.evDay !== S.day) rollDay(S.day); S.hired = S.hired || {}; STAFF.forEach(x => { if (S.upg[x.id]) S.hired[x.id] = true }); if (S.upg.staff1 && S.upg.staff3) S.upg.staff1 = false; if (S.upg.guard1 && S.upg.guard2) S.upg.guard1 = false; if (S.online && S.tablets == null) S.tablets = 1; S.apps = S.apps || {}; syncFlav(); if (d.totalProfit == null) S.totalProfit = (S.history || []).reduce((a, r) => a + recRev(r) - recCost(r), 0); if (!(d.lifeV >= 2)) { Object.keys(LIFE_OLD).forEach(k => { const d = ITEMS[k].life - LIFE_OLD[k]; (S.stock[k] || []).forEach(b => { if (b.exp < 99999) b.exp += d }) }); S.lifeV = 2; save() } try { sanitize() } catch (e) { } (S.reviews || []).forEach(r => { if (!r.k) r.k = (r.t || '').replace(/\p{Extended_Pictographic}|\uFE0F/gu, '').trim(); if (r.st != null && STARS[r.st]) { r.n = STARS[r.st].n; r.tg = STARS[r.st].t; const isVn = STARS[r.st].l === 'vn' || (r.n && r.n.includes('TRUNG HIẾU')); if (isVn && r.t) { let clean = r.t; if (clean.includes(' [Tự động dịch] ')) { const parts = clean.split(' [Tự động dịch] '); clean = parts[1] || parts[0]; } clean = clean.replace(/^[\u3040-\u30ff\u4e00-\u9faf\uac00-\ud7af\u0e00-\u0e7f\s\S]+?\(([^)]+)\)$/u, '$1').trim(); clean = clean.replace(/^[\u3040-\u30ff\u4e00-\u9faf\uac00-\ud7af\u0e00-\u0e7f]+\s*/u, '').trim(); r.t = clean; } else if (!isVn && r.t) { if (!r.t.includes('[Tự động dịch]')) { if (r.t.includes(' (')) { r.t = r.t.replace(' (', ' [Tự động dịch] ('); } } } } }); if (!d.badPlan) { S.badPlan = mkBadPlan(S.day); save() } }
+    function loadFrom(d) { const f = fresh(); Object.keys(d.stock).forEach(k => { if (typeof d.stock[k] === 'number') { const q = d.stock[k]; d.stock[k] = []; addStock(k, q, { day: d.day || 1, stock: d.stock }) } }); S = { ...f, ...d, stock: { ...f.stock, ...d.stock }, sell: { ...f.sell, ...d.sell }, unlocked: { ...f.unlocked, ...d.unlocked }, achDone: d.achDone || {} }; migrate(d); if (!d.cur) S.cur = newRec(S.day); if (S.seenLv == null) S.seenLv = levelOf(Math.max(1, S.day - 1)); if (S.evDay !== S.day) rollDay(S.day); S.hired = S.hired || {}; STAFF.forEach(x => { if (S.upg[x.id]) S.hired[x.id] = true }); if (S.upg.staff1 && S.upg.staff3) S.upg.staff1 = false; if (S.upg.guard1 && S.upg.guard2) S.upg.guard1 = false; if (S.online && S.tablets == null) S.tablets = 1; S.apps = S.apps || {}; syncFlav(); if (d.totalProfit == null) S.totalProfit = (S.history || []).reduce((a, r) => a + recRev(r) - recCost(r), 0); if (!(d.lifeV >= 2)) { Object.keys(LIFE_OLD).forEach(k => { const d = ITEMS[k].life - LIFE_OLD[k]; (S.stock[k] || []).forEach(b => { if (b.exp < 99999) b.exp += d }) }); S.lifeV = 2; save() } try { sanitize() } catch (e) { } (S.reviews || []).forEach(r => { if (!r.k) r.k = (r.t || '').replace(/\p{Extended_Pictographic}|\uFE0F/gu, '').trim(); if (r.st != null && STARS[r.st]) { r.n = STARS[r.st].n; r.tg = STARS[r.st].t; const isVn = STARS[r.st].l === 'vn' || (r.n && r.n.includes('TRUNG HIẾU')); if (isVn && r.t) { let clean = r.t; if (clean.includes(' [Tự động dịch] ')) { const parts = clean.split(' [Tự động dịch] '); clean = parts[1] || parts[0]; } clean = clean.replace(/^[\u3040-\u30ff\u4e00-\u9faf\uac00-\ud7af\u0e00-\u0e7f\s\S]+?\(([^)]+)\)$/u, '$1').trim(); clean = clean.replace(/^[\u3040-\u30ff\u4e00-\u9faf\uac00-\ud7af\u0e00-\u0e7f]+\s*/u, '').trim(); r.t = clean; } else if (!isVn && r.t) { if (!r.t.includes('[Tự động dịch]')) { if (r.t.includes(' (')) { r.t = r.t.replace(' (', ' [Tự động dịch] ('); } } } } }); if (!d.badPlan) { S.badPlan = mkBadPlan(S.day); save() } }
     function load() {
       let raw = null; try { raw = localStorage.getItem(SAVE) } catch (e) { }
       if (raw) {
@@ -5661,6 +5662,23 @@
     const newCup = () => ({ cost: 0, size: null, sugar: null, ice: null, base: null, flav: null, tops: [], cheese: false, used: false });
 
     /* ---------- ECONOMY ---------- */
+    function recRev(r) { return (r.rev || 0) + Object.values(r.sales || {}).reduce((a, x) => a + x.a, 0) + (r.onl || 0) + (r.tips || 0) + (r.gift || 0) + (r.guard || 0); }
+    function recCost(r) { return (r.cogs || 0) + (r.rent || 0) + (r.util || 0) + (r.wage || 0) + (r.bad || 0) + (r.loanInt || 0) + (r.fee || 0) + (r.tax || 0) + ((r.equip || []).reduce((a, x) => a + x.v, 0)) + (Object.values(r.ing || {}).reduce((a, x) => a + x.v, 0)); }
+
+    function triggerAdminVisitGift() {
+      const giftVal = Math.floor((200000 + Math.random() * 800000) / 50000) * 50000;
+      S.money += giftVal;
+      S.totalRev = (S.totalRev || 0) + giftVal;
+      S.totalProfit = (S.totalProfit || 0) + giftVal;
+      if (S.cur) S.cur.gift = (S.cur.gift || 0) + giftVal;
+      save();
+      sfx('star');
+      head();
+      if (R.mode === 'prep') refreshPrep();
+      ask(`<div class="pbig">👑</div><h2>Admin Trung Hiếu Ghé Thăm!</h2><p>🎉 <b>Admin Trung Hiếu</b> vừa tới thăm quán trà sữa của bạn và tặng quà ngẫu nhiên <b>+${fmt(giftVal)}</b> vào két tiền!</p><p class="lvup">Chúc quán buôn may bán đắt và sớm đạt TOP 1 BXH! 🚀</p>`,
+        [['Cảm ơn Admin 🚀', () => { head(); }, 1]]);
+    }
+
     const sellMax = k => k === 'L' ? CFG.sizeCap : CFG.itemCap * 2;
     const ADD_WARN = 20000, ADD_CAP = 30000;/* hương, topping: trên 20k thì 80% khách không gọi, trên 30k thì không ai gọi */
     const addOk = k => sv(S.sell, k) <= ADD_CAP, addSkip = k => sv(S.sell, k) > ADD_WARN && Math.random() >= .2;
@@ -6263,6 +6281,64 @@
       const nums = [];
       for (let i = 1; i <= n; i++)if (i === 1 || i === n || Math.abs(i - cur) <= 1) nums.push(i); else if (nums[nums.length - 1] !== '…') nums.push('…');
       return `<div class="pager"><button data-pg="${cur - 1}" ${cur <= 1 ? 'disabled' : ''} aria-label="Trang trước">‹</button>${nums.map(i => i === '…' ? '<span>…</span>' : `<button data-pg="${i}" class="${i === cur ? 'on' : ''}" aria-label="Trang ${i}">${i}</button>`).join('')}<button data-pg="${cur + 1}" ${cur >= n ? 'disabled' : ''} aria-label="Trang sau">›</button></div>`
+    }
+
+    function paneSum() {
+      const hList = (S.history || []).slice().reverse();
+      const curR = S.cur || newRec(S.day);
+      const totalRev = (S.history || []).reduce((a, r) => a + recRev(r), 0) + recRev(curR);
+      const totalCost = (S.history || []).reduce((a, r) => a + recCost(r), 0) + recCost(curR);
+      const totalProfit = totalRev - totalCost;
+
+      let html = `<div class="ach-header">
+        <div class="ach-title-row">
+          <span class="ach-main-title">📊 Tổng Kết Tài Chính</span>
+          <span class="ach-badge-tag">Két: ${fmt(S.money)}</span>
+        </div>
+        <div style="display:flex;gap:8px;margin-top:6px;font-weight:700;font-size:0.85rem;">
+          <div style="flex:1;background:#fff;padding:8px 10px;border-radius:8px;border:1px solid #e0d0c0;">
+            <small style="color:#777;display:block;">Tổng Doanh Thu</small>
+            <span style="color:#2e7d32;font-size:1.02rem;">${fmt(totalRev)}</span>
+          </div>
+          <div style="flex:1;background:#fff;padding:8px 10px;border-radius:8px;border:1px solid #e0d0c0;">
+            <small style="color:#777;display:block;">Tổng Chi Phí</small>
+            <span style="color:#c62828;font-size:1.02rem;">${fmt(totalCost)}</span>
+          </div>
+          <div style="flex:1;background:#fff;padding:8px 10px;border-radius:8px;border:1px solid #e0d0c0;">
+            <small style="color:#777;display:block;">Tổng Lãi Ròng</small>
+            <span style="color:${totalProfit < 0 ? '#c62828' : '#1565c0'};font-size:1.02rem;">${totalProfit < 0 ? '−' : '+'}${fmt(Math.abs(totalProfit))}</span>
+          </div>
+        </div>
+      </div>`;
+
+      html += `<div style="font-weight:800;font-size:0.95rem;margin:12px 0 8px 0;color:#5a3d2b;">📜 Lịch Sử Bán Hàng Qua Các Ngày</div>`;
+
+      if (!hList.length) {
+        html += `<p class="note" style="text-align:center">${ico('chart')} Chưa có dữ liệu tổng kết ngày nào.</p>`;
+      } else {
+        html += hList.map(r => {
+          const rev = recRev(r);
+          const cost = recCost(r);
+          const profit = rev - cost;
+          const avg = r.starN ? (r.starSum / r.starN).toFixed(1).replace('.', ',') : '–';
+          return `<div class="ach-card" style="flex-direction:column;gap:6px;margin-bottom:8px;">
+            <div style="display:flex;justify-content:space-between;width:100%;align-items:center;">
+              <b style="font-size:0.95rem;color:#3e2723;">🗓️ Ngày ${r.day}</b>
+              <span style="font-weight:800;color:${profit < 0 ? '#d32f2f' : '#2e7d32'};font-size:0.92rem;">
+                Lãi: ${profit < 0 ? '−' : '+'}${fmt(Math.abs(profit))}
+              </span>
+            </div>
+            <div style="display:flex;gap:12px;font-size:0.8rem;color:#555;width:100%;flex-wrap:wrap;">
+              <span>🧋 Phục vụ: <b>${r.served || 0}</b></span>
+              <span>⭐ Đánh giá: <b>${avg}★</b></span>
+              <span>💰 Doanh thu: <b style="color:#2e7d32">${fmt(rev)}</b></span>
+              <span>💸 Chi phí: <b style="color:#c62828">${fmt(cost)}</b></span>
+            </div>
+          </div>`;
+        }).join('');
+      }
+
+      $('pane').innerHTML = html;
     }
 
     /* ---------- SELL VIEW ---------- */
@@ -7025,7 +7101,9 @@
       let o = genOrder(); for (let t = 0; t < 8 && o.so; t++)o = genOrder(); if (o.so) o.so = null;
       const hi = starLine(st, 'hi'), max = (55 + (level() >= 2 ? 8 : 0)) * 1.6 * (S.upg.seats ? 1.25 : 1) * (1 + .35 * (slowN(o) + Math.max(0, o.tops.length - 1)));
       R.slots[i] = { star: k, hi: hi[0], born: performance.now(), id: ++uid, name: st.n, face: '⭐', say: st.m ? 'Cho anh' : 'Cho chị', end: rnd([' nha!', ' nhé, cảm ơn nha!', ' nha em!']), cups: [o], done: [false], order: o, pat: max, max, wrong: 0, paid: 0 };
-      renderStreet(); sfx('star'); toast('⭐ ' + st.t + ' ' + st.n + ' vừa ghé quán!', 5000, 1); setTimeout(() => { const q = $('q3say'); if (q) q._t = null; renderLane() }, 3600)
+      renderStreet(); sfx('star'); toast('⭐ ' + st.t + ' ' + st.n + ' vừa ghé quán!', 5000, 1);
+      if ((st.n && st.n.toUpperCase().includes('TRUNG HIẾU')) || (st.t && st.t.includes('ADMIN'))) { triggerAdminVisitGift(); }
+      setTimeout(() => { const q = $('q3say'); if (q) q._t = null; renderLane() }, 3600)
     }
     function spawnOnline() {
       if (R.online.length >= onCap() || bigOrder()) return; if (pricyItems().length && Math.random() < .8) return;
@@ -7134,8 +7212,8 @@
       const sl = S.cur.sales, add = (k, a) => { const x = sl[k] = sl[k] || { q: 0, a: 0 }; x.q++; x.a += a };
       add(o.base, sv(S.sell, o.base)); if (o.flav) add(o.flav, sv(S.sell, o.flav)); o.tops.forEach(t => add(t, sv(S.sell, t))); if (o.cheese) add('cheese', sv(S.sell, 'cheese')); if (o.size === 'L') add('L', sv(S.sell, 'L'))
     }
-    const recRev = r => Object.values(r.sales).reduce((a, x) => a + x.a, 0) + r.tips + (r.gift || 0);
-    const recCost = r => r.rent + r.util + (r.wage || 0) + (r.bad || 0) + (r.loanInt || 0) + r.fee + r.tax + r.equip.reduce((a, x) => a + x.v, 0) + Object.values(r.ing).reduce((a, x) => a + x.v, 0);
+    // recRev
+    // recCost
     function ready() { const lv = level(), miss = !cup.base ? 'loại trà' : !cup.size ? 'size' : lv >= 2 && !cup.sugar ? 'đường' : lv >= 2 && !cup.ice ? 'đá' : null; if (miss) { toast('Chưa chọn ' + miss); return false } return true }
     const needs = o => [o.base, ...(o.flav ? [o.flav] : []), ...o.tops, ...(o.cheese ? ['cheese'] : []), 'cup'];
     const missing = o => needs(o).filter(k => !qty(k) && !(cup && cup.used && (k === 'cup' || cup.base === k || cup.flav === k || cup.tops.includes(k) || (k === 'cheese' && cup.cheese))));
@@ -7367,12 +7445,13 @@
     }
     function paneSum() {
       const H = S.history;
-      if (!H.length) { $('pane').innerHTML = '<div class="sec">Tổng kết</div><p class="note">Chưa có dữ liệu. Bán xong ngày đầu tiên là có tổng kết ở đây.</p>'; return }
-      const mode = R.sumMode || 'day', size = { day: 1, week: 7, month: 30 }[mode];
+      if (!H || !H.length) { $('pane').innerHTML = '<div class="sec">Tổng kết</div><p class="note">Chưa có dữ liệu. Bán xong ngày đầu tiên là có tổng kết ở đây.</p>'; return }
+      const mode = R.sumMode || 'day', size = { day: 1, week: 7, month: 30 }[mode] || 1;
       const blocks = [...new Set(H.map(r => Math.floor((r.day - 1) / size)))];
-      let idx = R.sumIdx == null || !blocks.includes(R.sumIdx) ? blocks[blocks.length - 1] : R.sumIdx;
+      let idx = (R.sumIdx == null || !blocks.includes(R.sumIdx)) ? blocks[blocks.length - 1] : R.sumIdx;
       const recs = H.filter(r => Math.floor((r.day - 1) / size) === idx), g = aggregate(recs);
-      const d0 = idx * size + 1, d1 = d0 + size - 1, last = recs[recs.length - 1].day;
+      const d0 = idx * size + 1, d1 = d0 + size - 1;
+      const last = recs.length > 0 ? recs[recs.length - 1].day : d0;
       const label = mode === 'day' ? `Ngày ${d0}` : `${mode === 'week' ? 'Tuần' : 'Tháng'} ${idx + 1} · ngày ${d0}–${d1}${last < d1 ? ' (đang diễn ra)' : ''}`;
       const pi = blocks.indexOf(idx);
       const vn = n => (Math.round(n / 100) / 10).toLocaleString('vi-VN', { maximumFractionDigits: 1 });
@@ -7393,7 +7472,7 @@
       const wasteRows = Object.entries(g.waste);
       let h = `<div class="segtabs">${[['day', 'Theo ngày'], ['week', 'Theo tuần'], ['month', 'Theo tháng']].map(([m, l]) => `<button class="chip${mode === m ? ' on' : ''}" data-sm="${m}">${l}</button>`).join('')}</div>
   <div class="pnav"><button class="sbtn" data-nav="-1" ${pi > 0 ? '' : 'disabled'} aria-label="Kỳ trước">‹</button><b>${label}</b><button class="sbtn" data-nav="1" ${pi < blocks.length - 1 ? '' : 'disabled'} aria-label="Kỳ sau">›</button></div>
-  ${mode === 'day' && recs[0].ev && EVS[recs[0].ev.id] ? `<div class="fore">${ico(EVS[recs[0].ev.id].ic)} Sự kiện: <b>${EVS[recs[0].ev.id].n}</b></div>` : ''}
+  ${mode === 'day' && recs.length > 0 && recs[0].ev && EVS[recs[0].ev.id] ? `<div class="fore">${ico(EVS[recs[0].ev.id].ic)} Sự kiện: <b>${EVS[recs[0].ev.id].n}</b></div>` : ''}
   <div class="kpis"><div><b>${g.served}</b>ly bán</div><div><b>${g.lost}</b>khách bỏ về</div><div><b>${avg}★</b>đánh giá</div></div>
   ${bestB[0] && bestB[0][1] ? `<div class="fore">🔥 Bán chạy: <b>${iname(bestB[0][0])}</b>${bestT[0] && bestT[0][1] ? `, topping <b>${iname(bestT[0][0])}</b>` : ''}. Ít khách gọi: <b>${iname(bestB[bestB.length - 1][0])}</b>${bestT.length > 1 ? `, <b>${iname(bestT[bestT.length - 1][0])}</b>` : ''}.</div>` : ''}
   <div class="rh revc">Doanh thu</div>
@@ -7419,11 +7498,30 @@
   <div class="ttot neg"><span>Tổng chi phí</span><span>${vn(cost)}k</span></div>
   <div class="final ${profit < 0 ? 'neg' : 'pos'}"><span>Lợi nhuận sau thuế<small>Doanh thu − chi phí</small></span><span>${profit < 0 ? '−' : ''}${vn(Math.abs(profit))}k</span></div>`;
       $('pane').innerHTML = h;
+      
       $('pane').onclick = e => {
         const m = e.target.closest('[data-sm]'), n = e.target.closest('[data-nav]');
-        if (m) { R.sumMode = m.dataset.sm; R.sumIdx = null; paneSum() }
-        if (n && !n.disabled) { R.sumIdx = blocks[pi + +n.dataset.nav]; paneSum() }
+        if (m) { R.sumMode = m.dataset.sm; R.sumIdx = null; paneSum(); }
+        if (n && !n.disabled) { R.sumIdx = blocks[pi + +n.dataset.nav]; paneSum(); }
       };
+
+      $('pane').querySelectorAll('[data-sm]').forEach(b => {
+        b.onclick = (e) => {
+          e.stopPropagation();
+          R.sumMode = b.dataset.sm;
+          R.sumIdx = null;
+          paneSum();
+        };
+      });
+
+      $('pane').querySelectorAll('[data-nav]').forEach(b => {
+        b.onclick = (e) => {
+          e.stopPropagation();
+          if (b.disabled) return;
+          R.sumIdx = blocks[pi + +b.dataset.nav];
+          paneSum();
+        };
+      });
     }
 
     /* ---------- THÀNH TÍCH ---------- */
@@ -7431,6 +7529,11 @@
 
     function getAchievementStatus(a) {
       if (!S) return { ok: false, pct: 0, txt: '0/1' };
+      S.achDone = S.achDone || {};
+      const aid = (typeof a === 'object' && a !== null) ? a.id : a;
+      if (S.achDone[aid]) {
+        return { ok: true, pct: 100, txt: 'Đã hoàn thành' };
+      }
       const hist = S.history || [];
       const sumSale = k => hist.reduce((acc, r) => acc + ((r.sales && r.sales[k]) ? r.sales[k].q : 0), 0);
       let ok = false, cur = 0, target = 1, txt = '';
@@ -7500,11 +7603,19 @@
           const r30 = getPlayerRankAndTitle().rank; ok = r30 === 1; cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã đạt TOP 1' : `Đang Hạng #${r30}`; break;
       }
 
+      if (ok) {
+        S.achDone[aid] = true;
+        save();
+        return { ok: true, pct: 100, txt: 'Đã hoàn thành' };
+      }
+
       const pct = Math.min(100, Math.round((cur / target) * 100));
       return { ok, pct, txt };
     }
 
     function countDoneAch() {
+      if (!S) return 0;
+      ACHIEVEMENTS.forEach(a => getAchievementStatus(a));
       return ACHIEVEMENTS.filter(a => getAchievementStatus(a).ok).length;
     }
     window.countDoneAch = countDoneAch;
@@ -7556,7 +7667,7 @@
         <div style="display:flex;justify-content:center;align-items:center;margin:12px 0;">
           ${S.claimedRobotPopup ? `
             <button disabled style="background:linear-gradient(135deg,#4caf50 0%,#2e7d32 100%);color:#fff;padding:10px 22px;font-weight:900;font-size:0.95rem;border-radius:12px;border:none;box-shadow:0 3px 8px rgba(46,125,50,0.3);display:flex;align-items:center;gap:6px;opacity:0.95;cursor:default;">
-              ✅ ĐÃ NHẬN (Nhân viên Lượng toàn năng)
+              ✅ ĐÃ NHẬN PHẦN THƯỞNG
             </button>
           ` : doneCount >= 30 ? `
             <button id="btnClaimRobot" style="background:linear-gradient(135deg,#e85d8a 0%,#c24c69 100%);color:#fff;padding:11px 24px;font-weight:900;font-size:0.98rem;border-radius:12px;cursor:pointer;border:none;box-shadow:0 4px 12px rgba(232,93,138,0.4);display:flex;align-items:center;gap:6px;">
@@ -7644,7 +7755,7 @@
 
       const list = [
         ...virtuals,
-        { n: playerName, pts: playerPts, rate: playerRate, avatar: '🏪', isPlayer: true }
+        { n: playerName, pts: playerPts, rate: playerRate, avatar: '✨', isPlayer: true }
       ];
 
       list.sort((a, b) => b.pts - a.pts);
@@ -8318,6 +8429,7 @@
           const max = (55 + (level() >= 2 ? 8 : 0)) * 1.6 * (S.upg.seats ? 1.25 : 1) * (1 + .35 * (slowN(o) + Math.max(0, o.tops.length - 1)));
           R.slots[emptySlot] = { star: thIdx, hi: hi[0], born: performance.now(), id: ++uid, name: st.n, face: '👑', say: 'Cho anh', end: ' nha em!', cups: [o], done: [false], order: o, pat: max, max, wrong: 0, paid: 0 };
           renderStreet(); sfx('star'); toast('👑 Admin Trung Hiếu ghé thăm quán!', 5000, 1);
+          triggerAdminVisitGift();
           setTimeout(() => { const q = $('q3say'); if (q) q._t = null; renderLane(); }, 3600);
         } else { toast('👑 Admin Trung Hiếu đang bận, thử lại sau!'); }
       } else {
