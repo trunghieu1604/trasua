@@ -641,7 +641,7 @@
       const S = getS();
       if (!S || !getH().BASE_KEYS) return;
       getH().BASE_KEYS.forEach((k) => (S.unlocked[k] = true));
-      commitState('🧋 Đã mở khóa toàn bộ cốt trà!');
+      commitState('🍓 Đã mở khóa toàn bộ cốt trà!');
     };
 
     document.getElementById('btn-unlock-flavs').onclick = () => {
@@ -786,11 +786,11 @@
 
       // 8. Tạo Đánh giá 5 sao chuẩn (Có Admin, VIP, Online)
       const reviews = [
-        { n: 'ADMIN TRUNG HIẾU 👑', t: 'Tiệm trà sữa đẳng cấp nhất! Đầy đủ 30/30 thành tích.', s: 5, tg: 'Admin', d: S.day, st: 1, o: true },
-        { n: 'Ca Sĩ Sơn Tùng M-TP 🌟', t: 'Trà sữa ở đây siêu ngon tuyệt vời!', s: 5, tg: 'Khách VIP', d: S.day, st: 2, o: true },
-        { n: 'Hoa Hậu Thùy Tiên 🌟', t: 'Vừa ngon vừa phục vụ nhanh chuẩn 5 sao!', s: 5, tg: 'Khách VIP', d: S.day, st: 3, o: true },
-        { n: 'Streamer Độ Mixi 🌟', t: '10 điểm không có nhưng!', s: 5, tg: 'Khách VIP', d: S.day, st: 4, o: true },
-        { n: 'Rapper Hieuthuhai 🌟', t: 'Quán đỉnh kịch trần luôn nha anh em!', s: 5, tg: 'Khách VIP', d: S.day, st: 5, o: true }
+        { n: 'TRUNG HIẾU', t: 'Tiệm trà sữa đẳng cấp nhất! BAN PHÁT ĐẶC ÂN.', s: 5, tg: 'ADMIN · TRÙM GAME 👑', d: S.day, st: 1, o: true },
+        { n: 'SƠN TÙNG M-TP 🌟', t: 'Trà sữa ở đây siêu ngon tuyệt vời!', s: 5, tg: 'CA SỸ', d: S.day, st: 2, o: true },
+        { n: 'HÒA MINZY 🌟', t: 'Vừa ngon vừa phục vụ nhanh chuẩn 5 sao!', s: 5, tg: 'CA SỸ', d: S.day, st: 3, o: true },
+        { n: 'BÙI ANH TUẤN 🌟', t: '10 điểm không có nhưng!', s: 5, tg: 'CA SỸ', d: S.day, st: 4, o: true },
+        { n: 'JUN VŨ 🌟', t: 'Quán đỉnh kịch trần luôn nha anh em!', s: 5, tg: 'DIỄN VIÊN', d: S.day, st: 5, o: true }
       ];
       while (reviews.length < 50) {
         reviews.push({
