@@ -5187,13 +5187,13 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.4';
+    const GAME_VERSION = '2.1';
     const CHANGELOG = [
-	  {v: '2.4', d: '01/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
-	  {v: '2.3', d: '30/09/2026', items: ['Fix lỗi','Fix màu']},
-	  {v: '2.2', d: '29/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
-	  {v: '2.1', d: '27/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
-      {v: '2.0', d: '26/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
+	  {v: '2.1', d: '01/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
+	  {v: '2.0.8', d: '30/09/2026', items: ['Fix lỗi','Fix màu']},
+	  {v: '2.0.7', d: '29/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
+	  {v: '2.0.6', d: '27/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
+      {v: '2.0.5', d: '26/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
 	  {v:'2.0.4',d:'24/09/2026',items:['Hương mua theo chai ở Nâng cấp > Hương: 200k một chai dùng cho 45 ly, hạn 7 ngày kể từ ngày mua. Mua bao nhiêu chai thì 45 ly nhân lên. Hết chai phải mua chai mới, chai quá hạn bị đổ bỏ. Kho không còn nấu hương theo phần','Đơn online Soppi: cần mua tablet (7 triệu, ở Trang bị) thì đơn mới đổ về. Quán đã mở online được tặng sẵn 1 tablet','Đơn online nhận thêm tối đa bằng số chỗ ở quầy: 3 khách, mở rộng quầy thì 4 (tổng 6 hoặc 8 khách). Đơn online khoảng 20% tổng khách. Tài xế chờ tối đa 1 phút 30 giây, có tài xế nam và nữ','Mỗi 30 ngày có 1 đơn lớn Soppi 5–10 ly vào ngày ngẫu nhiên','Nhân viên đơn online (thuê 2 triệu, lương 250k/ngày): chỉ làm đơn online, mỗi ly khoảng 1 giây','Vay ngân hàng tối đa 1 triệu, lãi 25%/năm','Máy dán nắp tự động dán nhanh hơn','Hướng dẫn thêm trang Đường và đá (Cài đặt > Hướng dẫn)','Khách ngôi sao: cứ 30 ngày có 1 idol Kpop hoặc diễn viên Thái, Trung ghé quán vào ngày ngẫu nhiên. Nói tiếng nước mình kèm [Tự động dịch], trả gấp 3 tiền và luôn để 5 sao','Mã sao lưu còn 8 số, mỗi quán một mã riêng không trùng ai. Sao lưu lại vẫn giữ nguyên mã. Khôi phục bằng 8 số cần có mạng, mã dài cũ vẫn dùng được','Tem thương hiệu hiện đủ tên quán. Chọn được kiểu chữ thẳng hàng, cong phía trên hoặc cong phía dưới']},
 	  {v:'2.0.3',d:'24/09/2026',items:['Thêm Nhân viên phụ quầy 2 (thuê 750k, lương 150k/ngày): làm như nhân viên phụ quầy, thêm múc topping. Không thuê cùng lúc với nhân viên phụ quầy, thuê người này thì người kia tự nghỉ (gọi đi làm lại không tốn tiền)','Sửa lỗi trên iPhone: sau khi bật bàn phím (trả lời đánh giá, đặt tên quán…) rồi tắt, quầy pha bị thu nhỏ còn nửa màn hình và nút Mở cửa nhảy lên giữa màn hình. Game giờ tự nhận ra và trả về đủ màn hình','Sửa lỗi đánh giá đầy 2.500 thì như đứng yên: bộ nhớ lưu game bị đầy nên đánh giá và tiến trình mới có thể không được lưu. Bản lưu nay gọn hơn và tự dọn bản dự phòng cũ khi thiếu chỗ','Số đánh giá trên đầu màn hình giờ là tổng số đánh giá từ trước tới nay, vẫn tăng khi đã quá 2.500 (tab Đánh giá vẫn giữ 2.500 đánh giá mới nhất)']},
       {v:'2.0.2',d:'23/09/2026',items:['Nhân viên phụ quầy: bạn lấy ly, bỏ topping và dán nắp (có máy dán nắp tự động thì máy tự dán). Nhân viên rót trà, cho hương, đường và đá. Bỏ topping được ngay trong lúc nhân viên đang pha']},
