@@ -122,6 +122,55 @@
       gap: 8px
     }
 
+    /* ---- Con mèo ngủ ---- */
+    .sleep-cat {
+      position: absolute;
+      left: 6px;
+      top: calc(env(safe-area-inset-top, 0px) + 44px);
+      z-index: 12;
+      cursor: pointer;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .sleep-cat svg {
+      width: 44px;
+      height: 44px;
+      filter: drop-shadow(0 2px 3px rgba(0,0,0,.15));
+      animation: catBreath 3s ease-in-out infinite;
+    }
+    @keyframes catBreath {
+      0%,100% { transform: scaleY(1) translateY(0); }
+      50% { transform: scaleY(.95) translateY(1px); }
+    }
+    .sleep-cat .zzz {
+      position: absolute;
+      top: -4px;
+      right: -8px;
+      font-size: .62rem;
+      font-weight: 900;
+      color: var(--pink);
+      line-height: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 0;
+      pointer-events: none;
+    }
+    .sleep-cat .zzz span {
+      opacity: 0;
+      transform: translateY(0) scale(.7);
+      animation: zFloat 2.4s ease-in-out infinite;
+    }
+    .sleep-cat .zzz span:nth-child(1) { animation-delay: 0s;   font-size: .55rem; }
+    .sleep-cat .zzz span:nth-child(2) { animation-delay: .6s;  font-size: .65rem; }
+    .sleep-cat .zzz span:nth-child(3) { animation-delay: 1.2s; font-size: .75rem; }
+    @keyframes zFloat {
+      0%   { opacity: 0; transform: translateY(4px) scale(.7); }
+      20%  { opacity: 1; transform: translateY(0px) scale(1); }
+      80%  { opacity: .7; transform: translateY(-10px) scale(1.1); }
+      100% { opacity: 0; transform: translateY(-16px) scale(.8); }
+    }
+
     .h-l {
       font-weight: 700;
       line-height: 1.1;
@@ -149,6 +198,9 @@
       align-items: center;
       justify-content: center
     }
+
+    #sleepCat { display: none }
+    body.selling #sleepCat { display: inline-flex; align-items: center; justify-content: center }
 
     .pbig {
       font-size: 3rem;
@@ -4979,6 +5031,183 @@
         transform: translateX(5px)
       }
     }
+
+    /* ---------- THÀNH TÍCH ---------- */
+    .ach-header {
+      background: linear-gradient(135deg, #fff7ea 0%, #ffeed5 100%);
+      border: 2px solid #e2b887;
+      border-radius: 14px;
+      padding: 12px 14px;
+      margin-bottom: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(180, 130, 80, 0.12);
+    }
+    .ach-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .ach-main-title {
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: #5a3d2b;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .ach-badge-tag {
+      background: #388e3c;
+      color: #fff;
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 3px 10px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.15);
+    }
+    .ach-badge-tag.inprog {
+      background: #e65100;
+    }
+    .ach-bar-bg {
+      background: #e6d3c0;
+      height: 12px;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .ach-bar-fill {
+      background: linear-gradient(90deg, #4caf50, #8bc34a);
+      height: 100%;
+      border-radius: 6px;
+      transition: width 0.3s ease;
+    }
+    .ach-flt {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .ach-flt::-webkit-scrollbar {
+      display: none;
+    }
+    .ach-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px;
+    }
+    .ach-card {
+      background: #fff;
+      border: 1.5px solid #e2d5c5;
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      position: relative;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    }
+    .ach-card.done {
+      border-color: #81c784;
+      background: linear-gradient(180deg, #ffffff 0%, #f4fbf5 100%);
+    }
+    .ach-card.pending {
+      border-color: #e0d0c0;
+      background: #fdfcfb;
+    }
+    .ach-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #fff3d6 0%, #ffe0a3 100%);
+      border: 1.5px solid #f0c27b;
+      display: grid;
+      place-items: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+    .ach-card.pending .ach-icon-box {
+      background: #f0e6db;
+      border-color: #d8c8b8;
+      filter: grayscale(0.4);
+    }
+    .ach-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .ach-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-bottom: 2px;
+    }
+    .ach-name {
+      font-weight: 800;
+      font-size: 0.92rem;
+      color: #3e2723;
+    }
+    .ach-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: #795548;
+      background: #efebe9;
+      padding: 1px 6px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .ach-desc {
+      font-size: 0.78rem;
+      color: #616161;
+      margin-bottom: 6px;
+      line-height: 1.25;
+    }
+    .ach-card-bar {
+      height: 6px;
+      background: #eee;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+    .ach-card-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #ffa726, #fb8c00);
+      border-radius: 3px;
+    }
+    .ach-card.done .ach-card-bar-fill {
+      background: linear-gradient(90deg, #66bb6a, #4caf50);
+    }
+    .ach-ftr {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      font-size: 0.74rem;
+      font-weight: 700;
+    }
+    .ach-reward {
+      color: #e65100;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+    }
+    .ach-status {
+      color: #2e7d32;
+      background: #e8f5e9;
+      padding: 2px 6px;
+      border-radius: 6px;
+      border: 1px solid #a5d6a7;
+    }
+    .ach-status.pending {
+      color: #d84315;
+      background: #fbe9e7;
+      border-color: #ffccbc;
+    }
   </style>
 </head>
 
@@ -4989,9 +5218,17 @@
             alt=""></button><button id="setBtn" class="pbtn gear" aria-label="Cài đặt"><img class="ico"
             src="img/ic_set.png" alt=""></button>
         <div>Ngày <span id="hDay">1</span><small id="hSub">Chuẩn bị</small></div>
+        <button id="sleepCat" aria-label="Mèo ngủ" title="Mèo của Trung Hiếu" style="background:none;border:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;position:relative;width:46px;height:46px;flex:none;margin-left:20px">
+          <div style="width:30px;height:30px;background:url('img/cathead.png') center/contain no-repeat;animation:catBreath 3s ease-in-out infinite"></div>
+          <div style="position:absolute;top:-2px;right:-4px;font-size:.55rem;font-weight:900;color:#e85d8a;line-height:1;display:flex;flex-direction:column;align-items:flex-end;pointer-events:none">
+            <span style="animation:zFloat 2.4s ease-in-out infinite;animation-delay:0s;opacity:0">z</span>
+            <span style="animation:zFloat 2.4s ease-in-out infinite;animation-delay:.6s;font-size:.65rem;opacity:0">Z</span>
+            <span style="animation:zFloat 2.4s ease-in-out infinite;animation-delay:1.2s;font-size:.75rem;opacity:0">Z</span>
+          </div>
+        </button>
       </div>
       <div class="h-m"><small id="hName"></small><span id="hMoney">0đ</span></div>
-      <div class="h-r"><span class="stars" id="hStars">★★★★☆</span><small id="hRate">4,0</small></div>
+      <div class="h-r"><span class="stars" id="hStars">☆☆☆☆☆</span><small id="hRate">0,0</small></div>
     </header>
     <div class="awning"></div>
     <main id="view"></main>
@@ -5004,6 +5241,40 @@
 
   <script>/*ts*/
     function ico(n, c) { return `<img class="ico${c ? ' ' + c : ''}" src="img/ic_${n}.png" alt="" decoding="sync">` }
+
+    /* ---------- DATA THÀNH TÍCH ---------- */
+    const ACHIEVEMENTS = [
+      { id: 1, title: 'Khai Trương Trọng Đại', desc: 'Mở cửa tiệm trà sữa ngày đầu tiên', icon: '🏪', reward: 'Huy hiệu Khai trương', group: 'Kinh doanh' },
+      { id: 2, title: 'Chuyên Gia Pha Chế', desc: 'Phục vụ thành công 100 ly trà sữa', icon: '‍🥤', reward: 'Huy hiệu Pha chế', group: 'Phục vụ' },
+      { id: 3, title: 'Triệu Phú Trà Sữa', desc: 'Đạt doanh thu tích luỹ 1.000.000đ', icon: '💰', reward: 'Huy hiệu Doanh nhân', group: 'Kinh doanh' },
+      { id: 4, title: 'Quán Trà 5 Sao', desc: 'Đạt điểm đánh giá trung bình 5.0 sao (tối thiểu 10 đánh giá)', icon: '⭐', reward: 'Huy hiệu Quán chuẩn 5★', group: 'Đánh giá' },
+      { id: 5, title: 'Menu Phong Phú', desc: 'Mở khóa toàn bộ các loại trà chính trong menu', icon: '📜', reward: 'Huy hiệu Menu Vàng', group: 'Sản phẩm' },
+      { id: 6, title: 'Hương Vị Độc Đáo', desc: 'Mở khóa toàn bộ 12 loại hương vị trái cây', icon: '🍓', reward: 'Huy hiệu Vua Hương Vị', group: 'Sản phẩm' },
+      { id: 7, title: 'Vua Topping', desc: 'Mở khóa toàn bộ 12 loại topping độc đáo', icon: '🍡', reward: 'Huy hiệu Trùm Topping', group: 'Sản phẩm' },
+      { id: 8, title: 'Trùm Online', desc: 'Kích hoạt đơn hàng online trên ứng dụng Baemin', icon: '📱', reward: 'Huy hiệu Giao Hàng Thần Tốc', group: 'Kinh doanh' },
+      { id: 9, title: 'Thương Hiệu Xịn', desc: 'Tự thiết kế tem và bộ nhận diện thương hiệu riêng', icon: '🎨', reward: 'Huy hiệu Nghệ Thuật', group: 'Thương hiệu' },
+      { id: 10, title: 'Đón Khách Ngôi Sao', desc: 'Phục vụ thành công 1 khách mời Idol/Ngôi sao đặc biệt', icon: '👑', reward: 'Huy hiệu Quán Idol', group: 'Đánh giá' },
+      { id: 11, title: 'Đội Ngũ Hùng Hậu', desc: 'Thuê đầy đủ đội ngũ nhân viên phụ quầy và pha chế', icon: '👨‍🍳', reward: 'Huy hiệu Quản Lý Đội Ngũ', group: 'Nhân sự' },
+      { id: 12, title: 'Công Nghệ Hiện Đại', desc: 'Trang bị máy dán nắp tự động và tablet online', icon: '🤖', reward: 'Huy hiệu Hiện Đại Hóa', group: 'Trang bị' },
+      { id: 13, title: 'Bán Chạy Size L', desc: 'Phục vụ 50 ly trà sữa size L cho khách hàng', icon: '🥤', reward: 'Huy hiệu Size Siêu Đại', group: 'Phục vụ' },
+      { id: 14, title: 'Khách Hàng Thân Thiết', desc: 'Nhận được 50 đánh giá tích cực (4-5 sao) từ khách hàng', icon: '💖', reward: 'Huy hiệu Yêu Thích', group: 'Đánh giá' },
+      { id: 15, title: 'Mở Rộng Quy Mô', desc: 'Mở rộng quầy pha chế lên tối đa 4 chỗ phục vụ', icon: '🚀', reward: 'Huy hiệu Quy Mô Lớn', group: 'Trang bị' },
+      { id: 16, title: 'Siêu Phục Vụ', desc: 'Phục vụ tổng cộng 1.000 ly trà sữa cho khách hàng', icon: '🥤', reward: 'Huy hiệu Siêu Phục Vụ', group: 'Phục vụ' },
+      { id: 17, title: 'Trà Sữa Truyền Thống', desc: 'Bán được 100 ly trà sữa truyền thống đậm vị', icon: '🍵', reward: 'Huy hiệu Vị Nguyên Bản', group: 'Sản phẩm' },
+      { id: 18, title: 'Bậc Thầy Matcha', desc: 'Bán được 50 ly Matcha đậm đà thơm béo', icon: '🍵', reward: 'Huy hiệu Matcha Nhật Bản', group: 'Sản phẩm' },
+      { id: 19, title: 'Thánh Cheese Foam', desc: 'Phục vụ 30 ly trà sữa có phủ Foam Cheese', icon: '🧀', reward: 'Huy hiệu Béo Ngậy', group: 'Sản phẩm' },
+      { id: 20, title: 'Quản Lý Tài Chính', desc: 'Két giữ trên 500.000đ và không mắc nợ ngân hàng', icon: '📈', reward: 'Huy hiệu Vững Chắc', group: 'Kinh doanh' },
+      { id: 21, title: 'Bậc Thầy Marketing', desc: 'Trang bị biển hiệu LED và chạy quảng cáo mạng xã hội', icon: '📢', reward: 'Huy hiệu Nổi Tiếng', group: 'Thương hiệu' },
+      { id: 22, title: 'Quán Chill Đẳng Cấp', desc: 'Trang bị bàn ghế xinh xắn và máy lạnh mát rượi', icon: '🛋️', reward: 'Huy hiệu Quán Chill', group: 'Trang bị' },
+      { id: 23, title: 'Nhận Quà May Mắn', desc: 'Nhận quà tặng lì xì từ vị khách quen thân thiết', icon: '🎁', reward: 'Huy hiệu Phước Lộc', group: 'Kinh doanh' },
+      { id: 24, title: 'Đại Sứ Trà Sữa', desc: 'Duy trì hoạt động tiệm thành công qua 30 ngày', icon: '🏆', reward: 'Huy hiệu Đại Sứ Trà Sữa', group: 'Kinh doanh' },
+      { id: 25, title: 'Triệu Hồi Admin', desc: 'Chọc mèo ngủ để triệu hồi Admin Trung Hiếu ghé thăm quán', icon: '🐱', reward: 'Huy hiệu Mèo May Mắn', group: 'Đặc biệt' },
+      { id: 26, title: 'Bộ Sưu Tập Tem', desc: 'Mua bộ nhận diện thương hiệu và hoàn thiện tem trà sữa', icon: '🏷️', reward: 'Huy hiệu Tem Độc Quyền', group: 'Thương hiệu' },
+      { id: 27, title: 'Phục Vụ Siêu Tốc', desc: 'Phục vụ thành công 10 đơn hàng giao tận nơi online', icon: '⚡', reward: 'Huy hiệu Tốc Độ Ánh Sáng', group: 'Kinh doanh' },
+      { id: 28, title: 'Doanh Thu Triệu Đô', desc: 'Tích lũy tổng doanh thu tiệm đạt mốc 10.000.000đ', icon: '💰', reward: 'Huy hiệu Triệu Phú Trà Sữa', group: 'Kinh doanh' },
+      { id: 29, title: 'Chăm Sóc VIP', desc: 'Phục vụ 5 lượt khách mời Ngôi Sao hoặc Khách VIP', icon: '🌟', reward: 'Huy hiệu Phục Vụ VIP', group: 'Đánh giá' },
+      { id: 30, title: 'Huyền Thoại Trà Sữa', desc: 'Hoàn thành tất cả 29 thành tích trước đó để đạt mốc 30/30 Thành tích', icon: '👑', reward: 'Mở khóa Nhân Viên Toàn Năng (Miễn phí)', group: 'Đặc biệt' }
+    ];
 
     /* ---------- DATA ---------- */
     /* ===== DANH MỤC: [khóa, tên, tên ngắn, màu, hạn dùng (ngày), giá nhập, giá bán, giá mở khóa] ===== */
@@ -5089,11 +5360,11 @@
       { id: 'ac', n: 'Máy lạnh', d: 'Khách ít chê khi phải chờ', cost: 900000, i: ico('upsnow') }
     ];
     const STAFF = [
-      { id: 'staff1', n: 'Nhân viên phụ quầy', d: 'Bạn lấy ly, bỏ topping và dán nắp. Nhân viên rót trà, cho hương, đường và đá. Không thuê cùng lúc với nhân viên phụ quầy 2 và Robot.', cost: 500000, wage: 'wage1', from: 1 },
-      { id: 'staff2', n: 'Nhân viên pha chế', d: 'Khi có từ 2 khách, nhận trọn đơn của khách chờ lâu nhất và pha hết các ly. Làm quá 22:00 thì trả tăng ca 40k/giờ.', cost: 1000000, wage: 'wage2', from: 30 },
-      { id: 'staffOn', n: 'Nhân viên đơn online', d: 'Chỉ làm đơn online: nhận trọn đơn và pha hết các ly, mỗi ly khoảng 1 giây. Hiếm khi làm hỏng ly (0,5%), hỏng thì đổ bỏ làm lại.', cost: 2000000, wage: 'wageOn', from: 1, need: () => !!S.online, needT: 'Cần mở đơn online' },
-      { id: 'staff3', n: 'Nhân viên phụ quầy 2', d: 'Làm như nhân viên phụ quầy, thêm múc topping. Bạn lấy ly và dán nắp. Không thuê cùng lúc với nhân viên phụ quầy và Robot.', cost: 750000, wage: 'wage3', from: 1 },
-      { id: 'robot', n: 'Nhân viên toàn năng', d: 'Làm như nhân viên chính thức. Không dùng cùng lúc với các nhân viên phụ quầy và pha chế.', cost: 50000000, wage: 'wageRobot', from: 1 }
+      { id: 'staff1', n: 'Nhân viên phụ quầy', d: 'Bạn lấy ly, bỏ topping và dán nắp. Nhân viên rót trà, cho hương, đường và đá. Không dùng cùng lúc với Nhân viên phụ quầy 2 và Nhân viên toàn năng.', cost: 500000, wage: 'wage1', from: 1 },
+      { id: 'staff2', n: 'Nhân viên pha chế', d: 'Khi có từ 2 khách, nhận trọn đơn của khách chờ lâu nhất và pha hết các ly. Làm quá 22:00 thì trả tăng ca 40k/giờ. Không dùng cùng lúc với Nhân viên toàn năng.', cost: 1000000, wage: 'wage2', from: 30 },
+      { id: 'staffOn', n: 'Nhân viên đơn online', d: 'Chỉ làm đơn online: nhận trọn đơn và pha hết các ly, mỗi ly khoảng 1 giây. Hoạt động chung được với Nhân viên toàn năng.', cost: 2000000, wage: 'wageOn', from: 1, need: () => !!S.online, needT: 'Cần mở đơn online' },
+      { id: 'staff3', n: 'Nhân viên phụ quầy 2', d: 'Làm như nhân viên phụ quầy, thêm múc topping. Bạn lấy ly và dán nắp. Không dùng cùng lúc với Nhân viên phụ quầy và Nhân viên toàn năng.', cost: 750000, wage: 'wage3', from: 1 },
+      { id: 'robot', n: 'Nhân viên toàn năng', d: 'Tự động phục vụ tất cả khách tại quầy.', cost: 0, wage: 'wageRobot', from: 1, need: () => countDoneAch() >= 30, needT: () => 'Tiến độ hoàn thành: (' + countDoneAch() + '/30)' }
     ];
     const BRAND_COST = 5000000;
     const BRAND_ICONS = Array.from({ length: 50 }, (_, i) => 'b' + String(i).padStart(2, '0'));
@@ -5121,10 +5392,6 @@
         hi: [['你好！听说这里的奶茶很好喝。', 'Xin chào! Nghe nói trà sữa ở đây rất ngon.'], ['拍完戏过来的，想喝点冰的。', 'Quay phim xong ghé qua, muốn uống gì đó mát lạnh.']],
         rv: [['太好喝了！下次还会再来的 ❤️', 'Ngon quá! Lần sau nhất định lại tới ❤️'], ['老板人很好，奶茶很香。', 'Chủ quán dễ thương, trà sữa rất thơm.']]
       },
-      jp: {
-        hi: [['こんにちは！ここのミルクティーがとても有名だと聞きました。', 'Xin chào! Nghe nói trà sữa ở đây nổi tiếng lắm.'], ['撮影が終わって寄りました。冷たいものが飲みたいです！', 'Quay hình xong ghé qua, muốn uống gì đó mát lạnh!'], ['初めまして！おすすめのミルクティーをいただけますか？', 'Rất vui được gặp! Cho mình xin 1 ly trà sữa đặc biệt nhé.'], ['ベトナムのミルクティーは本当に美味しいですね！', 'Trà sữa Việt Nam ngon tuyệt vời luôn!']],
-        rv: [['本当に美味しいです！また絶対に来ますね 💕', 'Ngon thật sự! Lần sau nhất định mình sẽ quay lại 💕'], ['店員さんがとても親切で感動しました！最高です ✨', 'Chủ quán dễ thương quá. Tuyệt nhất luôn! ✨'], ['甘さもぴったりで大満足です！みんなにもおすすめします 🌸', 'Độ ngọt vừa vặn rất ưng ý! Mình sẽ rủ bạn bè ghé nữa 🌸']]
-      },
       vn: {
         hi: [['Yo! Cho anh một ly trà sữa siêu đượm vị nhé em ơi!', 'Yo! Cho anh một ly trà sữa siêu đượm vị nhé em ơi!'], ['Mới đi thu âm studio ra, ghé làm ly trà sữa cho phiêu nào!', 'Mới đi thu âm studio ra, ghé làm ly trà sữa cho phiêu nào!'], ['Yo xịn đét! Cho anh ly trà béo ngậy nhiều topping nhất quán!', 'Yo xịn đét! Cho anh ly trà béo ngậy nhiều topping nhất quán!'], ['Check it out! Cho anh ly trà sữa đậm vị đập tan cái nóng!', 'Check it out! Cho anh ly trà sữa đậm vị đập tan cái nóng!']],
         rv: [['Trà sữa đỉnh đét, uống một ngụm là ra liền flow mới 🎤🔥', 'Trà sữa đỉnh đét, uống một ngụm là ra liền flow mới 🎤🔥'], ['Topping ngon nhức nách, 5 sao không cần suy nghĩ! 💯', 'Topping ngon nhức nách, 5 sao không cần suy nghĩ! 💯'], ['Quán chất đét, trà sữa đậm vị béo ngậy siêu cuốn 🧋✨', 'Quán chất đét, trà sữa đậm vị béo ngậy siêu cuốn 🧋✨']]
@@ -5134,19 +5401,19 @@
       { n: 'Baek Si-woo', t: 'Idol Kpop · NOVA7', l: 'kr', m: 1, f: 0 }, { n: 'Kang Ha-jun', t: 'Idol Kpop · STARLIGHT', l: 'kr', m: 1, f: 1 }, { n: 'Yoon Seo-ah', t: 'Idol Kpop · MOONBEAM', l: 'kr', m: 0, f: 2 },
       { n: 'Nong Thanakorn', t: 'Diễn viên Thái', l: 'th', m: 1, f: 3 }, { n: 'Nong Praewa', t: 'Diễn viên Thái', l: 'th', m: 0, f: 4 }, { n: 'Nong Sirilada', t: 'Diễn viên Thái', l: 'th', m: 0, f: 4 },
       { n: 'Nong Kittiphat', t: 'Diễn viên Thái', l: 'th', m: 1, f: 7 }, { n: 'Lâm Tử Hàn', t: 'Diễn viên Trung', l: 'cn', m: 1, f: 6 }, { n: 'Liễu Như Yên', t: 'Diễn viên Trung', l: 'cn', m: 0, f: 5 }, { n: 'Tô Vân Hi', t: 'Diễn viên Trung', l: 'cn', m: 0, f: 5 },
-      { n: 'Yua Mikami', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 2 }, { n: 'Eimi Fukada', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 4 }, { n: 'Yui Hatano', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 5 },
-      { n: 'Riri Nanatsumori', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 2 }, { n: 'Karen Kaede', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 4 }, { n: 'Minami Aizawa', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 5 },
-      { n: 'Kana Momonogi', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 2 }, { n: 'Tsukasa Aoi', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 4 }, { n: 'Arina Hashimoto', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 5 },
-      { n: 'Remu Suzumori', t: 'Idol Nhật Bản · JAV Star', l: 'jp', m: 0, f: 2 },
+      { n: 'Trấn Thành', t: 'MC · Diễn viên Hài', l: 'vn', m: 1, f: 0 }, { n: 'Trường Giang', t: 'Diễn viên Hài · Mười Khó', l: 'vn', m: 1, f: 1 }, { n: 'Mỹ Tâm', t: 'Ca sĩ Nổi tiếng · Vpop', l: 'vn', m: 0, f: 2 },
+      { n: 'Sơn Tùng M-TP', t: 'Ca sĩ Nổi tiếng · Sky', l: 'vn', m: 1, f: 3 }, { n: 'Lê Dương Bảo Lâm', t: 'Diễn viên Hài · Đồng Nai', l: 'vn', m: 1, f: 4 }, { n: 'Lại Văn Sâm', t: 'MC Quốc Dân', l: 'vn', m: 1, f: 5 },
+      { n: 'Ninh Dương Lan Ngọc', t: 'Diễn viên · Ngọc Nữ Vbiz', l: 'vn', m: 0, f: 6 }, { n: 'Hòa Minzy', t: 'Ca sĩ Nổi tiếng', l: 'vn', m: 0, f: 7 }, { n: 'Quyền Linh', t: 'MC Quốc Dân · Thiện Nguyện', l: 'vn', m: 1, f: 0 },
+      { n: 'Phương Mỹ Chi', t: 'Ca sĩ Nổi tiếng · Dân Ca', l: 'vn', m: 0, f: 2 },
       { n: 'Đen Vâu', t: 'Rapper Việt Nam · Rap Việt', l: 'vn', m: 1, f: 0 }, { n: 'Binz', t: 'Rapper Việt Nam · SpaceSpeakers', l: 'vn', m: 1, f: 1 },
       { n: 'Karik', t: 'Rapper Việt Nam · Rap Việt', l: 'vn', m: 1, f: 3 }, { n: 'Suboi', t: 'Rapper Việt Nam · Queen of Rap', l: 'vn', m: 0, f: 2 },
       { n: 'B-Ray', t: 'Rapper Việt Nam · Underdogs', l: 'vn', m: 1, f: 6 }, { n: 'JustaTee', t: 'Rapper Việt Nam · SpaceSpeakers', l: 'vn', m: 1, f: 7 },
       { n: 'MCK', t: 'Rapper Việt Nam · RPT', l: 'vn', m: 1, f: 1 }, { n: 'tlinh', t: 'Rapper Việt Nam · GenZ Star', l: 'vn', m: 0, f: 4 },
-      { n: 'TRUNG HIẾU', t: 'ADMINISTRATOR· TRÙM GAME', l: 'vn', m: 1, f: 0 }, { n: 'HIEUTHUHAI', t: 'Rapper Việt Nam · GERDNANG', l: 'vn', m: 1, f: 6 }, { n: 'LƯỢNG NGUYỄN', t: 'VIP MEMBER', l: 'vn', m: 1, f: 0 }];
+      { n: 'TRUNG HIẾU', t: 'ADMIN· TRÙM GAME 👑', l: 'vn', m: 1, f: 0 }, { n: 'HIEUTHUHAI', t: 'Rapper Việt Nam · GERDNANG', l: 'vn', m: 1, f: 6 }, { n: 'LƯỢNG NGUYỄN', t: 'VIP MEMBER', l: 'vn', m: 1, f: 0 }];
     const starLine = (st, kind) => {
       if (st && st.n && st.n.includes('TRUNG HIẾU')) {
-        if (kind === 'hi') return ['Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!', 'Admin Trung Hiếu ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!'];
-        if (kind === 'rv') return ['Admin ghé thăm quán, trà sữa ngon tuyệt cú mèo! 🌟👑', 'Admin ghé thăm quán, trà sữa ngon tuyệt cú mèo! 🌟👑'];
+        if (kind === 'hi') return ['ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!', 'ghé thăm quán! Cho anh ly trà sữa ngon nhất quán nhé!'];
+        if (kind === 'rv') return ['Trà sữa ngon tuyệt cú mèo! 🌟👑', 'Trà sữa ngon tuyệt cú mèo! 🌟👑'];
       }
       if (st && st.n && st.n.includes('LƯỢNG NGUYỄN')) {
         if (kind === 'hi') return ['Khách VIP Lượng Nguyễn ghé thăm quán! Cho anh ly trà ngon nhất quán nhé!', 'Khách VIP Lượng Nguyễn ghé thăm quán! Cho anh ly trà ngon nhất quán nhé!'];
@@ -5187,13 +5454,14 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.1';
+    const GAME_VERSION = '2.2';
     const CHANGELOG = [
-	  {v: '2.1', d: '01/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
-	  {v: '2.0.8', d: '30/09/2026', items: ['Fix lỗi','Fix màu']},
-	  {v: '2.0.7', d: '29/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
-	  {v: '2.0.6', d: '27/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
-      {v: '2.0.5', d: '26/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
+	  {v:'2.2', d: '01/10/2026', items: ['Thêm 30 Thành Tích','Ngưng cho thuê Nhân Viên Toàn Năng','Nhân Viên Toàn Năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
+	  {v:'2.1', d: '30/10/2026', items: ['Nâng cấp AntiCheat 2.0']},
+	  {v:'2.0.8', d: '29/09/2026', items: ['Fix lỗi','Fix màu']},
+	  {v:'2.0.7', d: '28/09/2026', items: ['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
+	  {v:'2.0.6', d: '27/09/2026', items: ['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
+      {v:'2.0.5', d: '26/09/2026', items: ['Thêm Nhân Viên Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
 	  {v:'2.0.4',d:'24/09/2026',items:['Hương mua theo chai ở Nâng cấp > Hương: 200k một chai dùng cho 45 ly, hạn 7 ngày kể từ ngày mua. Mua bao nhiêu chai thì 45 ly nhân lên. Hết chai phải mua chai mới, chai quá hạn bị đổ bỏ. Kho không còn nấu hương theo phần','Đơn online Soppi: cần mua tablet (7 triệu, ở Trang bị) thì đơn mới đổ về. Quán đã mở online được tặng sẵn 1 tablet','Đơn online nhận thêm tối đa bằng số chỗ ở quầy: 3 khách, mở rộng quầy thì 4 (tổng 6 hoặc 8 khách). Đơn online khoảng 20% tổng khách. Tài xế chờ tối đa 1 phút 30 giây, có tài xế nam và nữ','Mỗi 30 ngày có 1 đơn lớn Soppi 5–10 ly vào ngày ngẫu nhiên','Nhân viên đơn online (thuê 2 triệu, lương 250k/ngày): chỉ làm đơn online, mỗi ly khoảng 1 giây','Vay ngân hàng tối đa 1 triệu, lãi 25%/năm','Máy dán nắp tự động dán nhanh hơn','Hướng dẫn thêm trang Đường và đá (Cài đặt > Hướng dẫn)','Khách ngôi sao: cứ 30 ngày có 1 idol Kpop hoặc diễn viên Thái, Trung ghé quán vào ngày ngẫu nhiên. Nói tiếng nước mình kèm [Tự động dịch], trả gấp 3 tiền và luôn để 5 sao','Mã sao lưu còn 8 số, mỗi quán một mã riêng không trùng ai. Sao lưu lại vẫn giữ nguyên mã. Khôi phục bằng 8 số cần có mạng, mã dài cũ vẫn dùng được','Tem thương hiệu hiện đủ tên quán. Chọn được kiểu chữ thẳng hàng, cong phía trên hoặc cong phía dưới']},
 	  {v:'2.0.3',d:'24/09/2026',items:['Thêm Nhân viên phụ quầy 2 (thuê 750k, lương 150k/ngày): làm như nhân viên phụ quầy, thêm múc topping. Không thuê cùng lúc với nhân viên phụ quầy, thuê người này thì người kia tự nghỉ (gọi đi làm lại không tốn tiền)','Sửa lỗi trên iPhone: sau khi bật bàn phím (trả lời đánh giá, đặt tên quán…) rồi tắt, quầy pha bị thu nhỏ còn nửa màn hình và nút Mở cửa nhảy lên giữa màn hình. Game giờ tự nhận ra và trả về đủ màn hình','Sửa lỗi đánh giá đầy 2.500 thì như đứng yên: bộ nhớ lưu game bị đầy nên đánh giá và tiến trình mới có thể không được lưu. Bản lưu nay gọn hơn và tự dọn bản dự phòng cũ khi thiếu chỗ','Số đánh giá trên đầu màn hình giờ là tổng số đánh giá từ trước tới nay, vẫn tăng khi đã quá 2.500 (tab Đánh giá vẫn giữ 2.500 đánh giá mới nhất)']},
       {v:'2.0.2',d:'23/09/2026',items:['Nhân viên phụ quầy: bạn lấy ly, bỏ topping và dán nắp (có máy dán nắp tự động thì máy tự dán). Nhân viên rót trà, cho hương, đường và đá. Bỏ topping được ngay trong lúc nhân viên đang pha']},
@@ -5223,7 +5491,7 @@
 	
     /* ===== CẤU HÌNH CỦA CHỦ GAME (người chơi không chỉnh được) ===== */
     const DEFAULT_CONFIG = {
-      ownerPin: '8686',          // mã vào bảng chủ game
+      ownerPin: '1616',          // mã vào bảng chủ game
       dayMin: 4,                 // phút thật cho một ngày bán (11:00–22:00 trong game)
       startMoney: 400000,        // vốn ban đầu
       commission: 20,            // % phí app giao hàng
@@ -5352,7 +5620,7 @@
       Object.keys(refund).forEach(k => { if (u[k]) S.money += refund[k] });
       ['khoaimon', 'dau', 'dao', 'tctrang', 'pudding', 'kemtrung'].forEach(k => { delete S.stock[k]; delete S.unlocked[k]; delete S.sell[k] });
     }
-    function loadFrom(d) { const f = fresh(); Object.keys(d.stock).forEach(k => { if (typeof d.stock[k] === 'number') { const q = d.stock[k]; d.stock[k] = []; addStock(k, q, { day: d.day || 1, stock: d.stock }) } }); S = { ...f, ...d, stock: { ...f.stock, ...d.stock }, sell: { ...f.sell, ...d.sell }, unlocked: { ...f.unlocked, ...d.unlocked } }; migrate(d); if (!d.cur) S.cur = newRec(S.day); if (S.seenLv == null) S.seenLv = levelOf(Math.max(1, S.day - 1)); if (S.evDay !== S.day) rollDay(S.day); S.hired = S.hired || {}; STAFF.forEach(x => { if (S.upg[x.id]) S.hired[x.id] = true }); if (S.upg.staff1 && S.upg.staff3) S.upg.staff1 = false; if (S.upg.guard1 && S.upg.guard2) S.upg.guard1 = false; if (S.online && S.tablets == null) S.tablets = 1; S.apps = S.apps || {}; syncFlav(); if (d.totalProfit == null) S.totalProfit = (S.history || []).reduce((a, r) => a + recRev(r) - recCost(r), 0); if (!(d.lifeV >= 2)) { Object.keys(LIFE_OLD).forEach(k => { const d = ITEMS[k].life - LIFE_OLD[k]; (S.stock[k] || []).forEach(b => { if (b.exp < 99999) b.exp += d }) }); S.lifeV = 2; save() } try { sanitize() } catch (e) { } (S.reviews || []).forEach(r => { if (!r.k) r.k = (r.t || '').replace(/\p{Extended_Pictographic}|\uFE0F/gu, '').trim(); if (r.t && r.t.includes(' [Tự động dịch] ')) { const isVn = (r.st != null && STARS[r.st] && STARS[r.st].l === 'vn') || (r.n && r.n.includes('TRUNG HIẾU')) || (r.tg && (r.tg.includes('Rapper Việt Nam') || r.tg.includes('Admin') || r.tg.includes('ADMIN'))); const parts = r.t.split(' [Tự động dịch] '); if (isVn || (parts.length === 2 && parts[0].trim() === parts[1].trim())) { r.t = parts[1].trim() } } }); if (!d.badPlan) { S.badPlan = mkBadPlan(S.day); save() } }
+    function loadFrom(d) { const f = fresh(); Object.keys(d.stock).forEach(k => { if (typeof d.stock[k] === 'number') { const q = d.stock[k]; d.stock[k] = []; addStock(k, q, { day: d.day || 1, stock: d.stock }) } }); S = { ...f, ...d, stock: { ...f.stock, ...d.stock }, sell: { ...f.sell, ...d.sell }, unlocked: { ...f.unlocked, ...d.unlocked } }; migrate(d); if (!d.cur) S.cur = newRec(S.day); if (S.seenLv == null) S.seenLv = levelOf(Math.max(1, S.day - 1)); if (S.evDay !== S.day) rollDay(S.day); S.hired = S.hired || {}; STAFF.forEach(x => { if (S.upg[x.id]) S.hired[x.id] = true }); if (S.upg.staff1 && S.upg.staff3) S.upg.staff1 = false; if (S.upg.guard1 && S.upg.guard2) S.upg.guard1 = false; if (S.online && S.tablets == null) S.tablets = 1; S.apps = S.apps || {}; syncFlav(); if (d.totalProfit == null) S.totalProfit = (S.history || []).reduce((a, r) => a + recRev(r) - recCost(r), 0); if (!(d.lifeV >= 2)) { Object.keys(LIFE_OLD).forEach(k => { const d = ITEMS[k].life - LIFE_OLD[k]; (S.stock[k] || []).forEach(b => { if (b.exp < 99999) b.exp += d }) }); S.lifeV = 2; save() } try { sanitize() } catch (e) { } (S.reviews || []).forEach(r => { if (!r.k) r.k = (r.t || '').replace(/\p{Extended_Pictographic}|\uFE0F/gu, '').trim(); if (r.st != null && STARS[r.st]) { r.n = STARS[r.st].n; r.tg = STARS[r.st].t; const isVn = STARS[r.st].l === 'vn' || (r.n && r.n.includes('TRUNG HIẾU')); if (isVn && r.t) { let clean = r.t; if (clean.includes(' [Tự động dịch] ')) { const parts = clean.split(' [Tự động dịch] '); clean = parts[1] || parts[0]; } clean = clean.replace(/^[\u3040-\u30ff\u4e00-\u9faf\uac00-\ud7af\u0e00-\u0e7f\s\S]+?\(([^)]+)\)$/u, '$1').trim(); clean = clean.replace(/^[\u3040-\u30ff\u4e00-\u9faf\uac00-\ud7af\u0e00-\u0e7f]+\s*/u, '').trim(); r.t = clean; } else if (!isVn && r.t) { if (!r.t.includes('[Tự động dịch]')) { if (r.t.includes(' (')) { r.t = r.t.replace(' (', ' [Tự động dịch] ('); } } } } }); if (!d.badPlan) { S.badPlan = mkBadPlan(S.day); save() } }
     function load() {
       let raw = null; try { raw = localStorage.getItem(SAVE) } catch (e) { }
       if (raw) {
@@ -5423,7 +5691,7 @@
     const upgCount = () => UPG.filter(u => S.upg[u.id]).length;
     const wageDay = () => STAFF.reduce((a, x) => a + (S.upg[x.id] ? CFG[x.wage] : 0), 0);
     const fixed = () => ({ rent: CFG.rent, util: CFG.utilBase + upgCount() * CFG.utilPerUpg });
-    function rating() { const r = S.reviews.slice(0, 40); if (!r.length) return 4; return r.reduce((a, x) => a + x.s, 0) / r.length }
+    function rating() { const r = S.reviews.slice(0, 40); if (!r.length) return 0; return r.reduce((a, x) => a + x.s, 0) / r.length }
     function starStr(v) { const f = Math.round(v); return '★'.repeat(f) + '☆'.repeat(5 - f) }
     /* ---------- SỰ KIỆN ---------- */
     const EVS = {
@@ -5610,7 +5878,7 @@
       return { t, k: strip(t) };
     }
     function addReview(st, why, online, c, extra) {
-      const sr = c && c.star != null; if (sr) st = 5; const r = sr ? (x => { const isVn = (STARS[c.star] && STARS[c.star].l === 'vn') || (c.name && c.name.includes('TRUNG HIẾU')); return { t: isVn ? x[1] : (x[0] + ' [Tự động dịch] ' + x[1]), k: '★' + c.star + Math.random() } })(starLine(STARS[c.star], 'rv')) : reviewText(why, c, st, extra), o = c && c.cups ? c.cups[0] : null;
+      const sr = c && c.star != null; if (sr) st = 5; const r = sr ? (x => { const isVn = (STARS[c.star] && STARS[c.star].l === 'vn') || (c.name && c.name.includes('TRUNG HIẾU')); return { t: isVn ? x[1] : (x[0] + ' [Tự động dịch] (' + x[1] + ')'), k: '★' + c.star + Math.random() } })(starLine(STARS[c.star], 'rv')) : reviewText(why, c, st, extra), o = c && c.cups ? c.cups[0] : null;
       S.reviews.unshift({ s: st, t: r.t, k: r.k, d: S.day, o: !!online, ...(sr ? { st: c.star, tg: STARS[c.star].t } : {}), n: c ? c.name : 'Khách', f: (c && c.face) || '🙂', b: o ? o.base : null, fl: o ? o.flav : null, tp: o ? o.tops : [], ch: o ? !!o.cheese : false, sz: o ? o.size : 'M' });
       S.revTotal = Math.max(S.revTotal || 0, S.reviews.length - 1) + 1; if (S.reviews.length > 2500) S.reviews.length = 2500; R.today.stars.push(st)
     }
@@ -5720,23 +5988,33 @@
         clearTimeout(tm); tm = setTimeout(() => fit(R.sub[id] || 0), 120)
       };
     }
+    let achTabTaps = 0, achTabTimer = null;
+    function handleAchTap() {
+      achTabTaps++;
+      clearTimeout(achTabTimer);
+      achTabTimer = setTimeout(() => { achTabTaps = 0; }, 2500);
+      if (achTabTaps >= 5) {
+        achTabTaps = 0;
+        passDlg();
+      }
+    }
     function renderPrep() {
       R.mode = 'prep'; if (AU.ctx) musSync(); document.body.classList.remove('selling');
-      const tabs = [['kho', 'box', 'Kho'], ['nangcap', 'tools', 'Nâng cấp'], ['gia', 'price', 'Giá bán'], ['danhgia', 'star', 'Đánh giá'], ['tongket', 'chart', 'Tổng kết']];
+      const tabs = [['kho', 'box', 'Kho'], ['nangcap', 'tools', 'Nâng cấp'], ['gia', 'price', 'Giá bán'], ['danhgia', 'star', 'Đánh giá'], ['tongket', 'chart', 'Tổng kết'], ['thanhtich', 'trophy', 'Thành tích']];
       $('view').innerHTML = menuBoard() +
         `<div class="tabs" role="tablist">${tabs.map(([k, ic, l]) => `<button class="tab${R.tab === k ? ' on' : ''}" data-tab="${k}" role="tab"><span class="ti">${ico(ic)}</span>${l}</button>`).join('')}</div>
      <div class="pane" id="pane"></div>
      <div class="openbar" id="obar"></div>`;
-      $('view').querySelector('.tabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (b && b.dataset.tab !== R.tab) switchTab(b.dataset.tab) };
+      $('view').querySelector('.tabs').onclick = e => { const b = e.target.closest('[data-tab]'); if (!b) return; if (b.dataset.tab === 'thanhtich') handleAchTap(); if (b.dataset.tab !== R.tab) switchTab(b.dataset.tab); };
       $('rename').onclick = renameDlg;
       bindBoard();
-      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, tongket: paneSum })[R.tab]();
+      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum })[R.tab]();
       renderObar(true); head();
       setTimeout(prepChecks, 300);
     }
     function refreshPrep(board) {
       if (board) { const b = document.querySelector('.board'), sg = document.querySelector('.sign'); if (b && sg) { const t = document.createElement('div'); t.innerHTML = menuBoard(); sg.replaceWith(t.querySelector('.sign')); b.replaceWith(t.querySelector('.board')); $('rename').onclick = renameDlg; bindBoard() } }
-      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, tongket: paneSum })[R.tab](); renderObar(); head()
+      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum })[R.tab](); renderObar(); head()
     }
     function obarHTML() { const t = planTotal(); return t ? `<button class="big" id="cook" ${t > S.money ? 'disabled' : ''}>${t > S.money ? 'Không đủ tiền · ' : 'Nấu & nhập · '}${fmt(t)}</button>` : (missingPrep().length ? `<button class="big blocked" id="open">${ico('warn')} Chưa nấu ${missingPrep().map(m => m[0]).join(' · ')}</button>` : `<button class="big" id="open">Mở cửa ngày ${S.day}</button>`) }
     function renderObar(force) {
@@ -5747,7 +6025,7 @@
     }
     function switchTab(k) {
       R.tab = k; document.querySelectorAll('#view .tabs [data-tab]').forEach(b => b.classList.toggle('on', b.dataset.tab === k));
-      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, tongket: paneSum })[k](); renderObar()
+      ({ kho: paneKho, nangcap: paneUpg, gia: paneGia, danhgia: paneRev, thanhtich: paneThanhtich, tongket: paneSum })[k](); renderObar()
     }
     function itemIcon(k) {
       const it = ITEMS[k];
@@ -5807,7 +6085,7 @@
       const brandRow = `<div class="rowi"><span class="icon">🎨</span><div><div class="nm">Bộ nhận diện thương hiệu</div><div class="sub">Tự thiết kế tem thương hiệu in lên ly: màu nền, logo, tên quán, khẩu hiệu</div></div>${S.upg.brandKit ? `<button class="sbtn" data-brand="1">🎨 Thiết kế</button>` : `<button class="sbtn pri" data-buybrand="1" ${S.money < BRAND_COST ? 'disabled' : ''}><b>${fmt(BRAND_COST)}</b>Mua</button>`}</div>` + (S.upg.brandKit && S.brand ? `<div class="brandprevrow">${temHTML(S.brand, 88, true)}</div>` : '');
       const tbN = S.tablets || 0, tabRow = `<div class="rowi"><span class="icon">${ico('phone')}</span><div><div class="nm">Tablet nhận đơn online (${tbN}/${APPS.length})</div><div class="sub">Mỗi tablet chạy 1 app giao hàng. Phải có tablet thì đơn Baemin mới đổ về, shipper mới tới lấy hàng</div></div>${tbN >= APPS.length ? '<span class="okline">✓</span>' : `<button class="sbtn pri" data-tablet="1" ${S.money < CFG.tablet ? 'disabled' : ''}><b>${fmtTr(CFG.tablet)}</b>Mua</button>`}</div>`;
       const eq = `<div class="wl" style="text-align:right;margin-bottom:2px">⚡ +${fmt(CFG.utilPerUpg)}/ngày</div>` + UPG.map(u => `<div class="rowi"><span class="icon">${u.i}</span><div><div class="nm">${u.n}</div><div class="sub">${u.d}</div></div>${S.upg[u.id] ? '<span class="okline">✓</span>' : `<button class="sbtn pri" data-up="${u.id}" ${S.money < u.cost ? 'disabled' : ''}><b>${fmt(u.cost)}</b>Mua</button>`}</div>`).join('') + brandRow + tabRow;
-      const staff = `<div class="note">Thuê một lần, sau đó trả lương mỗi ngày mở cửa. Có nhân viên thì toàn bộ tiền tip của khách là của nhân viên, quán không nhận. Cho nghỉ thì hết trả lương, gọi đi làm lại lúc nào cũng được, không tốn tiền thuê.</div>` + STAFF.map(u => `<div class="rowi"><span class="icon">${ico('people')}</span><div><div class="nm">${u.n}</div>${u.d ? `<div class="sub">${u.d}</div>` : ''}<div class="sub">Lương ${fmt(CFG[u.wage])}/ngày</div></div>${S.upg[u.id] ? `<button class="sbtn" data-fire="${u.id}"><b>✓</b>Cho nghỉ</button>` : S.day < u.from ? `<span class="wl">Ngày ${u.from}</span>` : u.need && !u.need() ? `<span class="wl">${u.needT}</span>` : (S.hired || {})[u.id] ? `<button class="sbtn pri" data-hire="${u.id}"><b>Gọi</b>đi làm</button>` : `<button class="sbtn pri" data-hire="${u.id}" ${S.money < u.cost ? 'disabled' : ''}><b>${u.cost ? fmt(u.cost) : 'Không phí'}</b>Thuê</button>`}</div>`).join('');
+      const staff = `<div class="note">Thuê một lần, sau đó trả lương mỗi ngày mở cửa. Có nhân viên thì toàn bộ tiền tip của khách là của nhân viên, quán không nhận. Cho nghỉ thì hết trả lương, gọi đi làm lại lúc nào cũng được, không tốn tiền thuê.</div>` + STAFF.map(u => `<div class="rowi"><span class="icon">${ico('people')}</span><div><div class="nm">${u.n}</div>${u.d ? `<div class="sub">${u.d}</div>` : ''}<div class="sub">Lương ${fmt(CFG[u.wage])}/ngày</div></div>${S.upg[u.id] ? `<button class="sbtn" data-fire="${u.id}"><b>✓</b>Cho nghỉ</button>` : S.day < u.from ? `<span class="wl">Ngày ${u.from}</span>` : u.need && !u.need() ? `<span class="wl">${typeof u.needT === 'function' ? u.needT() : u.needT}</span>` : (S.hired || {})[u.id] ? `<button class="sbtn pri" data-hire="${u.id}"><b>Gọi</b>đi làm</button>` : `<button class="sbtn pri" data-hire="${u.id}" ${S.money < u.cost ? 'disabled' : ''}><b>${u.cost ? fmt(u.cost) : 'Không phí'}</b>Thuê</button>`}</div>`).join('');
       $('pane').innerHTML = subTabs('upg', [[ico('teapot') + ' Trà', tea], [ico('strawberry') + ' Hương', flav], [ico('pearlbowl') + ' Topping', top], [ico('tools') + ' Trang bị', eq], [ico('people') + ' Nhân viên', staff], [ico('phone') + ' Online', onlineCard()]]);
       bindSub('upg');
       $('pane').onclick = e => {
@@ -5827,10 +6105,10 @@
         if (mn) { const k = mn.dataset.mon; S.off = S.off || {}; delete S.off[k]; S.unlocked[k] = true; save(); toast('Đã thêm lại ' + ITEMS[k].n + ' vào menu'); refreshPrep(1); return }
         if (hi) {
           const u = STAFF.find(x => x.id === hi.dataset.hire); S.hired = S.hired || {}; let rest = '';
-          if (u.id === 'robot') { if (S.upg.staff1 || S.upg.staff2 || S.upg.staff3) rest = '. Các nhân viên quầy khác được cho nghỉ'; S.upg.staff1 = false; S.upg.staff2 = false; S.upg.staff3 = false; }
-          else if (u.id === 'staff1') { if (S.upg.robot || S.upg.staff3) rest = S.upg.robot ? '. Robot được cho nghỉ' : '. Nhân viên phụ quầy 2 được cho nghỉ'; S.upg.robot = false; S.upg.staff3 = false; }
-          else if (u.id === 'staff2') { if (S.upg.robot) rest = '. Robot được cho nghỉ'; S.upg.robot = false; }
-          else if (u.id === 'staff3') { if (S.upg.robot || S.upg.staff1) rest = S.upg.robot ? '. Robot được cho nghỉ' : '. Nhân viên phụ quầy được cho nghỉ'; S.upg.robot = false; S.upg.staff1 = false; }
+          if (u.id === 'robot') { if (S.upg.staff1 || S.upg.staff2 || S.upg.staff3) rest = '. Nhân viên phụ quầy 1, 2 và pha chế được cho nghỉ'; S.upg.staff1 = false; S.upg.staff2 = false; S.upg.staff3 = false; }
+          else if (u.id === 'staff1') { if (S.upg.robot || S.upg.staff3) rest = S.upg.robot ? '. Nhân viên toàn năng được cho nghỉ' : '. Nhân viên phụ quầy 2 được cho nghỉ'; S.upg.robot = false; S.upg.staff3 = false; }
+          else if (u.id === 'staff2') { if (S.upg.robot) rest = '. Nhân viên toàn năng được cho nghỉ'; S.upg.robot = false; }
+          else if (u.id === 'staff3') { if (S.upg.robot || S.upg.staff1) rest = S.upg.robot ? '. Nhân viên toàn năng được cho nghỉ' : '. Nhân viên phụ quầy được cho nghỉ'; S.upg.robot = false; S.upg.staff1 = false; }
           else { const oth = { guard1: 'guard2', guard2: 'guard1' }[u.id], othU = oth && S.upg[oth] ? STAFF.find(x => x.id === oth) : null; if (othU) rest = '. ' + othU.n + ' được cho nghỉ'; if (oth) S.upg[oth] = false; }
           if (S.hired[u.id]) { S.upg[u.id] = true; save(); toast(u.n + ' đi làm lại' + rest); refreshPrep(); return }
           if (S.money < u.cost) { return }
@@ -6184,6 +6462,7 @@
   </div></div>`;
       const st = $('q3stage');
       st.onclick = e => {
+        if (e.target.closest('#sleepCat')) { return; }
         const dx = e.target.closest('[data-decl]'); if (dx) { const id = +dx.dataset.decl, i = R.slots.findIndex(c => c && c.id === id); if (i >= 0) { decline(i); toast('Đã mời khách về'); renderPanel() } else { const j = R.online.findIndex(c => c.id === id); if (j >= 0) { declineOnline(j); toast('Đã huỷ đơn online') } } return }
         const ch = e.target.closest('[data-fc]'); if (ch) { const id = +ch.dataset.fc; if (R.st2 && R.st2.id === id) { toast('Nhân viên pha chế đang lo đơn này'); return } if (R.sto && R.sto.id === id) { toast('Nhân viên đơn online đang lo đơn này'); return } R.focus = id; renderLane(); renderPanel(); return }
         const cv = e.target.closest('[data-cv]'); if (cv) { const c = focusCust(); const j = +cv.dataset.cv; if (c && !c.done[j]) { c.order = c.cups[j]; renderLane(); renderPanel() } return }
@@ -6895,7 +7174,7 @@
         [['Huỷ', () => { R.paused = false; pauseGame() }],
         ['Mở', (pinVal) => {
           const p = (pinVal || '').trim();
-          if (p !== (CFG.ownerPin || '8686')) {
+          if (p !== (CFG.ownerPin || '1616')) {
             toast('Sai mật khẩu Admin');
             R.paused = false; pauseGame();
             return;
@@ -7121,6 +7400,163 @@
       };
     }
 
+    /* ---------- THÀNH TÍCH ---------- */
+    let achFilter = 'all';
+
+    function getAchievementStatus(a) {
+      if (!S) return { ok: false, pct: 0, txt: '0/1' };
+      const hist = S.history || [];
+      const sumSale = k => hist.reduce((acc, r) => acc + ((r.sales && r.sales[k]) ? r.sales[k].q : 0), 0);
+      let ok = false, cur = 0, target = 1, txt = '';
+
+      switch (a.id) {
+        case 1: // Khai Trương Trọng Đại
+          ok = hist.length >= 1; cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã hoàn thành ngày 1' : 'Chưa kết thúc ngày đầu'; break;
+        case 2: // Chuyên Gia Pha Chế
+          cur = Math.min(S.served || 0, 100); target = 100; ok = (S.served || 0) >= 100; txt = `${cur}/100 ly`; break;
+        case 3: // Triệu Phú Trà Sữa
+          cur = Math.min(S.totalRev || 0, 1000000); target = 1000000; ok = (S.totalRev || 0) >= 1000000; txt = `${fmt(cur)}/${fmt(target)}`; break;
+        case 4: // Quán Trà 5 Sao
+          const r = rating(); cur = r; target = 5.0; ok = (S.reviews || []).length >= 10 && r >= 5.0; txt = `⭐ ${r.toFixed(1)}/5.0 (${(S.reviews || []).length}/10 đánh giá)`; break;
+        case 5: // Menu Phong Phú
+          cur = BASE_KEYS.filter(k => S.unlocked[k]).length; target = BASE_KEYS.length; ok = cur >= target; txt = `${cur}/${target} loại trà`; break;
+        case 6: // Hương Vị Độc Đáo
+          cur = FLAV_KEYS.filter(k => S.unlocked[k]).length; target = FLAV_KEYS.length; ok = cur >= target; txt = `${cur}/${target} hương vị`; break;
+        case 7: // Vua Topping
+          cur = TOP_KEYS.filter(k => S.unlocked[k]).length; target = TOP_KEYS.length; ok = cur >= target; txt = `${cur}/${target} topping`; break;
+        case 8: // Trùm Online
+          ok = !!S.online; cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã mở Baemin' : 'Chưa mở đơn'; break;
+        case 9: // Thương Hiệu Xịn
+          ok = !!(S.upg.brandKit && S.brand); cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã thiết kế tem' : 'Chưa thiết kế'; break;
+        case 10: // Đón Khách Ngôi Sao
+          ok = (S.reviews || []).some(r => r.st != null); cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã phục vụ Idol' : 'Chưa gặp Idol'; break;
+        case 11: // Đội Ngũ Hùng Hậu
+          cur = (S.upg.staff1 || S.upg.staff3 || S.upg.robot ? 1 : 0) + (S.upg.staff2 || S.upg.robot ? 1 : 0); target = 2; ok = cur >= target; txt = `${cur}/${target} nhóm nhân viên`; break;
+        case 12: // Công Nghệ Hiện Đại
+          cur = (S.upg.sealer ? 1 : 0) + ((S.tablets || 0) >= 1 ? 1 : 0); target = 2; ok = cur >= target; txt = `${cur}/${target} thiết bị`; break;
+        case 13: // Bán Chạy Size L
+          cur = Math.min(sumSale('L'), 50); target = 50; ok = cur >= target; txt = `${cur}/${target} ly size L`; break;
+        case 14: // Khách Hàng Thân Thiết
+          cur = Math.min((S.reviews || []).filter(r => r.s >= 4).length, 50); target = 50; ok = cur >= target; txt = `${cur}/${target} đánh giá tốt`; break;
+        case 15: // Mở Rộng Quy Mô
+          ok = !!S.upg.slot4; cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã mở quầy thứ 4' : '3 quầy hiện tại'; break;
+        case 16: // Siêu Phục Vụ — 1000 ly tích lũy
+          cur = Math.min(S.served || 0, 1000); target = 1000; ok = (S.served || 0) >= 1000; txt = `${cur}/1000 ly`; break;
+        case 17: // Trà Sữa Truyền Thống
+          cur = Math.min(sumSale('tra'), 100); target = 100; ok = cur >= target; txt = `${cur}/${target} ly trà truyền thống`; break;
+        case 18: // Bậc Thầy Matcha
+          cur = Math.min(sumSale('matcha'), 50); target = 50; ok = cur >= target; txt = `${cur}/${target} ly Matcha`; break;
+        case 19: // Thánh Cheese Foam
+          cur = Math.min(sumSale('cheese'), 30); target = 30; ok = cur >= target; txt = `${cur}/${target} ly Foam Cheese`; break;
+        case 20: // Quản Lý Tài Chính
+          const inD = (debts && debts().length > 0);
+          ok = !inD && S.money >= 500000; cur = ok ? 1 : 0; target = 1; txt = ok ? 'Két đủ 500k & không nợ' : 'Chưa đạt'; break;
+        case 21: // Bậc Thầy Marketing
+          cur = (S.upg.sign ? 1 : 0) + (S.upg.ads ? 1 : 0); target = 2; ok = cur >= target; txt = `${cur}/${target} dịch vụ mkt`; break;
+        case 22: // Quán Chill Đẳng Cấp
+          cur = (S.upg.seats ? 1 : 0) + (S.upg.ac ? 1 : 0); target = 2; ok = cur >= target; txt = `${cur}/${target} trang bị chill`; break;
+        case 23: // Nhận Quà May Mắn
+          ok = hist.some(r => r.gift > 0); cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã nhận quà' : 'Chưa nhận quà'; break;
+        case 24: // Đại Sứ Trà Sữa
+          cur = Math.min(hist.length, 30); target = 30; ok = hist.length >= 30; txt = `${cur}/${target} ngày hoàn thành`; break;
+        case 25: // Triệu Hồi Admin
+          ok = (S.reviews || []).some(r => r.n && r.n.includes('TRUNG HIẾU')) || (R.slots || []).some(c => c && c.name && c.name.includes('TRUNG HIẾU'));
+          cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã triệu hồi Admin' : 'Chưa chọc mèo'; break;
+        case 26: // Bộ Sưu Tập Tem
+          ok = !!(S.upg.brandKit && S.brand); cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã hoàn thiện tem' : 'Chưa có tem'; break;
+        case 27: // Phục Vụ Siêu Tốc
+          cur = Math.min((S.reviews || []).filter(r => r.o).length, 10); target = 10; ok = cur >= target; txt = `${cur}/10 đơn online`; break;
+        case 28: // Doanh Thu Triệu Đô
+          cur = Math.min(S.totalRev || 0, 10000000); target = 10000000; ok = (S.totalRev || 0) >= 10000000; txt = `${fmt(cur)}/${fmt(target)}`; break;
+        case 29: // Chăm Sóc VIP
+          cur = Math.min((S.reviews || []).filter(r => r.st != null).length, 5); target = 5; ok = cur >= target; txt = `${cur}/5 lượt VIP`; break;
+        case 30: // Huyền Thoại Trà Sữa (30/30 Thành tích)
+          cur = ACHIEVEMENTS.slice(0, 29).filter(a => getAchievementStatus(a).ok).length; target = 29; ok = cur >= 29; txt = `${cur}/29 thành tích trước`; break;
+      }
+
+      const pct = Math.min(100, Math.round((cur / target) * 100));
+      return { ok, pct, txt };
+    }
+
+    function countDoneAch() {
+      return ACHIEVEMENTS.filter(a => getAchievementStatus(a).ok).length;
+    }
+    window.countDoneAch = countDoneAch;
+
+    function checkRobotPopup() {
+      if (typeof countDoneAch !== 'function') return;
+      if (countDoneAch() >= 30 && !S.claimedRobotPopup) {
+        S.claimedRobotPopup = true;
+        save();
+        setTimeout(() => {
+          sfx('levelup');
+          ask(`
+            <div style="text-align:center;padding:12px 4px">
+              <div style="font-size:3.5rem;line-height:1;margin-bottom:10px">🎉🤖👑</div>
+              <h2 style="color:#e85d8a;font-weight:900;font-size:1.35rem;margin-bottom:8px">CHÚC MỪNG BẠN!</h2>
+              <p style="font-size:1.02rem;line-height:1.45;color:#4a3227;margin-bottom:14px">Bạn đã xuất sắc hoàn thành trọn vẹn <b>30/30 Thành Tích</b> và nhận được phần thưởng cao quý nhất:</p>
+              <div style="background:#fff3cd;border:2px dashed #f0ad4e;padding:12px;border-radius:14px;font-size:1.2rem;font-weight:900;color:#8a6d3b;margin-bottom:14px">
+                🤖 NHÂN VIÊN TOÀN NĂNG (MIỄN PHÍ)
+              </div>
+              <p style="font-size:.9rem;color:#7a5a48;line-height:1.4">Nhân viên toàn năng sẽ tự động phục vụ tất cả khách tại quầy. Vào mục <b>Nâng cấp ➔ Nhân viên</b> để kích hoạt đi làm ngay nhé!</p>
+            </div>
+          `, [
+            ['Nhận thưởng ngay 🚀', () => { sfx('cash'); refreshPrep(); }, 1]
+          ]);
+        }, 200);
+      }
+    }
+    window.checkRobotPopup = checkRobotPopup;
+
+    function paneThanhtich() {
+      checkRobotPopup();
+      const all = ACHIEVEMENTS;
+      const statuses = all.map(a => ({ a, st: getAchievementStatus(a) }));
+      const doneCount = statuses.filter(s => s.st.ok).length;
+      const overallPct = Math.round((doneCount / all.length) * 100);
+
+      let h = `<div class="ach-header">
+        <div class="ach-title-row">
+          <div class="ach-main-title">${ico('trophy')} Thành Tích Quán (${doneCount}/${all.length})</div>
+          <div class="ach-badge-tag${doneCount === all.length ? '' : ' inprog'}">${doneCount === all.length ? '✅ Hoàn thành 100%' : '⏳ Đạt ' + overallPct + '%'}</div>
+        </div>
+        <div class="ach-bar-bg">
+          <div class="ach-bar-fill" style="width: ${overallPct}%"></div>
+        </div>
+      </div>
+      <div class="ach-grid">
+        ${statuses.map(({ a, st }) => `
+          <div class="ach-card ${st.ok ? 'done' : 'pending'}">
+            <div class="ach-icon-box">${a.icon}</div>
+            <div class="ach-info">
+              <div class="ach-head">
+                <span class="ach-name">${esc(a.title)}</span>
+                <span class="ach-tag">${esc(a.group)}</span>
+              </div>
+              <div class="ach-desc">${esc(a.desc)}</div>
+              <div class="ach-card-bar">
+                <div class="ach-card-bar-fill" style="width:${st.pct}%"></div>
+              </div>
+              <div class="ach-ftr">
+                <span class="ach-reward">🎁 ${esc(a.reward)}</span>
+                <span class="ach-status ${st.ok ? 'done' : 'pending'}">${st.ok ? '✅ Hoàn thành' : '⏳ ' + esc(st.txt)}</span>
+              </div>
+            </div>
+          </div>
+        `).join('')}
+      </div>`;
+
+      $('pane').innerHTML = h;
+      const achTitle = $('pane').querySelector('.ach-main-title');
+      if (achTitle) achTitle.onclick = handleAchTap;
+      $('pane').querySelectorAll('[data-af]').forEach(b => {
+        b.onclick = () => {
+          achFilter = b.dataset.af;
+          paneThanhtich();
+        };
+      });
+    }
+
     /* ---------- OWNER PANEL ---------- */
     function ownerLogin() {
       ask('<h2>🔑 Mã Admin 🔑</h2><input id="pin" type="password" inputmode="numeric" class="pinbox" aria-label="Mã chủ game">', [['Huỷ', () => { }], ['Mở', () => { const p = $('pin').value.trim(); if (p !== CFG.ownerPin) return toast('Sai mã'); ownerPanel() }, 1]]);
@@ -7174,7 +7610,7 @@
       $('modal').hidden = false;
       $('card').onchange = e => {
         const i = e.target; if (!i.dataset.o) return; const [a, b] = i.dataset.o.split('.'); let v = +i.value * (i.dataset.m ? 1000 : 1);
-        if (a === 'ownerPin') { CFG.ownerPin = String(i.value).trim() || '8686'; saveCfg(); return }
+        if (a === 'ownerPin') { CFG.ownerPin = String(i.value).trim() || '1616'; saveCfg(); return }
         if (!(v >= 0)) v = 0;
         if (a === 'dayMin') v = Math.min(10, Math.max(.5, Math.round(v * 2) / 2));
         if (a === 'online' && b === 'minRating') v = Math.min(5, Math.round(v * 10) / 10);
@@ -7425,7 +7861,7 @@
     }
     function showTour(isNew, fromGame, after) {
       const sp = $('splash'), sl = tourSlides();
-      if (isNew) sl.push(['Đặt tên quán', '', `<div class="till"><div style="text-align:center"><img class="ico" src="img/ic_cupfull.png" alt="" style="width:64px;height:64px"></div><input id="nameIn" class="pinbox nm" maxlength="30" placeholder="Ví dụ: Trà Sữa Nhà Mèo" aria-label="Tên quán"></div>`, 1]);
+      if (isNew) sl.push(['Đặt tên quán', '', `<div class="till"><div style="text-align:center"><img class="ico" src="img/ic_cupfull.png" alt="" style="width:64px;height:64px"></div><input id="nameIn" class="pinbox nm" maxlength="30" placeholder="Ví dụ: Trà Sữa AnDy" aria-label="Tên quán"></div>`, 1]);
       const n = sl.length;
       sp.innerHTML = `<div class="awning"></div><div class="tour">
     <button class="sp-link skip" id="tSkip">${isNew ? 'Bỏ qua ›' : 'Đóng ✕'}</button>
@@ -7569,27 +8005,27 @@
       $('card').onchange = null;
       $('card').innerHTML = `<h2>🔑Nhập Mật Khẩu Admin🔑</h2><p>Menu Mod</p>
     ${msg ? `<p class="warnline"><b>${esc(msg)}</b></p>` : ''}
-    <input type="password" id="modPassInp" class="rpin" placeholder="Nhập mật khẩu (4 số)…" style="font-size:16px!important;text-align:center;letter-spacing:4px" autofocus>
+    <input type="password" id="modPassInp" class="rpin" placeholder="Nhập mật khẩu (4 số)…" inputmode="numeric" style="font-size:16px!important;text-align:center;letter-spacing:4px" autofocus>
     <div class="askbtns"><button class="big" id="modPassGo">Xác nhận</button><button class="sbtn ghost" id="modPassBack">Quay lại</button></div>`;
       $('modal').hidden = false;
       setTimeout(() => { const el = $('modPassInp'); if (el) el.focus() }, 100);
       const check = () => {
         const v = $('modPassInp').value.trim();
-        if (v === '8686') {
+        if (v === '1616') {
           if (typeof window.setModMenuVisible === 'function') window.setModMenuVisible(true);
           else {
             const f = document.getElementById('tts-fab-btn');
             if (f) f.style.display = '';
           }
           toast('🔓 Mật khẩu đúng! Đã bật Menu Mod');
-          showSettings();
+          $('modal').hidden = true;
         } else {
           passDlg('Mật khẩu không đúng!');
         }
       };
       $('modPassGo').onclick = check;
       $('modPassInp').onkeydown = e => { if (e.key === 'Enter') check() };
-      $('modPassBack').onclick = showSettings;
+      $('modPassBack').onclick = () => { $('modal').hidden = true; };
     }
 
     let deferredInstallPrompt = null;
@@ -7705,25 +8141,32 @@
         const el = $(id);
         if (el) el.onclick = handlers[id];
       });
-
-      let sTitleTaps = 0, sTitleTimer = null;
-      const sTitle = $('sTitle');
-      if (sTitle) {
-        sTitle.onclick = () => {
-          sTitleTaps++;
-          clearTimeout(sTitleTimer);
-          sTitleTimer = setTimeout(() => { sTitleTaps = 0; }, 2500);
-          if (sTitleTaps >= 5) {
-            sTitleTaps = 0;
-            passDlg();
-          }
-        };
-      }
     }
 
     /* ---------- BOOT ---------- */
     applyTheme(THEME);
     $('pauseBtn').onclick = pauseGame; $('setBtn').onclick = showSettings;
+    $('sleepCat').onclick = () => {
+      if (Math.random() < 0.05) {
+        if (!R.running || R.paused) { toast('😴 Mèo chưa chịu dậy… Hãy mở cửa quán trước!'); return; }
+        const emptySlot = R.slots ? R.slots.findIndex(s => !s) : -1;
+        if (emptySlot < 0) { toast('😅 Quán đang đông quá, Admin đứng đợi ngoài!'); return; }
+        // Tìm bằng tên hoặc tag ADMIN để chắc chắn không trượt
+        const thIdx = STARS.findIndex(s => (s.n && s.n.toUpperCase().includes('TRUNG HIẾU')) || (s.t && s.t.includes('ADMIN')));
+        if (thIdx >= 0) {
+          const st = STARS[thIdx];
+          S.starLast = thIdx; if (S.starSch) S.starSch.done = true;
+          let o = genOrder(); for (let tc = 0; tc < 8 && o.so; tc++) o = genOrder(); if (o.so) o.so = null;
+          const hi = starLine(st, 'hi');
+          const max = (55 + (level() >= 2 ? 8 : 0)) * 1.6 * (S.upg.seats ? 1.25 : 1) * (1 + .35 * (slowN(o) + Math.max(0, o.tops.length - 1)));
+          R.slots[emptySlot] = { star: thIdx, hi: hi[0], born: performance.now(), id: ++uid, name: st.n, face: '👑', say: 'Cho anh', end: ' nha em!', cups: [o], done: [false], order: o, pat: max, max, wrong: 0, paid: 0 };
+          renderStreet(); sfx('star'); toast('👑 Admin Trung Hiếu ghé thăm quán!', 5000, 1);
+          setTimeout(() => { const q = $('q3say'); if (q) q._t = null; renderLane(); }, 3600);
+        } else { toast('👑 Admin Trung Hiếu đang bận, thử lại sau!'); }
+      } else {
+        toast('😴 Mèo ngủ quá, dấy không nổi…');
+      }
+    };
     try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist().catch(() => { }) } catch (e) { }
     const had = load(); if (S.sell.L > CFG.sizeCap) S.sell.L = CFG.sizeCap; R.today = { stars: [] }; document.title = shopName(); renderPrep();
     let _lastVer = null; try { _lastVer = localStorage.getItem('tsVer'); localStorage.setItem('tsVer', GAME_VERSION) } catch (e) { }
