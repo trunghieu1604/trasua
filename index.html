@@ -5377,6 +5377,8 @@
       { id: 'staff2', n: 'Nhân viên pha chế', d: 'Khi có từ 2 khách, nhận trọn đơn của khách chờ lâu nhất và pha hết các ly. Làm quá 22:00 thì trả tăng ca 40k/giờ. Không dùng cùng lúc với Lượng Toàn Năng.', cost: 1000000, wage: 'wage2', from: 30 },
       { id: 'staffOn', n: 'Nhân viên đơn online', d: 'Chỉ làm đơn online: nhận trọn đơn và pha hết các ly, mỗi ly khoảng 1 giây. Không cần thuê khi đã có Lượng Toàn Năng (Lượng kiêm luôn đơn online, nhanh hơn).', cost: 2000000, wage: 'wageOn', from: 1, need: () => !!S.online, needT: 'Cần mở đơn online' },
       { id: 'staff3', n: 'Nhân viên phụ quầy 2', d: 'Làm như nhân viên phụ quầy, thêm múc topping. Bạn lấy ly và dán nắp. Không dùng cùng lúc với Nhân viên phụ quầy và Lượng Toàn Năng.', cost: 750000, wage: 'wage3', from: 1 },
+      { id: 'guard1', n: 'Bảo vệ Cấp 1', d: 'Tự động bắt và ép trả đủ 100% tiền từ khách trả giá / kì kèo. Không dùng cùng lúc với Bảo vệ Cấp 2 (VIP).', cost: 6000000, wage: 'wageG1', from: 1, guard: true },
+      { id: 'guard2', n: 'Bảo vệ Cấp 2 (VIP)', d: 'Vừa chống khách trả giá, vừa tóm 100% khách ôm ly bỏ chạy (bùng tiền). Tự thay thế Bảo vệ Cấp 1.', cost: 9000000, wage: 'wageG2', from: 1, guard: true },
       { id: 'robot', n: 'Lượng Toàn Năng', d: 'Toàn năng nên không cần giải thích nhiều', cost: 0, wage: 'wageRobot', from: 1, need: () => countDoneAch() >= 30, needT: () => 'Tiến độ hoàn thành: (' + countDoneAch() + '/30)' }
     ];
     const BRAND_COST = 5000000;
@@ -5467,10 +5469,11 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.4.1';
+    const GAME_VERSION = '2.5';
     const CHANGELOG = [
+      {v:'2.5',d:'02/10/2026', items:['Thêm 2 Bảo vệ','Bảo Vệ Cấp 1 (200k/ngày) và Bảo vệ Cấp 2(300k/ngày)']},
 	  {v:'2.4.1',d:'02/10/2026', items:['Fix chức năng Chơi Thử','Nâng cấp AnTiCheat 3.0']},
-	  {v:'2.4', d: '02/10/2026', items: ['Lượng Toàn Năng giờ toàn năng thật sự: đơn online + pha chế cho khách chờ lâu, không cần thuê thêm nhân viên nào','Mở Chế Độ Chơi Thử, Mở khóa toàn bộ, Chơi thử trong 7 ngày. Chỉ hiển thị khi chơi lại từ đầu.']},
+	  {v:'2.4', d: '02/10/2026', items: ['Lượng Toàn Năng giờ toàn năng thật sự: đơn online + pha chế cho khách chờ lâu, không cần thuê thêm nhân viên nào','Fix lỗi mở Full 100% xóa đánh giá thật của người chơi','Fix lỗi mở Full 100% reset Lv về thấp hơn','Mở Chế Độ Chơi Thử, Mở khóa toàn bộ, Chơi thử trong 7 ngày. Chỉ hiển thị khi chơi lại từ đầu.','Nâng cấp MENU ăn theo chủ đề màu của game, cho đồng bộ màu 100%.']},
 	  {v:'2.3.2',d:'01/10/2026', items:['Chỉnh lại màu sắc cho hợp với chủ đề của game']},
 	  {v:'2.3.1',d:'01/10/2026', items:['Fix lỗi Thành Tích bị mất sau khi đã hoàn thành','Fix lỗi Thống Kê không hoạt động']},
 	  {v:'2.3',d:'01/10/2026', items:['Thêm BXH Quán và Danh Hiệu']},
@@ -5513,7 +5516,7 @@
       dayMin: 4,                 // phút thật cho một ngày bán (11:00–22:00 trong game)
       startMoney: 400000,        // vốn ban đầu
       commission: 20,            // % phí app giao hàng
-      wage1: 90000, wage2: 200000, wage3: 150000, wageRobot: 300000,
+      wage1: 90000, wage2: 200000, wage3: 150000, wageRobot: 700000,
       wageG1: 200000, wageG2: 300000, wageOn: 250000, // bảo vệ 1 (6tr/tháng), bảo vệ 2 (9tr/tháng), nhân viên đơn online
       bottle: 200000, bottleN: 45, bottleLife: 7, // chai hương: giá, số ly mỗi chai, hạn dùng (ngày)
       tablet: 7000000,           // mỗi tablet chạy 1 app giao hàng
@@ -5538,6 +5541,7 @@
     };
     Object.keys(ITEMS).forEach(k => { DEFAULT_CONFIG.cost[k] = ITEMS[k].cost; DEFAULT_CONFIG.life[k] = ITEMS[k].life });
     let CFG = JSON.parse(JSON.stringify(DEFAULT_CONFIG));
+    CFG.wageRobot = 700000;
     try { const o = JSON.parse(localStorage.getItem(OWNER_SAVE)); if (o) { CFG = { ...CFG, ...o, online: { ...CFG.online, ...o.online }, levels: { ...CFG.levels, ...o.levels }, cost: { ...CFG.cost, ...o.cost }, life: { ...CFG.life, ...o.life } } } } catch (e) { }
     if (!(CFG.cfgVer >= 31)) { CFG.dayMin = 4 } if (!(CFG.cfgVer >= 33)) { CFG.wage1 = 90000; CFG.wage2 = 100000; CFG.cfgVer = 33; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     if (!(CFG.cfgVer >= 35)) { CFG.priceCap = 120000; CFG.itemCap = CFG.itemCap || 50000; CFG.sizeCap = CFG.sizeCap || 50000; }
@@ -7291,7 +7295,7 @@
       addReview(rnd(got ? [3, 3, 4] : [2, 2, 3]), why, false, c, m.length ? low(ITEMS[m[0]].n) : null); renderStreet()
     }
     /* khách hãm: thỉnh thoảng xuất hiện ngẫu nhiên */
-    const guardLv = () => 0;/* bảo vệ: chưa dùng */
+    const guardLv = () => (window.modConfig && window.modConfig.superGuard) ? 2 : (S && S.upg && S.upg.guard2) ? 2 : (S && S.upg && S.upg.guard1) ? 1 : 0;
     const BRATS = { hoi: { n: 'Khách hối', c: '#e2574c' }, doi: { n: 'Khách hay đổi ý', c: '#9b6bd1' }, mac: { n: 'Khách trả giá', c: '#e8792f' }, kho: { n: 'Khách khó tính', c: '#6b4a36' }, bung: { n: '', c: '' } };
     function pickBrat() {
       if (window.modConfig && window.modConfig.noBrats) return null; if (S.day < 3) return null; const bad = S.mood === 'kho' && S.evDay === S.day, good = S.mood === 'vui' && S.evDay === S.day;
