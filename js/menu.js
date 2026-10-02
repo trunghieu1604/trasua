@@ -347,11 +347,11 @@
               <div class="tts-btn-grid grid-3">
                 <button class="tts-act-btn success" id="btn-add-10m">+10M</button>
                 <button class="tts-act-btn success" id="btn-add-20m">+20M</button>
-                <button class="tts-act-btn success" id="btn-add-50m">+50m</button>
+                <button class="tts-act-btn success" id="btn-add-50m">+50M</button>
               </div>
 
               <div class="tts-input-row">
-                <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="500000">
+                <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="1000000">
                 <button class="tts-act-btn pri" id="btn-set-money">✔</button>
               </div>
             </div>
@@ -607,8 +607,8 @@
     };
 
     document.getElementById('btn-add-10m').onclick = () => addCash(10000000);
-    document.getElementById('btn-add-100m').onclick = () => addCash(100000000);
-    document.getElementById('btn-add-1b').onclick = () => addCash(1000000000);
+    document.getElementById('btn-add-20m').onclick = () => addCash(20000000);
+    document.getElementById('btn-add-50m').onclick = () => addCash(50000000);
 
     document.getElementById('btn-set-money').onclick = () => {
       const val = parseInt(document.getElementById('inp-custom-money').value, 10);
