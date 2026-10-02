@@ -5524,7 +5524,7 @@
       itemCap: 50000,            // 1 món (trà, hương, topping) trên mức này: khách chê mắc, quán vắng 80%
       sizeCap: 50000,            // phụ thu size L tối đa; để đúng mức này thì không ai chọn size L, quán vắng 80%
       sizeWarn: 20000,
-      thiefMoney: 10000000, thiefDay: 10, thiefLeft: 500000, // két trên 10.000k trước ngày 30 thì bị trộm, chừa lại 500k
+      thiefMoney: 10000000, thiefDay: 3, thiefLeft: 500000, // két trên 10.000k trước ngày 3 thì bị trộm, chừa lại 500k
       loanLow: 200000,           // két dưới mức này thì cho vay ngân hàng // lương mỗi ngày: nhân viên phụ quầy, nhân viên pha chế
       rent: 40000,               // tiền mặt bằng mỗi ngày
       utilBase: 20000,           // điện nước cơ bản mỗi ngày
@@ -5542,7 +5542,7 @@
     if (!(CFG.cfgVer >= 31)) { CFG.dayMin = 4 } if (!(CFG.cfgVer >= 33)) { CFG.wage1 = 90000; CFG.wage2 = 100000; CFG.cfgVer = 33; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     if (!(CFG.cfgVer >= 35)) { CFG.priceCap = 120000; CFG.itemCap = CFG.itemCap || 50000; CFG.sizeCap = CFG.sizeCap || 50000; }
     if (!(CFG.cfgVer >= 37)) { CFG.sizeWarn = CFG.sizeWarn || 20000; }
-    if (!(CFG.cfgVer >= 39)) { CFG.thiefMoney = 10000000; CFG.thiefDay = 10; CFG.thiefLeft = 500000; CFG.cfgVer = 39; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
+    if (!(CFG.cfgVer >= 39)) { CFG.thiefMoney = 10000000; CFG.thiefDay = 3; CFG.thiefLeft = 500000; CFG.cfgVer = 39; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     if (!(CFG.cfgVer >= 36)) { CFG.teaCap = CFG.teaCap || 40000; CFG.teaCapMatcha = CFG.teaCapMatcha || 50000; Object.assign(CFG.cost, { tra: 4500, matcha: 6000, thai: 5000, hong: 1500, luc: 1500, olong: 2500 }) }
     if (!(CFG.cfgVer >= 37)) { CFG.cfgVer = 37; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     const LIFE_OLD = { f_vai: 3, f_dao: 3, f_dau: 3, f_nho: 3, f_xoai: 1, f_tao: 3, f_me: 3, f_dua: 1, f_choco: 3, cheese: 1, fmatcha: 1, fsalt: 1, fube: 1, pmtuoi: 1 };
