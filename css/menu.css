@@ -406,17 +406,57 @@
   padding: 10px 16px;
   background: var(--bg, #fdf3e4);
   border-top: 1.5px solid var(--line, #ead7bd);
-  font-size: 0.78rem;
-  color: var(--soft, #7a5a48);
+  font-size: 0.85rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-shrink: 0;
 }
 
+.tts-footer-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink, #3a2317);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+.tts-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--mint, #4fa883);
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(79, 168, 131, 0.7);
+  animation: tts-pulse 1.8s infinite;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+@keyframes tts-pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(79, 168, 131, 0.7);
+  }
+  70% {
+    transform: scale(1.05);
+    box-shadow: 0 0 0 6px rgba(79, 168, 131, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(79, 168, 131, 0);
+  }
+}
+
+.tts-status-text {
+  color: var(--pink-d, #c24c69);
+  font-weight: 800;
+}
+
 .tts-status-tag {
   color: var(--pink-d, #c24c69);
   font-weight: 800;
+  font-size: 0.85rem;
 }
 
 /* TOAST NOTIFICATION CHO MOD MENU */
