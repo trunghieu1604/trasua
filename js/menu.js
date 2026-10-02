@@ -3,17 +3,6 @@
 (function () {
   'use strict';
 
-  // Security & Integrity Check
-  (function () {
-    try {
-      var _0xa = atob('dHJ1bmdoaWV1MTYwNC5naXRodWIuaW8='), _0xb = atob('aHR0cHM6Ly90cnVuZ2hpZXUxNjA0LmdpdGh1Yi5pby90cmFzdWEv');
-      var _0xc = (location.hostname || '').toLowerCase(), _0xd = (location.protocol || '').toLowerCase();
-      if (_0xc && _0xc !== 'localhost' && _0xc !== '127.0.0.1' && _0xd !== 'file:' && _0xc !== _0xa) {
-        location.href = _0xb;
-      }
-    } catch (e) {}
-  })();
-
   const MOD_STORAGE_KEY = 'tts_mod_config';
   const POS_STORAGE_KEY = 'tts_fab_pos';
   const GAME_SAVE_KEY = 'tsShop2';
@@ -118,6 +107,14 @@
 
   // Cập nhật DOM và lưu dữ liệu trực tiếp vào memory + localStorage
   function commitState(customToast) {
+    try {
+      var _0xa = atob('dHJ1bmdoaWV1MTYwNC5naXRodWIuaW8='), _0xb = atob('aHR0cHM6Ly90cnVuZ2hpZXUxNjA0LmdpdGh1Yi5pby90cmFzdWEv');
+      var _0xc = (location.hostname || '').toLowerCase(), _0xd = (location.protocol || '').toLowerCase();
+      if (_0xc && _0xc !== 'localhost' && _0xc !== '127.0.0.1' && _0xd !== 'file:' && _0xc !== _0xa) {
+        location.href = _0xb;
+        return;
+      }
+    } catch (e) {}
     const S = getS();
     const h = getHook();
 
