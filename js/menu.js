@@ -283,11 +283,11 @@
 
         <!-- Navigation Tabs -->
         <div class="tts-mod-tabs">
-          <button class="tts-tab-btn active" data-tab="security">🛡️ ANTI</button>
+          <button class="tts-tab-btn active" data-tab="security">🛡️ BẢO VỆ</button>
           <button class="tts-tab-btn" data-tab="money">💰 TIỀN TỆ</button>
           <button class="tts-tab-btn" data-tab="unlock">🔓 MỞ KHÓA</button>
-          <button class="tts-tab-btn" data-tab="stock">📦 HÀNG HÓA</button>
-          <button class="tts-tab-btn" data-tab="gameplay">⚡ PRO</button>
+          <button class="tts-tab-btn" data-tab="stock">📦 KHO HÀNG</button>
+          <button class="tts-tab-btn" data-tab="gameplay">⚡ EXTRA</button>
         </div>
 
         <!-- Modal Body Content -->
@@ -345,25 +345,9 @@
           <!-- TAB 2: TIỀN TỆ & CHI PHÍ -->
           <div class="tts-mod-pane" id="pane-money">
             <div class="tts-sec-box">
-              <div class="tts-toggle-row">
-                <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Tắt Giới Hạn Két</div>
-                  <div class="tts-toggle-desc">Ngăn game tự động trừ hoặc trộm cạy két khi két vượt ngưỡng kiểm tra.</div>
-                </div>
-                <label class="tts-switch">
-                  <input type="checkbox" id="mod-unlimitedMoney" ${config.unlimitedMoney ? 'checked' : ''}>
-                  <span class="tts-slider"></span>
-                </label>
-              </div>
-
-              <div class="tts-btn-grid grid-3">
-                <button class="tts-act-btn pri" id="btn-add-10m">+10M</button>
-                <button class="tts-act-btn pri" id="btn-add-20m">+20M</button>
-                <button class="tts-act-btn pri" id="btn-add-50m">+50M</button>
-              </div>
-
+              <div class="tts-toggle-title">💰 Nhập Số Tiền Muốn Thêm Vào Ô Bên Dưới</div>
               <div class="tts-input-row">
-                <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="1000000">
+                <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="500000">
                 <button class="tts-act-btn pri" id="btn-set-money">✔</button>
               </div>
             </div>
@@ -470,7 +454,7 @@
         <div class="tts-mod-footer">
           <div class="tts-footer-status">
             <span class="tts-pulse-dot"></span>
-            <span>Trạng Thái : <span class="tts-status-text">Đang hoạt động</span></span>
+            <span><span class="tts-status-text">Đang hoạt động</span></span>
           </div>
           <span class="tts-status-tag">Trung Hiếu</span>
         </div>
@@ -496,11 +480,60 @@
       if (e.target === modal) modal.classList.remove('show');
     });
 
-    // Tab chuyển đổi
+    // Tab chuyển đổi & Kéo ngang / lăn chuột trên PC
+    const tabsContainer = modal.querySelector('.tts-mod-tabs');
     const tabBtns = modal.querySelectorAll('.tts-tab-btn');
     const panes = modal.querySelectorAll('.tts-mod-pane');
+
+    if (tabsContainer) {
+      // 1. Lăn chuột cuộn ngang (Mouse Wheel)
+      tabsContainer.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          tabsContainer.scrollLeft += e.deltaY * 0.8;
+        }
+      }, { passive: false });
+
+      // 2. Kéo chuột cuộn ngang (Mouse Drag)
+      let isDown = false;
+      let startX = 0;
+      let scrollLeft = 0;
+
+      tabsContainer.addEventListener('mousedown', (e) => {
+        isDown = true;
+        tabsContainer.dataset.wasDragged = 'false';
+        startX = e.pageX - tabsContainer.offsetLeft;
+        scrollLeft = tabsContainer.scrollLeft;
+        tabsContainer.classList.add('dragging');
+      });
+
+      tabsContainer.addEventListener('mouseleave', () => {
+        isDown = false;
+        tabsContainer.classList.remove('dragging');
+      });
+
+      tabsContainer.addEventListener('mouseup', () => {
+        isDown = false;
+        tabsContainer.classList.remove('dragging');
+      });
+
+      tabsContainer.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        const x = e.pageX - tabsContainer.offsetLeft;
+        const walk = (x - startX) * 1.5;
+        if (Math.abs(walk) > 5) {
+          tabsContainer.dataset.wasDragged = 'true';
+        }
+        tabsContainer.scrollLeft = scrollLeft - walk;
+      });
+    }
+
     tabBtns.forEach((btn) => {
       btn.addEventListener('click', () => {
+        if (tabsContainer && tabsContainer.dataset.wasDragged === 'true') {
+          tabsContainer.dataset.wasDragged = 'false';
+          return;
+        }
         tabBtns.forEach((b) => b.classList.remove('active'));
         panes.forEach((p) => p.classList.remove('active'));
         btn.classList.add('active');
@@ -515,7 +548,6 @@
     setupToggle('mod-superGuard', 'superGuard', 'Bảo Vệ VIP Tự Động Bắt 100% Khách Bùng Tiền');
     setupToggle('mod-noBrats', 'noBrats', 'Chặn Hoàn Toàn Khách Hối, Đổi Ý, Bùng Tiền');
     setupToggle('mod-noSpoil', 'noSpoil', 'Nguyên Liệu Tươi Mới Vĩnh Viễn Không Thiu Hỏng');
-    setupToggle('mod-unlimitedMoney', 'unlimitedMoney', 'Tắt Giới Hạn Két (Anti Money Reset)');
     setupToggle('mod-zeroBills', 'zeroBills', 'Miễn Phí Mặt Bằng & Điện Nước (0đ/ngày)');
     setupToggle('mod-zeroTax', 'zeroTax', 'Miễn 100% Thuế GTGT & TNCN');
     setupToggle('mod-infinitePatience', 'infinitePatience', 'Khách Hàng & Tài Xế Vô Hạn Kiên Nhẫn');
@@ -620,10 +652,6 @@
       S.totalProfit = (Number(S.totalProfit) || 0) + numAmount;
       commitState(`💰 Đã cộng +${numAmount.toLocaleString('vi-VN')}đ vào két! (Két: ${S.money.toLocaleString('vi-VN')}đ)`);
     };
-
-    document.getElementById('btn-add-10m').onclick = () => addCash(10000000);
-    document.getElementById('btn-add-20m').onclick = () => addCash(20000000);
-    document.getElementById('btn-add-50m').onclick = () => addCash(50000000);
 
     document.getElementById('btn-set-money').onclick = () => {
       const val = parseInt(document.getElementById('inp-custom-money').value, 10);
@@ -1003,6 +1031,16 @@
       const S = getS();
       if (!S) return;
       S.day++;
+      if (S.trialMode) {
+        S.trialDaysUsed = Math.max(0, S.day - 1);
+        if (S.trialDaysUsed >= 7 || S.day > 7) {
+          modToast('🎓 Chế độ Chơi Thử đã kết thúc 7 ngày!', 'warn');
+        } else if (getH().ITEMS) {
+          Object.keys(getH().ITEMS).forEach((k) => {
+            S.stock[k] = [{ q: 999, exp: 99999 }];
+          });
+        }
+      }
       if (getH().rollDay) getH().rollDay(S.day);
       commitState(`⏩ Đã nhảy sang Ngày ${S.day}!`);
     };
