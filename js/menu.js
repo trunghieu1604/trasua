@@ -276,7 +276,7 @@
         <div class="tts-mod-header">
           <div class="tts-mod-title">
             <span>🌟</span>
-            <span>MENU MOD</span>
+            <span>MENU MOD - V2.5</span>
           </div>
           <button class="tts-mod-close" id="tts-close-btn">&times;</button>
         </div>
@@ -382,8 +382,6 @@
           <!-- TAB 3: MỞ KHÓA -->
           <div class="tts-mod-pane" id="pane-unlock">
             <div class="tts-sec-box">
-              <button class="tts-act-btn pri full-w" id="btn-unlock-all">🌟 TẤT CẢ (100%)</button>
-              
               <div class="tts-btn-grid">
                 <button class="tts-act-btn pri" id="btn-unlock-bases">🌟 Cốt Trà</button>
                 <button class="tts-act-btn pri" id="btn-unlock-flavs">🍓 Hương Vị</button>
@@ -434,6 +432,7 @@
                 <button class="tts-act-btn pri" id="btn-set-5stars">⭐ (IDOL) Review 5★</button>
                 <button class="tts-act-btn pri" id="btn-clear-badrev">🧹 Đánh Giá Xấu</button>
                 <button class="tts-act-btn pri" id="btn-skip-day">⏩ Sang Ngày Mới</button>
+                <button class="tts-act-btn pri full-w" id="btn-unlock-all" style="grid-column: 1 / -1;">🏆 MỞ KHÓA FULL GAME (100%)</button>
               </div>
             </div>
 
