@@ -271,11 +271,11 @@
 
         <!-- Navigation Tabs -->
         <div class="tts-mod-tabs">
-          <button class="tts-tab-btn active" data-tab="security">🛡️ An Ninh</button>
-          <button class="tts-tab-btn" data-tab="money">💰 Tiền Tệ</button>
-          <button class="tts-tab-btn" data-tab="unlock">🔓 Mở Khóa</button>
-          <button class="tts-tab-btn" data-tab="stock">📦 Kho Hàng</button>
-          <button class="tts-tab-btn" data-tab="gameplay">⚡ Menu VIP</button>
+          <button class="tts-tab-btn active" data-tab="security">🛡️ ANTI</button>
+          <button class="tts-tab-btn" data-tab="money">💰 TIỀN TỆ</button>
+          <button class="tts-tab-btn" data-tab="unlock">🔓 MỞ KHÓA</button>
+          <button class="tts-tab-btn" data-tab="stock">📦 HÀNG HÓA</button>
+          <button class="tts-tab-btn" data-tab="gameplay">⚡ PRO</button>
         </div>
 
         <!-- Modal Body Content -->
@@ -705,6 +705,9 @@
       const S = getS();
       if (!S) return;
 
+      // 0. Reset cache thành tích để tính lại với dữ liệu mới
+      S.achDone = {};
+
       // 1. BXH 2000 điểm (TOP 1)
       S.rankPts = 2000;
 
@@ -754,7 +757,7 @@
         s: 'Ngon từ giọt đầu'
       };
 
-      // 6. Thông số tổng quát & Tài chính
+      // 6. Thông số tổng quát & Tài chính (luôn dùng Math.max, không bao giờ giảm)
       S.day = Math.max(S.day || 1, 30);
       S.best = Math.max(S.best || 0, 30);
       S.served = Math.max(S.served || 0, 1000);
@@ -764,17 +767,19 @@
       S.loan = null;
       S.hot = null;
       S.claimedRobotPopup = false;
-      S.seenLv = 3;
+      S.seenLv = Math.max(S.seenLv || 1, 3); // không reset về thấp hơn mức hiện tại
 
       // 7. Tạo Lịch sử 30 ngày để đạt đủ mọi thành tích doanh số
       S.history = S.history || [];
+      const histStartLen = S.history.length;
       while (S.history.length < 30) {
         const d = S.history.length + 1;
+        const isFirstPush = S.history.length === histStartLen; // bản đầu tiên được push lần này
         S.history.push({
           day: d,
           served: 40,
           lost: 0,
-          gift: d === 1 ? 50000 : 0,
+          gift: isFirstPush ? 50000 : 0, // đảm bảo luôn có ít nhất 1 bản có gift > 0
           sales: {
             L: { q: 5, a: 35000 },
             tra: { q: 10, a: 220000 },
@@ -783,25 +788,36 @@
           }
         });
       }
+      // Đảm bảo có ít nhất 1 bản lịch sử có gift (thành tích #23)
+      if (!S.history.some(r => r.gift > 0)) {
+        S.history[0].gift = 50000;
+      }
 
-      // 8. Tạo Đánh giá 5 sao chuẩn (Có Admin, VIP, Online)
-      const reviews = [
+      // 8. Thêm đánh giá đặc biệt (giữ lại đánh giá thật của người chơi)
+      const specialReviews = [
         { n: 'TRUNG HIẾU', t: 'Tiệm trà sữa đẳng cấp nhất! BAN PHÁT ĐẶC ÂN.', s: 5, tg: 'ADMIN · TRÙM GAME 👑', d: S.day, st: 1, o: true },
         { n: 'HÒA MINZY 🌟', t: 'Trà sữa ở đây siêu ngon tuyệt vời!', s: 5, tg: 'CA SỸ ⭐', d: S.day, st: 2, o: true },
         { n: 'SƠN TÙNG M-TP 🌟', t: 'Vừa ngon vừa phục vụ nhanh chuẩn 5 sao!', s: 5, tg: 'CA SỸ ⭐', d: S.day, st: 3, o: true },
         { n: 'THÙY TIÊN 🌟', t: '10 điểm không có nhưng!', s: 5, tg: 'HOA HẬU ⭐', d: S.day, st: 4, o: true },
         { n: 'JUN VŨ 🌟', t: 'Quán đỉnh kịch trần luôn nha!', s: 5, tg: 'DIỄN VIÊN ⭐', d: S.day, st: 5, o: true }
       ];
-      while (reviews.length < 50) {
-        reviews.push({
-          n: `Khách Hàng VIP #${reviews.length + 1}`,
+      const extraReviews = [];
+      while (extraReviews.length < 45) {
+        extraReviews.push({
+          n: `Khách Hàng VIP #${extraReviews.length + 1}`,
           t: 'Quán tuyệt vời, trà thơm ngon 5 sao!',
           s: 5,
-          d: Math.max(1, S.day - (reviews.length % 5)),
-          o: reviews.length < 20
+          d: Math.max(1, S.day - (extraReviews.length % 5)),
+          o: extraReviews.length < 15
         });
       }
-      S.reviews = reviews;
+      // Gộp: giữ đánh giá thật + thêm đặc biệt vào đầu (không xóa đánh giá thật)
+      S.reviews = S.reviews || [];
+      // Thêm đánh giá đặc biệt nếu chưa có (tránh trùng lặp)
+      const hasAdmin = S.reviews.some(r => r.n && r.n.includes('TRUNG HIẾU'));
+      if (!hasAdmin) {
+        S.reviews = [...specialReviews, ...extraReviews, ...S.reviews];
+      }
 
       commitState('🌟 ĐÃ MỞ KHÓA FULL GAME 100%! (30/30 Thành Tích & TOP 1 BXH 2000 pt)');
     };
@@ -909,7 +925,7 @@
         });
       });
 
-      commitState(`⭐ Đã thêm ${starsList.length} đánh giá 5★ từ dàn Idol JAV, Rapper VN & Siêu Sao!`);
+      commitState(`⭐ Đã thêm ${starsList.length} đánh giá 5★ từ dàn Idol & Siêu Sao!`);
     };
 
     const updateAutoServeBtn = () => {
