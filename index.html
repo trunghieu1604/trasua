@@ -5251,7 +5251,7 @@
       { id: 5, title: 'Menu Phong Phú', desc: 'Mở khóa toàn bộ các loại trà chính trong menu', icon: '📜', reward: 'Huy hiệu Menu Vàng', group: 'Sản phẩm' },
       { id: 6, title: 'Hương Vị Độc Đáo', desc: 'Mở khóa toàn bộ 12 loại hương vị trái cây', icon: '🍓', reward: 'Huy hiệu Vua Hương Vị', group: 'Sản phẩm' },
       { id: 7, title: 'Vua Topping', desc: 'Mở khóa toàn bộ 12 loại topping độc đáo', icon: '🍡', reward: 'Huy hiệu Trùm Topping', group: 'Sản phẩm' },
-      { id: 8, title: 'Trùm Online', desc: 'Kích hoạt đơn hàng online trên ứng dụng Baemin', icon: '📱', reward: 'Huy hiệu Giao Hàng Thần Tốc', group: 'Kinh doanh' },
+      { id: 8, title: 'Trùm Online', desc: 'Kích hoạt đơn hàng online trên ứng dụng SoppiFood', icon: '📱', reward: 'Huy hiệu Giao Hàng Thần Tốc', group: 'Kinh doanh' },
       { id: 9, title: 'Thương Hiệu Xịn', desc: 'Tự thiết kế tem và bộ nhận diện thương hiệu riêng', icon: '🎨', reward: 'Huy hiệu Nghệ Thuật', group: 'Thương hiệu' },
       { id: 10, title: 'Đón Khách Ngôi Sao', desc: 'Phục vụ thành công 1 khách mời Idol/Ngôi sao đặc biệt', icon: '👑', reward: 'Huy hiệu Quán Idol', group: 'Đánh giá' },
       { id: 11, title: 'Đội Ngũ Hùng Hậu', desc: 'Thuê đầy đủ đội ngũ nhân viên phụ quầy và pha chế', icon: '👨‍🍳', reward: 'Huy hiệu Quản Lý Đội Ngũ', group: 'Nhân sự' },
@@ -5360,11 +5360,11 @@
       { id: 'ac', n: 'Máy lạnh', d: 'Khách ít chê khi phải chờ', cost: 900000, i: ico('upsnow') }
     ];
     const STAFF = [
-      { id: 'staff1', n: 'Nhân viên phụ quầy', d: 'Bạn lấy ly, bỏ topping và dán nắp. Nhân viên rót trà, cho hương, đường và đá. Không dùng cùng lúc với Nhân viên phụ quầy 2 và Nhân viên Lượng toàn năng.', cost: 500000, wage: 'wage1', from: 1 },
-      { id: 'staff2', n: 'Nhân viên pha chế', d: 'Khi có từ 2 khách, nhận trọn đơn của khách chờ lâu nhất và pha hết các ly. Làm quá 22:00 thì trả tăng ca 40k/giờ. Không dùng cùng lúc với Nhân viên Lượng toàn năng.', cost: 1000000, wage: 'wage2', from: 30 },
-      { id: 'staffOn', n: 'Nhân viên đơn online', d: 'Chỉ làm đơn online: nhận trọn đơn và pha hết các ly, mỗi ly khoảng 1 giây. Hoạt động chung được với Nhân viên Lượng toàn năng.', cost: 2000000, wage: 'wageOn', from: 1, need: () => !!S.online, needT: 'Cần mở đơn online' },
-      { id: 'staff3', n: 'Nhân viên phụ quầy 2', d: 'Làm như nhân viên phụ quầy, thêm múc topping. Bạn lấy ly và dán nắp. Không dùng cùng lúc với Nhân viên phụ quầy và Nhân viên Lượng toàn năng.', cost: 750000, wage: 'wage3', from: 1 },
-      { id: 'robot', n: 'Nhân viên Lượng toàn năng', d: 'Tự động phục vụ tất cả khách tại quầy.', cost: 0, wage: 'wageRobot', from: 1, need: () => countDoneAch() >= 30, needT: () => 'Tiến độ hoàn thành: (' + countDoneAch() + '/30)' }
+      { id: 'staff1', n: 'Nhân viên phụ quầy', d: 'Bạn lấy ly, bỏ topping và dán nắp. Nhân viên rót trà, cho hương, đường và đá. Không dùng cùng lúc với Nhân viên phụ quầy 2 và Lượng Toàn Năng.', cost: 500000, wage: 'wage1', from: 1 },
+      { id: 'staff2', n: 'Nhân viên pha chế', d: 'Khi có từ 2 khách, nhận trọn đơn của khách chờ lâu nhất và pha hết các ly. Làm quá 22:00 thì trả tăng ca 40k/giờ. Không dùng cùng lúc với Lượng Toàn Năng.', cost: 1000000, wage: 'wage2', from: 30 },
+      { id: 'staffOn', n: 'Nhân viên đơn online', d: 'Chỉ làm đơn online: nhận trọn đơn và pha hết các ly, mỗi ly khoảng 1 giây. Không cần thuê khi đã có Lượng Toàn Năng (Lượng kiêm luôn đơn online, nhanh hơn).', cost: 2000000, wage: 'wageOn', from: 1, need: () => !!S.online, needT: 'Cần mở đơn online' },
+      { id: 'staff3', n: 'Nhân viên phụ quầy 2', d: 'Làm như nhân viên phụ quầy, thêm múc topping. Bạn lấy ly và dán nắp. Không dùng cùng lúc với Nhân viên phụ quầy và Lượng Toàn Năng.', cost: 750000, wage: 'wage3', from: 1 },
+      { id: 'robot', n: 'Lượng Toàn Năng', d: 'Toàn năng nên không cần giải thích nhiều', cost: 0, wage: 'wageRobot', from: 1, need: () => countDoneAch() >= 30, needT: () => 'Tiến độ hoàn thành: (' + countDoneAch() + '/30)' }
     ];
     const BRAND_COST = 5000000;
     const BRAND_ICONS = Array.from({ length: 50 }, (_, i) => 'b' + String(i).padStart(2, '0'));
@@ -5454,17 +5454,18 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.3.2';
+    const GAME_VERSION = '2.4';
     const CHANGELOG = [
+	  {v:'2.4', d: '02/10/2026', items: ['Lượng Toàn Năng giờ toàn năng thật sự: đơn online + pha chế cho khách chờ lâu, không cần thuê thêm nhân viên nào','Fix lỗi mở Full 100% xóa đánh giá thật của người chơi','Fix lỗi mở Full 100% reset Lv về thấp hơn','Mở Chế Độ Chơi Thử, Mở khóa toàn bộ, Chơi thử trong 7 ngày. Chỉ hiển thị khi chơi lại từ đầu.','Nâng cấp MENU ăn theo chủ đề màu của game, cho đồng bộ màu 100%.']},
 	  {v:'2.3.2',d:'01/10/2026', items:['Chỉnh lại màu sắc cho hợp với chủ đề của game']},
 	  {v:'2.3.1',d:'01/10/2026', items:['Fix lỗi Thành Tích bị mất sau khi đã hoàn thành','Fix lỗi Thống Kê không hoạt động']},
 	  {v:'2.3',d:'01/10/2026', items:['Thêm BXH Quán và Danh Hiệu']},
-	  {v:'2.2',d:'30/10/2026', items:['Thêm 30 Thành Tích','Ngưng cho thuê Nhân viên Lượng toàn năng','Nhân viên Lượng toàn năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
+	  {v:'2.2',d:'30/10/2026', items:['Thêm 30 Thành Tích','Ngưng cho thuê Lượng Toàn Năng','Lượng Toàn Năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
 	  {v:'2.1',d:'30/10/2026', items:['Nâng cấp AntiCheat 2.0']},
 	  {v:'2.0.8',d:'29/09/2026', items:['Fix lỗi','Fix màu']},
 	  {v:'2.0.7',d:'28/09/2026', items:['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
 	  {v:'2.0.6',d:'27/09/2026', items:['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
-      {v:'2.0.5',d:'26/09/2026', items:['Thêm Nhân viên Lượng toàn năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
+      {v:'2.0.5',d:'26/09/2026', items:['Thêm Lượng Toàn Năng', 'Phục Vụ theo Order của Khách chuẩn 100%', 'Hoạt động chung với Nhân viên Online', 'Giá thuê là 50.000k'] },
 	  {v:'2.0.4',d:'24/09/2026',items:['Hương mua theo chai ở Nâng cấp > Hương: 200k một chai dùng cho 45 ly, hạn 7 ngày kể từ ngày mua. Mua bao nhiêu chai thì 45 ly nhân lên. Hết chai phải mua chai mới, chai quá hạn bị đổ bỏ. Kho không còn nấu hương theo phần','Đơn online Soppi: cần mua tablet (7 triệu, ở Trang bị) thì đơn mới đổ về. Quán đã mở online được tặng sẵn 1 tablet','Đơn online nhận thêm tối đa bằng số chỗ ở quầy: 3 khách, mở rộng quầy thì 4 (tổng 6 hoặc 8 khách). Đơn online khoảng 20% tổng khách. Tài xế chờ tối đa 1 phút 30 giây, có tài xế nam và nữ','Mỗi 30 ngày có 1 đơn lớn Soppi 5–10 ly vào ngày ngẫu nhiên','Nhân viên đơn online (thuê 2 triệu, lương 250k/ngày): chỉ làm đơn online, mỗi ly khoảng 1 giây','Vay ngân hàng tối đa 1 triệu, lãi 25%/năm','Máy dán nắp tự động dán nhanh hơn','Hướng dẫn thêm trang Đường và đá (Cài đặt > Hướng dẫn)','Khách ngôi sao: cứ 30 ngày có 1 idol Kpop hoặc diễn viên Thái, Trung ghé quán vào ngày ngẫu nhiên. Nói tiếng nước mình kèm [Tự động dịch], trả gấp 3 tiền và luôn để 5 sao','Mã sao lưu còn 8 số, mỗi quán một mã riêng không trùng ai. Sao lưu lại vẫn giữ nguyên mã. Khôi phục bằng 8 số cần có mạng, mã dài cũ vẫn dùng được','Tem thương hiệu hiện đủ tên quán. Chọn được kiểu chữ thẳng hàng, cong phía trên hoặc cong phía dưới']},
 	  {v:'2.0.3',d:'24/09/2026',items:['Thêm Nhân viên phụ quầy 2 (thuê 750k, lương 150k/ngày): làm như nhân viên phụ quầy, thêm múc topping. Không thuê cùng lúc với nhân viên phụ quầy, thuê người này thì người kia tự nghỉ (gọi đi làm lại không tốn tiền)','Sửa lỗi trên iPhone: sau khi bật bàn phím (trả lời đánh giá, đặt tên quán…) rồi tắt, quầy pha bị thu nhỏ còn nửa màn hình và nút Mở cửa nhảy lên giữa màn hình. Game giờ tự nhận ra và trả về đủ màn hình','Sửa lỗi đánh giá đầy 2.500 thì như đứng yên: bộ nhớ lưu game bị đầy nên đánh giá và tiến trình mới có thể không được lưu. Bản lưu nay gọn hơn và tự dọn bản dự phòng cũ khi thiếu chỗ','Số đánh giá trên đầu màn hình giờ là tổng số đánh giá từ trước tới nay, vẫn tăng khi đã quá 2.500 (tab Đánh giá vẫn giữ 2.500 đánh giá mới nhất)']},
       {v:'2.0.2',d:'23/09/2026',items:['Nhân viên phụ quầy: bạn lấy ly, bỏ topping và dán nắp (có máy dán nắp tự động thì máy tự dán). Nhân viên rót trà, cho hương, đường và đá. Bỏ topping được ngay trong lúc nhân viên đang pha']},
@@ -5509,7 +5510,7 @@
       itemCap: 50000,            // 1 món (trà, hương, topping) trên mức này: khách chê mắc, quán vắng 80%
       sizeCap: 50000,            // phụ thu size L tối đa; để đúng mức này thì không ai chọn size L, quán vắng 80%
       sizeWarn: 20000,
-      thiefMoney: 100000000, thiefDay: 30, thiefLeft: 500000, // két trên mức này trước ngày này thì bị trộm, chừa lại thiefLeft
+      thiefMoney: 80000000, thiefDay: 30, thiefLeft: 500000, // két trên 80.000k trước ngày 30 thì bị trộm, chừa lại 500k
       loanLow: 200000,           // két dưới mức này thì cho vay ngân hàng // lương mỗi ngày: nhân viên phụ quầy, nhân viên pha chế
       rent: 40000,               // tiền mặt bằng mỗi ngày
       utilBase: 20000,           // điện nước cơ bản mỗi ngày
@@ -5526,7 +5527,8 @@
     try { const o = JSON.parse(localStorage.getItem(OWNER_SAVE)); if (o) { CFG = { ...CFG, ...o, online: { ...CFG.online, ...o.online }, levels: { ...CFG.levels, ...o.levels }, cost: { ...CFG.cost, ...o.cost }, life: { ...CFG.life, ...o.life } } } } catch (e) { }
     if (!(CFG.cfgVer >= 31)) { CFG.dayMin = 4 } if (!(CFG.cfgVer >= 33)) { CFG.wage1 = 90000; CFG.wage2 = 100000; CFG.cfgVer = 33; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     if (!(CFG.cfgVer >= 35)) { CFG.priceCap = 120000; CFG.itemCap = CFG.itemCap || 50000; CFG.sizeCap = CFG.sizeCap || 50000; }
-    if (!(CFG.cfgVer >= 37)) { CFG.sizeWarn = CFG.sizeWarn || 20000; CFG.thiefMoney = CFG.thiefMoney || 100000000; CFG.thiefDay = CFG.thiefDay || 30; CFG.thiefLeft = CFG.thiefLeft || 500000 }
+    if (!(CFG.cfgVer >= 37)) { CFG.sizeWarn = CFG.sizeWarn || 20000; }
+    if (!(CFG.cfgVer >= 39)) { CFG.thiefMoney = 80000000; CFG.thiefDay = 30; CFG.thiefLeft = 500000; CFG.cfgVer = 39; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     if (!(CFG.cfgVer >= 36)) { CFG.teaCap = CFG.teaCap || 40000; CFG.teaCapMatcha = CFG.teaCapMatcha || 50000; Object.assign(CFG.cost, { tra: 4500, matcha: 6000, thai: 5000, hong: 1500, luc: 1500, olong: 2500 }) }
     if (!(CFG.cfgVer >= 37)) { CFG.cfgVer = 37; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     const LIFE_OLD = { f_vai: 3, f_dao: 3, f_dau: 3, f_nho: 3, f_xoai: 1, f_tao: 3, f_me: 3, f_dua: 1, f_choco: 3, cheese: 1, fmatcha: 1, fsalt: 1, fube: 1, pmtuoi: 1 };
@@ -5610,7 +5612,7 @@
     const wpick = (arr, w) => { let r = Math.random() * w.reduce((a, b) => a + b, 0); for (let i = 0; i < arr.length; i++) { r -= w[i]; if (r <= 0) return arr[i] } return arr[0] };
     const newRec = d => ({ spoil: { n: 0, v: 0 }, day: d, sales: {}, tips: 0, onl: 0, fee: 0, equip: [], ing: {}, waste: {}, rent: 0, util: 0, tax: 0, served: 0, lost: 0, starSum: 0, starN: 0 });
     function fresh() {
-      const s = { lifeV: 2, off: {}, badPlan: mkBadPlan(1), money: CFG.startMoney, day: 1, stock: {}, unlocked: {}, upg: {}, sell: { ...DEF_SELL }, reviews: [], served: 0, best: 0, totalRev: 0, totalProfit: 0, online: false, shopName: '', history: [], cur: newRec(1), yearRev: 0, taxYear: 0, rankPts: 0, achDone: {} };
+      const s = { lifeV: 2, off: {}, badPlan: mkBadPlan(1), money: CFG.startMoney, day: 1, stock: {}, unlocked: {}, upg: {}, sell: { ...DEF_SELL }, reviews: [], served: 0, best: 0, totalRev: 0, totalProfit: 0, online: false, shopName: '', history: [], cur: newRec(1), yearRev: 0, taxYear: 0, rankPts: 0, achDone: {}, trialMode: false, trialDaysUsed: 0 };
       Object.keys(ITEMS).forEach(k => { s.stock[k] = []; s.unlocked[k] = ITEMS[k].unlock === 0 });
       return s;
     }
@@ -5639,7 +5641,7 @@
     function syncFlav() { FLAV_KEYS.forEach(k => { if (S.off) delete S.off[k]; S.unlocked[k] = qty(k) > 0 }) }
     const bottleCost = k => Math.round(CFG.bottle * (evIs('sale') && ev().k === k ? .7 : 1));
     function take(k) { const b = S.stock[k].find(x => x.q > 0); if (!b) return false; b.q--; S.stock[k] = S.stock[k].filter(x => x.q > 0); return true }
-    function expireStock() { if (window.modConfig && window.modConfig.noSpoil) return []; const out = []; Object.keys(S.stock).forEach(k => { let q = 0; S.stock[k] = S.stock[k].filter(b => { if (b.exp <= S.day) { q += b.q; return false } return true }); if (q) out.push({ k, q, v: q * CFG.cost[k] }) }); return out }
+    function expireStock() { if ((window.modConfig && window.modConfig.noSpoil) || isTrialMode()) return []; const out = []; Object.keys(S.stock).forEach(k => { let q = 0; S.stock[k] = S.stock[k].filter(b => { if (b.exp <= S.day) { q += b.q; return false } return true }); if (q) out.push({ k, q, v: q * CFG.cost[k] }) }); return out }
     function lifeTxt(k) { const l = CFG.life[k]; return l ? (l === 1 ? 'Dùng trong ngày' : 'Để được ' + l + ' ngày') : 'Không hết hạn' }
     const revCount = () => Math.max(S.revTotal || 0, S.reviews.length);
     /* bản lưu gọn: bỏ khoá chống trùng của đánh giá (tự tính lại khi mở game), bản dự phòng chỉ giữ 300 đánh giá mới nhất */
@@ -5787,7 +5789,9 @@
       {id:'qltt',n:'Quản lý thị trường kiểm tra',ic:'warn',all:'Tiền mặt trong két quá lớn mà không chứng minh được nguồn gốc, bị tạm giữ toàn bộ.',some:'Đoàn kiểm tra nhắc lỗi vệ sinh quầy pha, quán bị phạt %.'},
       {id:'lua',n:'Bị lừa qua điện thoại',ic:'phone',all:'Kẻ gian giả danh ngân hàng gọi tới, chủ quán lỡ chuyển hết tiền trong két.',some:'Kẻ gian giả danh ngân hàng gọi tới, chủ quán lỡ chuyển %.'},
       {id:'coin',n:'"Đầu tư" tiền ảo',ic:'chartdown',all:'Chủ quán dồn hết tiền vào một sàn tiền ảo lạ. Sàn sập, mất trắng.',some:'Chủ quán thử "đầu tư" tiền ảo trên một sàn lạ, lỗ %.'}]; */
-    const BAD = [];
+    const BAD = [
+      { id: 'trom', n: 'Trộm ghé quán!', ic: 'sad', all: 'Đêm qua trộm cạy két, lấy mất tiền trong két.' }
+    ];
     function mkBadPlan(start) {
       const r = Math.random(), n = r < .3 ? 0 : r < .7 ? 1 : 2, ids = BAD.map(b => b.id).sort(() => Math.random() - .5), days = [];
       while (days.length < n) { const d = start + 10 + Math.floor(Math.random() * 80); if (!days.includes(d)) days.push(d) }
@@ -5810,6 +5814,15 @@
     function cheatHit() { return; }
     function badCheck() {
       if (window.modConfig && (window.modConfig.antiTheft || window.modConfig.unlimitedMoney)) return false;
+      if (!S.badNow && !isTrialMode() && S.day <= CFG.thiefDay && S.money >= CFG.thiefMoney) {
+        const v = S.money - CFG.thiefLeft;
+        if (v > 0) {
+          S.money = CFG.thiefLeft;
+          S.cur.bad = (S.cur.bad || 0) + v;
+          S.badNow = { id: 'trom', v, all: true, keep: CFG.thiefLeft };
+          save();
+        }
+      }
       if (!S.badNow && S.badPlan) {
         const e = S.badPlan.ev.find(x => !x.done && x.d <= S.day);
         if (e) {
@@ -5953,10 +5966,19 @@
       return `<div class="sign"><button id="rename" aria-label="Đổi tên quán">${esc(shopName())}<small>${ico('pen')}</small></button></div><div class="board"><h2>${ico('cupfull')} Menu hôm nay</h2><div class="items">${it}</div>${fl.length ? `<div class="btop">Hương vị</div><div class="items">${fl.map(k => cell(k, 1)).join('')}</div>` : ''}<div class="btop">Topping</div><div class="items top">${tops}</div><div class="extra">Size L +${kv(S.sell.L)}</div></div>`;
     }
     const levelOf = d => { const L = CFG.levels; return d >= L.l3 ? 3 : d >= L.l2 ? 2 : 1 };
-    const level = () => levelOf(S.day);
+    const level = () => S.trialMode ? 3 : levelOf(S.day); // Chế độ thử: luôn cấp 3 từ ngày 1
+    // --- TRIAL MODE HELPERS ---
+    const isTrialMode = () => !!(S && S.trialMode);
+    const trialExpired = () => !!(S && (S.trialDaysUsed || 0) >= 7);
+    const showTrialOption = () => {
+      if (!S) return true;
+      if (trialExpired()) return false;
+      if (S.trialMode) return true;
+      return (S.day || 1) <= 1 && (!S.history || S.history.length === 0);
+    };
     const LV_TXT = { 1: 'Khách gọi size, loại trà và 1 topping', 2: 'Khách chọn thêm mức đường và đá', 3: 'Khách có thể mua 2–5 ly một lần, mỗi ly tới 4 topping' };
-    /* app giao hàng: hiện chỉ có Baemin, mở theo điều kiện đơn online, cần 1 tablet */
-    const APPS = [{ id: 'sp', n: 'Baemin', c: '#2ae53a', w: 20, rows: [0, 1] }];
+    /* app giao hàng: hiện chỉ có SoppiFood, mở theo điều kiện đơn online, cần 1 tablet */
+    const APPS = [{ id: 'sp', n: 'SoppiFood', c: '#2ae53a', w: 20, rows: [0, 1] }];
     const appJoined = a => a.id === 'sp' ? !!S.online : !!(S.apps || {})[a.id];
     const appMinRate = a => a.id === 'sp' ? CFG.online.minRating : a.rate;
     /* app đang nhận đơn: đã mở, có tablet, đủ sao */
@@ -5990,9 +6012,9 @@
       let h = '';
       if (!S.online) {
         const ic = [ico('money'), ico('calendar'), ico('star')];
-        h += `<div class="goalc"><div class="gh">${ico('phone')} Mở đơn online (Baemin)</div><div class="wl">${ico('money')} lợi nhuận · ${ico('calendar')} ngày · ${ico('star')} đánh giá</div>${onlineCheck().map((c, i) => `<div class="gr2${c.ok ? ' ok' : ''}"><span class="gi">${c.ok ? '✅' : ic[i]}</span><div class="gb"><i style="width:${Math.min(100, c.p * 100)}%"></i></div><span class="gv">${c.v}</span></div>`).join('')}</div>`
+        h += `<div class="goalc"><div class="gh">${ico('phone')} Mở đơn online (SoppiFood)</div><div class="wl">${ico('money')} lợi nhuận · ${ico('calendar')} ngày · ${ico('star')} đánh giá</div>${onlineCheck().map((c, i) => `<div class="gr2${c.ok ? ' ok' : ''}"><span class="gi">${c.ok ? '✅' : ic[i]}</span><div class="gb"><i style="width:${Math.min(100, c.p * 100)}%"></i></div><span class="gv">${c.v}</span></div>`).join('')}</div>`
       }
-      h += `<div class="note">Cần 1 tablet (mua ở Trang bị) thì đơn Baemin mới đổ về. Đơn online chiếm khoảng 20% tổng khách. Phí app −${CFG.commission}%.</div>`;
+      h += `<div class="note">Cần 1 tablet (mua ở Trang bị) thì đơn SoppiFood mới đổ về. Đơn online chiếm khoảng 20% tổng khách. Phí app −${CFG.commission}%.</div>`;
       h += APPS.map(a => {
         const j = appJoined(a), act = on.includes(a), idx = joined.indexOf(a), noTb = j && idx >= tb;
         let st;
@@ -6111,27 +6133,27 @@
       startDay();
     }
     function paneUpg() {
-      const row = k => `<div class="rowi${(S.off || {})[k] ? ' offm' : ''}">${itemIcon(k)}<div><div class="nm">${ITEMS[k].n}</div>${(S.off || {})[k] ? '<div class="sub">Đã bỏ khỏi menu</div>' : ''}</div>${S.unlocked[k] ? `<button class="sbtn ghost" data-moff="${k}"><b>✓</b>Bỏ khỏi menu</button>` : (S.off || {})[k] ? `<button class="sbtn pri" data-mon="${k}"><b>Miễn phí</b>Thêm lại</button>` : `<button class="sbtn pri" data-un="${k}" ${S.money < ITEMS[k].unlock ? 'disabled' : ''}><b>${fmt(ITEMS[k].unlock)}</b>Mua</button>`}</div>`;
+      const row = k => `<div class="rowi${(S.off || {})[k] ? ' offm' : ''}">${itemIcon(k)}<div><div class="nm">${ITEMS[k].n}</div>${(S.off || {})[k] ? '<div class="sub">Đã bỏ khỏi menu</div>' : ''}</div>${S.unlocked[k] ? `<button class="sbtn ghost" data-moff="${k}"><b>✓</b>Bỏ khỏi menu</button>` : (S.off || {})[k] ? `<button class="sbtn pri" data-mon="${k}"><b>Miễn phí</b>Thêm lại</button>` : `<button class="sbtn pri" data-un="${k}" ${S.money < ITEMS[k].unlock && !isTrialMode() ? 'disabled' : ''}><b>${isTrialMode() ? 'Miễn phí' : fmt(ITEMS[k].unlock)}</b>Mua</button>`}</div>`;
       const tea = BASE_KEYS.map(row).join('');
       const bRow = k => {
         const n = qty(k), bs = S.stock[k].filter(b => b.q > 0), c = bottleCost(k);
-        return `<div class="rowi">${itemIcon(k)}<div><div class="nm">${ITEMS[k].n}</div><div class="sub${n ? '' : ' low'}">${n ? `${ico('box')} Còn ${n} ly · ` + bs.map(b => `${b.q} ly hết hạn ngày ${b.exp}`).join(', ') : 'Hết hàng, chưa có trong menu'}</div></div><button class="sbtn pri" data-bottle="${k}" ${S.money < c ? 'disabled' : ''}><b>${fmt(c)}</b>Mua chai</button></div>`
+        return `<div class="rowi">${itemIcon(k)}<div><div class="nm">${ITEMS[k].n}</div><div class="sub${n ? '' : ' low'}">${n ? `${ico('box')} Còn ${n} ly · ` + bs.map(b => `${b.q} ly hết hạn ngày ${b.exp}`).join(', ') : 'Hết hàng, chưa có trong menu'}</div></div><button class="sbtn pri" data-bottle="${k}" ${S.money < c && !isTrialMode() ? 'disabled' : ''}><b>${isTrialMode() ? 'Miễn phí' : fmt(c)}</b>Mua chai</button></div>`
       };
       const flav = `<div class="note">1 chai = ${CFG.bottleN} ly, dùng được ${CFG.bottleLife} ngày tính cả ngày mua. Mua 2 chai được ${CFG.bottleN * 2} ly. Hết chai thì phải mua chai mới mới dùng được, chai quá hạn bị đổ bỏ.</div>` + FLAV_KEYS.map(bRow).join('');
       const top = groupRows(TOP_KEYS, row);
-      const brandRow = `<div class="rowi"><span class="icon">🎨</span><div><div class="nm">Bộ nhận diện thương hiệu</div><div class="sub">Tự thiết kế tem thương hiệu in lên ly: màu nền, logo, tên quán, khẩu hiệu</div></div>${S.upg.brandKit ? `<button class="sbtn" data-brand="1">🎨 Thiết kế</button>` : `<button class="sbtn pri" data-buybrand="1" ${S.money < BRAND_COST ? 'disabled' : ''}><b>${fmt(BRAND_COST)}</b>Mua</button>`}</div>` + (S.upg.brandKit && S.brand ? `<div class="brandprevrow">${temHTML(S.brand, 88, true)}</div>` : '');
-      const tbN = S.tablets || 0, tabRow = `<div class="rowi"><span class="icon">${ico('phone')}</span><div><div class="nm">Tablet nhận đơn online (${tbN}/${APPS.length})</div><div class="sub">Mỗi tablet chạy 1 app giao hàng. Phải có tablet thì đơn Baemin mới đổ về, shipper mới tới lấy hàng</div></div>${tbN >= APPS.length ? '<span class="okline">✓</span>' : `<button class="sbtn pri" data-tablet="1" ${S.money < CFG.tablet ? 'disabled' : ''}><b>${fmtTr(CFG.tablet)}</b>Mua</button>`}</div>`;
-      const eq = `<div class="wl" style="text-align:right;margin-bottom:2px">⚡ +${fmt(CFG.utilPerUpg)}/ngày</div>` + UPG.map(u => `<div class="rowi"><span class="icon">${u.i}</span><div><div class="nm">${u.n}</div><div class="sub">${u.d}</div></div>${S.upg[u.id] ? '<span class="okline">✓</span>' : `<button class="sbtn pri" data-up="${u.id}" ${S.money < u.cost ? 'disabled' : ''}><b>${fmt(u.cost)}</b>Mua</button>`}</div>`).join('') + brandRow + tabRow;
-      const staff = `<div class="note">Thuê một lần, sau đó trả lương mỗi ngày mở cửa. Có nhân viên thì toàn bộ tiền tip của khách là của nhân viên, quán không nhận. Cho nghỉ thì hết trả lương, gọi đi làm lại lúc nào cũng được, không tốn tiền thuê.</div>` + STAFF.map(u => `<div class="rowi"><span class="icon">${ico('people')}</span><div><div class="nm">${u.n}</div>${u.d ? `<div class="sub">${u.d}</div>` : ''}<div class="sub">Lương ${fmt(CFG[u.wage])}/ngày</div></div>${S.upg[u.id] ? `<button class="sbtn" data-fire="${u.id}"><b>✓</b>Cho nghỉ</button>` : S.day < u.from ? `<span class="wl">Ngày ${u.from}</span>` : u.need && !u.need() ? `<span class="wl">${typeof u.needT === 'function' ? u.needT() : u.needT}</span>` : (S.hired || {})[u.id] ? `<button class="sbtn pri" data-hire="${u.id}"><b>Gọi</b>đi làm</button>` : `<button class="sbtn pri" data-hire="${u.id}" ${S.money < u.cost ? 'disabled' : ''}><b>${u.cost ? fmt(u.cost) : 'Không phí'}</b>Thuê</button>`}</div>`).join('');
+      const brandRow = `<div class="rowi"><span class="icon">🎨</span><div><div class="nm">Bộ nhận diện thương hiệu</div><div class="sub">Tự thiết kế tem thương hiệu in lên ly: màu nền, logo, tên quán, khẩu hiệu</div></div>${S.upg.brandKit ? `<button class="sbtn" data-brand="1">🎨 Thiết kế</button>` : `<button class="sbtn pri" data-buybrand="1" ${S.money < BRAND_COST && !isTrialMode() ? 'disabled' : ''}><b>${isTrialMode() ? 'Miễn phí' : fmt(BRAND_COST)}</b>Mua</button>`}</div>` + (S.upg.brandKit && S.brand ? `<div class="brandprevrow">${temHTML(S.brand, 88, true)}</div>` : '');
+      const tbN = S.tablets || 0, tabRow = `<div class="rowi"><span class="icon">${ico('phone')}</span><div><div class="nm">Tablet nhận đơn online (${tbN}/${APPS.length})</div><div class="sub">Mỗi tablet chạy 1 app giao hàng. Phải có tablet thì đơn SoppiFood mới đổ về, shipper mới tới lấy hàng</div></div>${tbN >= APPS.length ? '<span class="okline">✓</span>' : `<button class="sbtn pri" data-tablet="1" ${S.money < CFG.tablet && !isTrialMode() ? 'disabled' : ''}><b>${isTrialMode() ? 'Miễn phí' : fmtTr(CFG.tablet)}</b>Mua</button>`}</div>`;
+      const eq = `<div class="wl" style="text-align:right;margin-bottom:2px">⚡ +${fmt(CFG.utilPerUpg)}/ngày</div>` + UPG.map(u => `<div class="rowi"><span class="icon">${u.i}</span><div><div class="nm">${u.n}</div><div class="sub">${u.d}</div></div>${S.upg[u.id] ? '<span class="okline">✓</span>' : `<button class="sbtn pri" data-up="${u.id}" ${S.money < u.cost && !isTrialMode() ? 'disabled' : ''}><b>${isTrialMode() ? 'Miễn phí' : fmt(u.cost)}</b>Mua</button>`}</div>`).join('') + brandRow + tabRow;
+      const staff = `<div class="note">Thuê một lần, sau đó trả lương mỗi ngày mở cửa. Có nhân viên thì toàn bộ tiền tip của khách là của nhân viên, quán không nhận. Cho nghỉ thì hết trả lương, gọi đi làm lại lúc nào cũng được, không tốn tiền thuê.</div>` + STAFF.map(u => `<div class="rowi"><span class="icon">${ico('people')}</span><div><div class="nm">${u.n}</div>${u.d ? `<div class="sub">${u.d}</div>` : ''}<div class="sub">Lương ${fmt(CFG[u.wage])}/ngày</div></div>${S.upg[u.id] ? `<button class="sbtn" data-fire="${u.id}"><b>✓</b>Cho nghỉ</button>` : (S.day < u.from && !isTrialMode()) ? `<span class="wl">Ngày ${u.from}</span>` : (u.need && !u.need() && !isTrialMode()) ? `<span class="wl">${typeof u.needT === 'function' ? u.needT() : u.needT}</span>` : (S.hired || {})[u.id] ? `<button class="sbtn pri" data-hire="${u.id}"><b>Gọi</b>đi làm</button>` : `<button class="sbtn pri" data-hire="${u.id}" ${S.money < u.cost && !isTrialMode() ? 'disabled' : ''}><b>${isTrialMode() ? 'Miễn phí' : (u.cost ? fmt(u.cost) : 'Không phí')}</b>Thuê</button>`}</div>`).join('');
       $('pane').innerHTML = subTabs('upg', [[ico('teapot') + ' Trà', tea], [ico('strawberry') + ' Hương', flav], [ico('pearlbowl') + ' Topping', top], [ico('tools') + ' Trang bị', eq], [ico('people') + ' Nhân viên', staff], [ico('phone') + ' Online', onlineCard()]]);
       bindSub('upg');
       $('pane').onclick = e => {
         const a = e.target.closest('[data-un]'), b = e.target.closest('[data-up]'), hi = e.target.closest('[data-hire]'), fi = e.target.closest('[data-fire]'), bb = e.target.closest('[data-buybrand]'), bd = e.target.closest('[data-brand]'), bt = e.target.closest('[data-bottle]'), tb = e.target.closest('[data-tablet]'), aj = e.target.closest('[data-join]');
-        if (bt) { const k = bt.dataset.bottle, c = bottleCost(k); if (S.money < c) return; S.money -= c; addStock(k, CFG.bottleN); const g = S.cur.ing[k] = S.cur.ing[k] || { q: 0, v: 0 }; g.q += CFG.bottleN; g.v += c; syncFlav(); save(); toast('Đã mua chai ' + low(ITEMS[k].n) + ': ' + qty(k) + ' ly'); refreshPrep(1); return }
+        if (bt) { const k = bt.dataset.bottle, c = bottleCost(k); if (S.money < c && !isTrialMode()) return; const cost = isTrialMode() ? 0 : c; if (cost > 0) S.money -= cost; addStock(k, CFG.bottleN); const g = S.cur.ing[k] = S.cur.ing[k] || { q: 0, v: 0 }; g.q += CFG.bottleN; g.v += cost; syncFlav(); save(); toast('Đã mua chai ' + low(ITEMS[k].n) + ': ' + qty(k) + ' ly'); refreshPrep(1); return }
         if ((a || b || hi || bb || tb || aj) && inDebt()) { toast('Đang nợ, trả xong mới mua được'); return }
-        if (tb) { if ((S.tablets || 0) >= APPS.length || S.money < CFG.tablet) return; S.money -= CFG.tablet; S.cur.equip.push({ n: 'Tablet nhận đơn online', v: CFG.tablet }); S.tablets = (S.tablets || 0) + 1; save(); toast('Đã mua tablet (' + S.tablets + '/' + APPS.length + ')'); refreshPrep(); return }
-        if (aj) { const ap = APPS.find(x => x.id === aj.dataset.join); if (!ap || S.money < ap.fee) return; S.money -= ap.fee; S.cur.equip.push({ n: 'Gia nhập ' + ap.n, v: ap.fee }); S.apps = S.apps || {}; S.apps[ap.id] = true; save(); toast('Đã gia nhập ' + ap.n + ((S.tablets || 0) < APPS.filter(appJoined).length ? '. Nhớ mua thêm tablet nhé' : '')); refreshPrep(); return }
-        if (bb) { if (S.money < BRAND_COST) return; S.money -= BRAND_COST; S.cur.equip.push({ n: 'Bộ nhận diện thương hiệu', v: BRAND_COST }); S.upg.brandKit = true; save(); toast('Đã mua bộ nhận diện thương hiệu'); refreshPrep(); setTimeout(brandDlg, 60); return }
+        if (tb) { if ((S.tablets || 0) >= APPS.length || (S.money < CFG.tablet && !isTrialMode())) return; if (!isTrialMode()) S.money -= CFG.tablet; S.cur.equip.push({ n: 'Tablet nhận đơn online', v: isTrialMode() ? 0 : CFG.tablet }); S.tablets = (S.tablets || 0) + 1; save(); toast('Đã mua tablet (' + S.tablets + '/' + APPS.length + ')'); refreshPrep(); return }
+        if (aj) { const ap = APPS.find(x => x.id === aj.dataset.join); if (!ap || (S.money < ap.fee && !isTrialMode())) return; if (!isTrialMode()) S.money -= ap.fee; S.cur.equip.push({ n: 'Gia nhập ' + ap.n, v: isTrialMode() ? 0 : ap.fee }); S.apps = S.apps || {}; S.apps[ap.id] = true; save(); toast('Đã gia nhập ' + ap.n + ((S.tablets || 0) < APPS.filter(appJoined).length ? '. Nhớ mua thêm tablet nhé' : '')); refreshPrep(); return }
+        if (bb) { if (S.money < BRAND_COST && !isTrialMode()) return; if (!isTrialMode()) S.money -= BRAND_COST; S.cur.equip.push({ n: 'Bộ nhận diện thương hiệu', v: isTrialMode() ? 0 : BRAND_COST }); S.upg.brandKit = true; save(); toast('Đã mua bộ nhận diện thương hiệu'); refreshPrep(); setTimeout(brandDlg, 60); return }
         if (bd) { brandDlg(); return }
         const mo = e.target.closest('[data-moff]'), mn = e.target.closest('[data-mon]');
         if (mo) {
@@ -6142,18 +6164,27 @@
         if (mn) { const k = mn.dataset.mon; S.off = S.off || {}; delete S.off[k]; S.unlocked[k] = true; save(); toast('Đã thêm lại ' + ITEMS[k].n + ' vào menu'); refreshPrep(1); return }
         if (hi) {
           const u = STAFF.find(x => x.id === hi.dataset.hire); S.hired = S.hired || {}; let rest = '';
-          if (u.id === 'robot') { if (S.upg.staff1 || S.upg.staff2 || S.upg.staff3) rest = '. Nhân viên phụ quầy 1, 2 và pha chế được cho nghỉ'; S.upg.staff1 = false; S.upg.staff2 = false; S.upg.staff3 = false; }
-          else if (u.id === 'staff1') { if (S.upg.robot || S.upg.staff3) rest = S.upg.robot ? '. Nhân viên Lượng toàn năng được cho nghỉ' : '. Nhân viên phụ quầy 2 được cho nghỉ'; S.upg.robot = false; S.upg.staff3 = false; }
-          else if (u.id === 'staff2') { if (S.upg.robot) rest = '. Nhân viên Lượng toàn năng được cho nghỉ'; S.upg.robot = false; }
-          else if (u.id === 'staff3') { if (S.upg.robot || S.upg.staff1) rest = S.upg.robot ? '. Nhân viên Lượng toàn năng được cho nghỉ' : '. Nhân viên phụ quầy được cho nghỉ'; S.upg.robot = false; S.upg.staff1 = false; }
+          if (u.id === 'robot') {
+            const hadOthers = S.upg.staff1 || S.upg.staff2 || S.upg.staff3 || S.upg.staffOn;
+            const parts = [];
+            if (S.upg.staff1 || S.upg.staff3) parts.push('nhân viên phụ quầy');
+            if (S.upg.staff2) parts.push('pha chế');
+            if (S.upg.staffOn) parts.push('đơn online');
+            if (parts.length) rest = '. ' + parts.map(p => p.charAt(0).toUpperCase() + p.slice(1)).join(', ') + ' được cho nghỉ (Lượng kiêm hết rồi)';
+            S.upg.staff1 = false; S.upg.staff2 = false; S.upg.staff3 = false; S.upg.staffOn = false;
+          }
+          else if (u.id === 'staff1') { if (S.upg.robot || S.upg.staff3) rest = S.upg.robot ? '. Lượng Toàn Năng được cho nghỉ' : '. Nhân viên phụ quầy 2 được cho nghỉ'; S.upg.robot = false; S.upg.staff3 = false; }
+          else if (u.id === 'staff2') { if (S.upg.robot) rest = '. Lượng Toàn Năng được cho nghỉ'; S.upg.robot = false; }
+          else if (u.id === 'staff3') { if (S.upg.robot || S.upg.staff1) rest = S.upg.robot ? '. Lượng Toàn Năng được cho nghỉ' : '. Nhân viên phụ quầy được cho nghỉ'; S.upg.robot = false; S.upg.staff1 = false; }
           else { const oth = { guard1: 'guard2', guard2: 'guard1' }[u.id], othU = oth && S.upg[oth] ? STAFF.find(x => x.id === oth) : null; if (othU) rest = '. ' + othU.n + ' được cho nghỉ'; if (oth) S.upg[oth] = false; }
           if (S.hired[u.id]) { S.upg[u.id] = true; save(); toast(u.n + ' đi làm lại' + rest); refreshPrep(); return }
-          if (S.money < u.cost) { return }
-          S.money -= u.cost; S.cur.equip.push({ n: 'Thuê ' + u.n, v: u.cost }); S.upg[u.id] = true; S.hired[u.id] = true; save(); toast('Đã thuê ' + u.n + rest); refreshPrep(); return
+          if (S.money < u.cost && !isTrialMode()) { return }
+          const c = isTrialMode() ? 0 : u.cost;
+          if (c > 0) S.money -= c; S.cur.equip.push({ n: 'Thuê ' + u.n, v: c }); S.upg[u.id] = true; S.hired[u.id] = true; save(); toast('Đã thuê ' + u.n + rest); refreshPrep(); return
         }
         if (fi) { const u = STAFF.find(x => x.id === fi.dataset.fire); ask(`<h2>Cho ${u.n.toLowerCase()} nghỉ?</h2><p>Những ngày nghỉ không phải trả lương. Muốn gọi đi làm lại thì bấm Gọi đi làm, không tốn tiền thuê.</p>`, [['Huỷ', () => { }], ['Cho nghỉ', () => { S.upg[u.id] = false; save(); toast('Đã cho nghỉ'); refreshPrep() }, 1]]); return }
-        if (a) { const k = a.dataset.un; if (S.money < ITEMS[k].unlock) return; S.money -= ITEMS[k].unlock; S.cur.equip.push({ n: 'Công thức ' + ITEMS[k].n, v: ITEMS[k].unlock }); S.unlocked[k] = true; save(); toast('Đã thêm ' + ITEMS[k].n + ' vào menu'); refreshPrep(1) }
-        if (b) { const u = UPG.find(x => x.id === b.dataset.up); if (S.money < u.cost) return; S.money -= u.cost; S.cur.equip.push({ n: u.n, v: u.cost }); S.upg[u.id] = true; save(); toast('Đã lắp ' + u.n); refreshPrep() }
+        if (a) { const k = a.dataset.un; if (S.money < ITEMS[k].unlock && !isTrialMode()) return; const c = isTrialMode() ? 0 : ITEMS[k].unlock; if (c > 0) S.money -= c; S.cur.equip.push({ n: 'Công thức ' + ITEMS[k].n, v: c }); S.unlocked[k] = true; save(); toast('Đã thêm ' + ITEMS[k].n + ' vào menu'); refreshPrep(1) }
+        if (b) { const u = UPG.find(x => x.id === b.dataset.up); if (S.money < u.cost && !isTrialMode()) return; const c = isTrialMode() ? 0 : u.cost; if (c > 0) S.money -= c; S.cur.equip.push({ n: u.n, v: c }); S.upg[u.id] = true; save(); toast('Đã lắp ' + u.n); refreshPrep() }
       };
     }
     /* tem: tên quán luôn hiện đủ. Kiểu chữ: thẳng (tự thu nhỏ, dài quá thì xuống 2 dòng), cong trên, cong dưới */
@@ -6824,17 +6855,25 @@
       }, 350)
     }
     function staffTick(dt) {
-      if (!S.upg.staff2) return;
+      // staff2 (nhân viên pha chế) hoặc robot kiêm pha chế khi rảnh
+      if (!S.upg.staff2 && !S.upg.robot) return;
       if (R.st2) {
         const i = R.slots.findIndex(x => x && x.id === R.st2.id), c = R.slots[i];
         if (!c) { stDone(); return }
         R.st2.t -= dt; if (R.st2.t > 0) return; staffStep(c, i); return
       }
       if (R.t <= 0) return;/* đóng cửa rồi: không nhận khách mới */
-      const list = R.slots.filter(Boolean); if (list.length < 2) return;
+      const list = R.slots.filter(Boolean);
+      // staff2 cần ≥2 khách; robot kiêm pha chế: chỉ nhảy vào khi không bận (robotBusy)
+      if (S.upg.robot && !S.upg.staff2) {
+        if (R.robotBusy) return; // robot đang làm việc khác
+        // robot kiêm luôn: không cần điều kiện list.length >= 2
+      } else {
+        if (list.length < 2) return;
+      }
       const can = c => c.cups.some((o, j) => !c.done[j] && needs(o).every(k => qty(k) > 0));
       const cand = list.filter(c => c.id !== R.focus && can(c)).sort((a, b) => a.pat / a.max - b.pat / b.max)[0];
-      if (cand) { R.st2 = { id: cand.id, t: st2T() }; renderLane(); renderPanel() }
+      if (cand) { R.st2 = { id: cand.id, t: S.upg.robot ? st2T() * 0.7 : st2T() }; renderLane(); renderPanel() }
     }
     const st2T = () => 2.5 + Math.random();/* nhanh như nhân viên phụ quầy: ~3 giây mỗi ly */
     function stDone() { if (R.t < 0) R.otT = Math.min(R.otT || 0, R.t); R.st2 = null; renderLane(); renderPanel() }
@@ -6858,11 +6897,17 @@
       if (!c.cups.some((x, k) => !c.done[k] && !skip(k))) stFinish(c, i)
     }
     /* nhân viên đơn online: nhận trọn 1 đơn online, mỗi ly ~1 giây, 0,5% làm hỏng ly phải đổ bỏ */
+    /* Lượng toàn năng (robot) cũng kiêm luôn đơn online khi không có nhân viên online riêng */
     function staffOnTick(dt) {
-      if (!S.upg.staffOn || !R.running) return;
+      // Cho phép robot (Lượng toàn năng) xử lý đơn online thay nhân viên online khi rảnh
+      if (!R.running) return;
+      const hasOnlineStaff = S.upg.staffOn || S.upg.robot;
+      if (!hasOnlineStaff) return;
       if (R.sto) { const j = R.online.findIndex(x => x.id === R.sto.id); if (j < 0) { R.sto = null; renderLane(); return } R.sto.t -= dt; if (R.sto.t > 0) return; staffOnStep(R.online[j], j); return }
+      // Robot chỉ nhận đơn online khi không bận làm quầy
+      if (S.upg.robot && !S.upg.staffOn && R.robotBusy) return;
       const cand = R.online.filter(c => c.id !== R.focus || !cup.used).sort((a, b) => a.pat / a.max - b.pat / b.max)[0];
-      if (cand) { if (cand.id === R.focus) R.focus = null; R.sto = { id: cand.id, t: 1 }; renderLane(); renderPanel() }
+      if (cand) { if (cand.id === R.focus) R.focus = null; R.sto = { id: cand.id, t: S.upg.robot ? 0.7 : 1 }; renderLane(); renderPanel() }
     }
     function staffOnStep(c, j) {
       const q = c.cups.findIndex((o, k) => !c.done[k] && !(c.skip && c.skip[k]));
@@ -7111,7 +7156,7 @@
       const app = pickApp(); if (!app) return;
       { const o = genOrder(); if (o.so) return; R.online.push(mkOnline(app, [o])) } renderOnline();
     }
-    /* đơn lớn: mỗi 30 ngày Baemin có 1 đơn 5–10 ly, rơi vào ngày ngẫu nhiên */
+    /* đơn lớn: mỗi 30 ngày SoppiFood có 1 đơn 5–10 ly, rơi vào ngày ngẫu nhiên */
     const BIG = { sp: { n: () => 1, min: 5, max: 10 } };
     function planBig() {
       R.bigQ = []; const sc = S.bigSched = S.bigSched || {};
@@ -7254,8 +7299,9 @@
       let ch = false, cho = false;
       R.tk = (R.tk || 0) + 1; const upd = R.tk % 5 === 0;
       R.slots.forEach(c => { if (c && c.brat === 'doi' && !c.changed && c.pat < c.max * .72) bratChange(c) });
-      R.slots.forEach((c, i) => { if (!c) return; if (window.modConfig && window.modConfig.infinitePatience) { c.pat = c.max; } else { c.pat -= dt; } if (c.pat <= 0) { R.slots[i] = null; R.today.lost++; const st = Math.random() < .3 ? 2 : 1; addReview(st, 'timeout', false, c); if (c.vip) { addReview(1, 'timeout', false, c); addReview(1, 'timeout', false, c) } ch = true; toast(c.star != null ? c.name + ' phải đi rồi, vẫn để lại 5 sao' : c.name + ' bỏ về, để lại ' + st + ' sao') } else if (upd) updPat(c) });
-      R.online = R.online.filter(c => { if (window.modConfig && window.modConfig.infinitePatience) { c.pat = c.max; } else { c.pat -= dt; } if (c.pat <= 0) { R.today.lost++; addReview(1, 'late', true, c); cho = true; if (R.sto && R.sto.id === c.id) R.sto = null; toast('Tài xế ' + appN(c) + ' huỷ đơn #' + c.id); return false } if (upd) updPat(c); return true });
+      const infPat = (window.modConfig && window.modConfig.infinitePatience) || isTrialMode();
+      R.slots.forEach((c, i) => { if (!c) return; if (infPat) { c.pat = c.max; } else { c.pat -= dt; } if (c.pat <= 0) { R.slots[i] = null; R.today.lost++; const st = Math.random() < .3 ? 2 : 1; addReview(st, 'timeout', false, c); if (c.vip) { addReview(1, 'timeout', false, c); addReview(1, 'timeout', false, c) } ch = true; toast(c.star != null ? c.name + ' phải đi rồi, vẫn để lại 5 sao' : c.name + ' bỏ về, để lại ' + st + ' sao') } else if (upd) updPat(c) });
+      R.online = R.online.filter(c => { if (infPat) { c.pat = c.max; } else { c.pat -= dt; } if (c.pat <= 0) { R.today.lost++; addReview(1, 'late', true, c); cho = true; if (R.sto && R.sto.id === c.id) R.sto = null; toast('Tài xế ' + appN(c) + ' huỷ đơn #' + c.id); return false } if (upd) updPat(c); return true });
       if (ch) renderStreet(); if (cho) renderOnline();
       staffTick(dt); staffOnTick(dt); staffRobotTick(dt);
       const tot = dayLen() * 60;
@@ -7401,6 +7447,17 @@
       S.history.push(r); if (S.history.length > 400) S.history.shift(); S.totalProfit = (S.totalProfit || 0) + profit;
       const broke = S.money < 0;
       let justOnline = false; if (!broke) { S.rankPts = (S.rankPts || 0) + 30; S.best = Math.max(S.best || 0, S.day); S.day++; S.cur = newRec(S.day); rollDay(S.day); if (!S.online && onlineCheck().every(x => x.ok)) { S.online = true; justOnline = true } }
+      // --- TRIAL MODE: đếm ngày và hết hạn ---
+      if (S.trialMode) {
+        S.trialDaysUsed = (S.trialDaysUsed || 0) + 1;
+        if (S.trialDaysUsed >= 7) {
+          S.trialMode = false; // tắt trial sau 7 ngày
+          toast('🎓 Chế độ Chơi Thử đã kết thúc (7/7 ngày). Cảm ơn bạn đã trải nghiệm!', 6000, 1);
+        } else {
+          // Tiếp tục trial: nạp lại kho 999 mỗi ngày
+          Object.keys(S.stock).forEach(k => { S.stock[k] = [{ q: 999, exp: 99999 }] });
+        }
+      }
       save(); autoBak();
       const nextLv = !broke && levelOf(S.day) > levelOf(S.day - 1) ? levelOf(S.day) : 0;
       const showCard = () => {
@@ -7419,7 +7476,7 @@
     <div class="tot"><span>${ico('money')} Két</span><span>${fmt(S.money)}</span></div>
   </div>
   ${broke ? `<p>${ico('trophy')} ${S.best || 0} ngày</p><button class="big" id="go">Mở quán mới</button>`
-            : `${!broke && S.ev ? `<p class="lvup">${ico(EVS[S.ev.id].ic)} Ngày mai: <b>${EVS[S.ev.id].n}</b>. ${evText(S.ev)}</p>` : ''}${nextLv ? `<p class="lvup">${ico('warn')} Từ ngày ${S.day}: ${LV_TXT[nextLv].toLowerCase()}. Đầu ngày sẽ có hướng dẫn.</p>` : ''}${justOnline ? `<p class="lvup">${ico('phone')} Mở đơn online Baemin! ${(S.tablets || 0) ? '' : 'Mua tablet ở Nâng cấp > Trang bị để đơn đổ về.'}</p>` : ''}<button class="sbtn" id="seeSum" style="width:100%;padding:10px;margin-top:6px">${ico('chart')} Tổng kết</button><button class="big" id="go" style="margin-top:8px">Ngày ${S.day} ➜</button>`}`;
+            : `${!broke && S.ev ? `<p class="lvup">${ico(EVS[S.ev.id].ic)} Ngày mai: <b>${EVS[S.ev.id].n}</b>. ${evText(S.ev)}</p>` : ''}${nextLv ? `<p class="lvup">${ico('warn')} Từ ngày ${S.day}: ${LV_TXT[nextLv].toLowerCase()}. Đầu ngày sẽ có hướng dẫn.</p>` : ''}${justOnline ? `<p class="lvup">${ico('phone')} Mở đơn online SoppiFood! ${(S.tablets || 0) ? '' : 'Mua tablet ở Nâng cấp > Trang bị để đơn đổ về.'}</p>` : ''}<button class="sbtn" id="seeSum" style="width:100%;padding:10px;margin-top:6px">${ico('chart')} Tổng kết</button><button class="big" id="go" style="margin-top:8px">Ngày ${S.day} ➜</button>`}`;
         $('modal').hidden = false; $('go').focus();
         const close = tab => { $('modal').hidden = true; if (broke) { const n = S.shopName; S = fresh(); S.shopName = n; save() } R.tab = tab; R.sumMode = 'day'; R.sumIdx = null; renderPrep(); window.scrollTo(0, 0) };
         $('go').onclick = () => close('kho'); if ($('seeSum')) $('seeSum').onclick = () => close('tongket');
@@ -7536,7 +7593,7 @@
         case 7: // Vua Topping
           cur = TOP_KEYS.filter(k => S.unlocked[k]).length; target = TOP_KEYS.length; ok = cur >= target; txt = `${cur}/${target} topping`; break;
         case 8: // Trùm Online
-          ok = !!S.online; cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã mở Baemin' : 'Chưa mở đơn'; break;
+          ok = !!S.online; cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã mở SoppiFood' : 'Chưa mở đơn'; break;
         case 9: // Thương Hiệu Xịn
           ok = !!(S.upg.brandKit && S.brand); cur = ok ? 1 : 0; target = 1; txt = ok ? 'Đã thiết kế tem' : 'Chưa thiết kế'; break;
         case 10: // Đón Khách Ngôi Sao
@@ -7610,9 +7667,9 @@
           <h2 style="color:#e85d8a;font-weight:900;font-size:1.35rem;margin-bottom:8px">CHÚC MỪNG BẠN!</h2>
           <p style="font-size:1.02rem;line-height:1.45;color:#4a3227;margin-bottom:14px">Bạn đã xuất sắc hoàn thành trọn vẹn <b>30/30 Thành Tích</b> và nhận được phần thưởng cao quý nhất:</p>
           <div style="background:#fff3cd;border:2px dashed #f0ad4e;padding:12px;border-radius:14px;font-size:1.2rem;font-weight:900;color:#8a6d3b;margin-bottom:14px">
-            👥  Nhân viên Lượng toàn năng
+            👥  Lượng Toàn Năng
           </div>
-          <p style="font-size:.9rem;color:#7a5a48;line-height:1.4">Nhân viên Lượng toàn năng sẽ tự động phục vụ tất cả khách tại quầy. Vào mục <b>Nâng cấp ➔ Nhân viên</b> để kích hoạt đi làm ngay nhé!</p>
+          <p style="font-size:.9rem;color:#7a5a48;line-height:1.4">Lượng Toàn Năng sẽ tự động phục vụ tất cả khách tại quầy. Vào mục <b>Nâng cấp ➔ Nhân viên</b> để kích hoạt đi làm ngay nhé!</p>
         </div>
       `, [
         ['Đã nhận quà 🚀', () => { S.claimedRobotPopup = true; save(); sfx('cash'); refreshPrep(); }, 1]
@@ -7653,7 +7710,7 @@
             </button>
           ` : doneCount >= 30 ? `
             <button id="btnClaimRobot" style="background:linear-gradient(135deg,#e85d8a 0%,#c24c69 100%);color:#fff;padding:11px 24px;font-weight:900;font-size:0.98rem;border-radius:12px;cursor:pointer;border:none;box-shadow:0 4px 12px rgba(232,93,138,0.4);display:flex;align-items:center;gap:6px;">
-              🎁 Nhận Quà (Nhân viên Lượng toàn năng)
+              🎁 Nhận Quà (Lượng Toàn Năng)
             </button>
           ` : `
             <button disabled style="background:#e9ecef;color:#6c757d;padding:10px 20px;font-weight:bold;font-size:0.9rem;border-radius:12px;border:1px solid #ced4da;opacity:0.9;cursor:not-allowed;">
@@ -7664,7 +7721,7 @@
 
         <div style="margin-top:10px;">
           <div style="display:flex;justify-content:space-between;font-size:0.82rem;font-weight:bold;color:#8a6d3b;margin-bottom:4px;">
-            <span>🎁 Phần thưởng: <b>Nhân viên Lượng toàn năng</b></span>
+            <span>🎁 Phần thưởng: <b>Lượng Toàn Năng</b></span>
             <span>${doneCount}/30 Thành tích (${overallPct}%)</span>
           </div>
           <div class="ach-bar-bg" style="height:10px;background:rgba(0,0,0,0.08);">
@@ -7824,7 +7881,7 @@
   ${oRow('Lương nhân viên phụ quầy', 'wage1', CFG.wage1, 5000, 'đ')}
   ${oRow('Lương nhân viên pha chế', 'wage2', CFG.wage2, 5000, 'đ')}
   ${oRow('Lương nhân viên phụ quầy 2', 'wage3', CFG.wage3, 5000, 'đ')}
-  ${oRow('Lương Nhân viên Lượng toàn năng', 'wageRobot', CFG.wageRobot, 5000, 'đ')}
+  ${oRow('Lương Lượng Toàn Năng', 'wageRobot', CFG.wageRobot, 5000, 'đ')}
   ${oRow('Lương nhân viên đơn online', 'wageOn', CFG.wageOn, 5000, 'đ')}
   ${oRow('Giá 1 chai hương', 'bottle', CFG.bottle, 5000, 'đ')}
   ${oRow('Giá tablet', 'tablet', CFG.tablet, 100000, 'đ')}
@@ -7847,7 +7904,7 @@
   ${oRow('Ngưỡng doanh thu năm không chịu thuế', 'taxThreshold', CFG.taxThreshold, 1000000, 'đ')}
   ${oRow('Thuế GTGT trên doanh thu', 'vat', CFG.vat, 0.5, '%')}
   ${oRow('Thuế TNCN trên doanh thu', 'pit', CFG.pit, 0.5, '%')}
-  ${oRow('Trộm: két trên', 'thiefMoney', CFG.thiefMoney, 1000000, 'đ')}
+  ${oRow('Trộm: két trên', 'thiefMoney', CFG.thiefMoney, 5000000, 'đ')}
   ${oRow('Trộm: trước ngày', 'thiefDay', CFG.thiefDay, 1, '')}
   ${oRow('Trộm: chừa lại trong két', 'thiefLeft', CFG.thiefLeft, 50000, 'đ')}
   ${oRow('Mã chủ game (chỉ số)', 'ownerPin', CFG.ownerPin, 1, '')}
@@ -8355,7 +8412,8 @@
     <button class="setb" id="sBak"><span>${ico('box')}</span>Sao lưu tiến trình<small>${S.bakDay ? 'Lần cuối: ngày ' + S.bakDay : 'Chưa sao lưu'}</small></button>
     <button class="setb" id="sAuto"><span>${ico('calendar')}</span>Khôi phục bản tự lưu<small>Game tự lưu 3 cuối ngày gần nhất</small></button>
     <button class="setb" id="sRes"><span>${ico('reload')}</span>Khôi phục từ mã</button>
-    <button class="setb warnb" id="sReset"><span>${ico('reload')}</span>Chơi lại từ đầu</button></div>
+    <button class="setb warnb" id="sReset"><span>${ico('reload')}</span>Chơi lại từ đầu</button>
+    ${showTrialOption() && !trialExpired() ? `<button class="setb" id="sTrial" style="background:linear-gradient(135deg,#a8edea,#fed6e3);border:2px solid #a0d9d5;color:#2a6b68;font-weight:900;"><span>🎮</span>Chế Độ Chơi Thử<small>${S.trialMode ? 'Đang bật · ' + (7-(S.trialDaysUsed||0)) + ' ngày còn lại' : 'Mở tất cả 7 ngày miễn phí'}</small></button>` : ''}</div>
     <button class="big" id="sClose" style="margin-top:12px">Đóng</button>`;
 
       $('modal').hidden = false;
@@ -8384,13 +8442,44 @@
         sBak: backupDlg,
         sAuto: autoRestoreDlg,
         sRes: () => restoreDlg(),
-        sReset: () => ask('<div class="pbig">' + ico('reload') + '</div><h2>Chơi lại từ đầu?</h2>', [['Huỷ', showSettings], ['Xoá và chơi lại', () => { const n = S.shopName; S = fresh(); S.shopName = n; save(); R.tab = 'kho'; renderPrep() }, 1]])
+        sReset: () => ask('<div class="pbig">' + ico('reload') + '</div><h2>Chơi lại từ đầu?</h2>', [['Huỷ', showSettings], ['Xoá và chơi lại', () => { const n = S.shopName; S = fresh(); S.shopName = n; save(); R.tab = 'kho'; renderPrep() }, 1]]),
+        sTrial: () => {
+          if (S.trialMode) {
+            // Tắt trial
+            ask('<div class="pbig">🎮</div><h2>Tắt Chế Độ Chơi Thử?</h2><p>Vẫn giữ lại dữ liệu đã chơi. Số ngày đã dùng: ' + (S.trialDaysUsed||0) + '/7.</p>', [['Huỷ', showSettings], ['Tắt chế độ thử', () => { S.trialMode = false; save(); showSettings() }, 1]]);
+          } else {
+            // Bật trial
+            ask('<div class="pbig">🎮</div><h2>Bật Chế Độ Chơi Thử?</h2><p>Mở tất cả trà, hương, topping, kho 999 không hết hạn, vô hạn kiên nhẫn khách, cấp 3 ngay từ đầu. <b>Chỉ hoạt động 7 ngày, sau đó tự tắt.</b></p>', [['Huỷ', showSettings], ['Bật ngay 🎉', () => { activateTrial(); showSettings() }, 1]]);
+          }
+        }
       };
 
       Object.keys(handlers).forEach(id => {
         const el = $(id);
         if (el) el.onclick = handlers[id];
       });
+    }
+
+    function activateTrial() {
+      if (!S) return;
+      S.trialMode = true;
+      S.trialDaysUsed = S.trialDaysUsed || 0;
+      S.online = true;
+      S.tablets = Math.max(S.tablets || 0, APPS.length);
+      APPS.forEach(ap => { S.apps = S.apps || {}; S.apps[ap.id] = true; });
+      S.hired = S.hired || {};
+      STAFF.forEach(u => { S.hired[u.id] = true; });
+      UPG.forEach(u => { S.upg[u.id] = true; });
+      S.upg.brandKit = true;
+      S.upg.robot = true;
+      S.upg.staff1 = false; S.upg.staff2 = false; S.upg.staff3 = false; S.upg.staffOn = false;
+      Object.keys(ITEMS).forEach(k => {
+        S.unlocked[k] = true;
+        S.stock[k] = [{ q: 999, exp: 99999 }];
+      });
+      save();
+      toast('🎉 Đã bật Chế Độ Chơi Thử! Mở khóa tất cả Trang Bị, Nhân Viên & Kho max 999!', 5000);
+      if (R.mode === 'prep') renderPrep();
     }
 
     /* ---------- BOOT ---------- */
