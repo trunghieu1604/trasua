@@ -736,17 +736,14 @@
       S.upg.ac = true;
       S.upg.brandKit = true;
 
-      // 4. Nhân viên & Auto Robot
+      // 4. Nhân viên & Auto Robot (Thuê tất cả nhân viên nhưng chỉ bật Lượng Toàn Năng để tuân thủ quy tắc dùng 1 người)
       if (getH().STAFF) {
         S.hired = S.hired || {};
         getH().STAFF.forEach((s) => {
-          S.upg[s.id] = true;
           S.hired[s.id] = true;
+          S.upg[s.id] = false; // Mặc định các nhân viên khác ở trạng thái nghỉ (Gọi đi làm)
         });
-        S.upg.staff1 = false;
-        S.upg.staff2 = true;
-        S.upg.staff3 = true;
-        S.upg.robot = true;
+        S.upg.robot = true; // Chỉ bật Lượng Toàn Năng kiêm luôn tất cả công việc
       }
 
       // 5. App Baemin & Tablet & Brand
@@ -820,6 +817,19 @@
       const hasAdmin = S.reviews.some(r => r.n && r.n.includes('TRUNG HIẾU'));
       if (!hasAdmin) {
         S.reviews = [...specialReviews, ...extraReviews, ...S.reviews];
+      }
+      // Đảm bảo luôn có ít nhất 10 đánh giá giao tận nơi online (o: true) để mở trọn vẹn Thành tích #27 (Phục Vụ Siêu Tốc)
+      let onlineCount = S.reviews.filter(r => r.o).length;
+      if (onlineCount < 10) {
+        for (let i = onlineCount + 1; i <= 10; i++) {
+          S.reviews.unshift({
+            n: `Khách Hàng Online #${i}`,
+            t: 'Giao hàng siêu nhanh, trà sữa lạnh ngon tuyệt!',
+            s: 5,
+            d: Math.max(1, S.day),
+            o: true
+          });
+        }
       }
 
       commitState('🌟 ĐÃ MỞ KHÓA FULL GAME 100%! (30/30 Thành Tích & TOP 1 BXH 2000 pt)');
