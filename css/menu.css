@@ -145,6 +145,15 @@
   scrollbar-width: none;
   flex-shrink: 0;
   border-bottom: 1.5px solid var(--line, #ead7bd);
+  user-select: none;
+  -webkit-user-select: none;
+  cursor: grab;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tts-mod-tabs:active,
+.tts-mod-tabs.dragging {
+  cursor: grabbing;
 }
 
 .tts-mod-tabs::-webkit-scrollbar {
@@ -210,11 +219,9 @@
 }
 
 .tts-sec-title {
-  font-size: 0.85rem;
+  font-size: 0.92rem;
   font-weight: 800;
-  color: var(--counter-top, #a8714c);
-  text-transform: uppercase;
-  letter-spacing: 0.4px;
+  color: var(--ink, #3a2317);
   display: flex;
   align-items: center;
   gap: 6px;
