@@ -5678,8 +5678,8 @@
       sfx('star');
       head();
       if (R.mode === 'prep') refreshPrep();
-      ask(`<div class="pbig">👑</div><h2>ADMIN Trung Hiếu Ghé Thăm!</h2><p>🎉 <b>Admin Trung Hiếu</b> vừa tới thăm quán trà sữa của bạn và lì xì <b>${fmt(giftVal)}</b> cho bạn</p><p class="lvup">Chúc quán buôn may bán đắt và sớm đạt TOP 1 BXH! 🚀</p>`,
-        [['Cảm ơn Admin 🚀', () => { head(); }, 1]]);
+      ask(`<div class="pbig">👑</div><h2>ADMIN Trung Hiếu Ghé Thăm!</h2><p>👑 <b>ADMIN</b> vừa tới thăm quán của bạn và lì xì <b>${fmt(giftVal)}</b> cho bạn</p><p class="lvup">Chúc quán buôn may bán đắt và sớm đạt TOP 1 BXH!</p>`,
+        [['Cảm ơn Admin', () => { head(); }, 1]]);
     }
 
     const sellMax = k => k === 'L' ? CFG.sizeCap : CFG.itemCap * 2;
@@ -6812,7 +6812,7 @@
     }
     function staffHelp() {
       if (!(S.upg.staff1 || S.upg.staff3) || !R.running || R.t <= 0) return; const f = focusCust(), o = f && f.order; if (!o || o.size !== cup.size || cup.base) return;
-      if (!qty(o.base)) return; R.helping = true; const oops = Math.random() < .1, target = oops ? .6 : .8, nb = (R.s1n = (R.s1n || 0) + 1), bad = (R.s1bad || []).includes(nb); let bdesc = '';
+      if (!qty(o.base)) return; R.helping = true; const oops = S.upg.robot ? false : Math.random() < .1, target = oops ? .6 : .8, nb = (R.s1n = (R.s1n || 0) + 1), bad = S.upg.robot ? false : (R.s1bad || []).includes(nb); let bdesc = '';
       setTimeout(() => {
         if (!R.running || !R.helping) { R.helping = false; return }
         addIng('base', o.base); if (cup.base !== o.base) { R.helping = false; coach(); return }
@@ -6887,7 +6887,7 @@
       const mine = cup; cup = newCup(); cup.size = o.size; if (!useCup()) { cup = mine; (c.skip = c.skip || [])[j] = true; R.st2.t = .4; return }
       [o.base, ...(o.flav ? [o.flav] : []), ...o.tops].forEach(k => { if (qty(k)) consume(k) });
       Object.assign(cup, { base: o.base, flav: o.flav || null, tops: [...o.tops], cheese: !!o.cheese, sugar: o.sugar, ice: o.ice, fill: .8, used: true });
-      if (Math.random() < .005) {
+      if (Math.random() < .005 && !S.upg.robot) {
         const was = cup.tops; cup.tops = was.length ? [] : [TOP_KEYS.find(k => S.unlocked[k])];/* 0,5% làm sai: bị đổ, làm lại */
         toast('Nhân viên pha chế làm sai ly ' + (j + 1) + ' của ' + c.name + ': ' + (was.length ? 'quên ' + was.map(k => low(ITEMS[k].n)).join(', ') : 'bỏ nhầm ' + low(ITEMS[cup.tops[0]].n)) + '. Ly bị đổ, làm lại', 5000, 1)
       }
@@ -6917,7 +6917,7 @@
       const mine = cup; cup = newCup(); cup.size = o.size; if (!useCup()) { cup = mine; (c.skip = c.skip || [])[q] = true; R.sto.t = .3; return }
       [o.base, ...(o.flav ? [o.flav] : []), ...o.tops].forEach(k => { if (qty(k)) consume(k) });
       Object.assign(cup, { base: o.base, flav: o.flav || null, tops: [...o.tops], cheese: !!o.cheese, sugar: o.sugar, ice: o.ice, fill: .8, used: true });
-      if (Math.random() < .005) { spoilCup(); cup = mine; R.sto.t = 1; toast('Nhân viên đơn online làm hỏng 1 ly của đơn #' + c.id + ', đổ bỏ làm lại', 5000, 1); renderCup(); return }
+      if (Math.random() < .005 && !S.upg.robot) { spoilCup(); cup = mine; R.sto.t = 1; toast('Nhân viên đơn online làm hỏng 1 ly của đơn #' + c.id + ', đổ bỏ làm lại', 5000, 1); renderCup(); return }
       c.order = o; serveOnline(j); cup = mine; renderCup(); renderPanel(); coach();
       if (!R.online.includes(c)) { R.sto = null; renderLane(); return }
       R.sto.t = 1
@@ -6956,7 +6956,7 @@
         renderCup(); renderPanel();
       }
       if (!cup.base) {
-        if (!qty(o.base)) { R.robotBusy = false; spoilCup(); renderCup(); renderPanel(); return }
+        if (!qty(o.base)) { R.robotBusy = false; cup = newCup(); renderCup(); renderPanel(); return }
         addIng('base', o.base);
         R.pour = o.base; R.staffPouring = true; pourSnd(true);
         const el = $('q3b_' + o.base); if (el) el.classList.add('q3on');
@@ -6964,7 +6964,7 @@
         const stepPour = now => {
           if (!R.running || !R.slots.includes(c)) {
             R.pour = null; R.staffPouring = false; pourSnd(false);
-            if (el) el.classList.remove('q3on'); R.robotBusy = false; spoilCup(); renderCup(); renderPanel(); return;
+            if (el) el.classList.remove('q3on'); R.robotBusy = false; cup = newCup(); renderCup(); renderPanel(); return;
           }
           cup.fill = Math.min(targetFill, (cup.fill || 0) + (now - last) / 1000 * 0.75);
           last = now; renderCup();
@@ -6989,7 +6989,7 @@
       ];
       const nextAdd = () => {
         if (!R.running || !R.slots.includes(c)) {
-          R.robotBusy = false; spoilCup(); renderCup(); renderPanel(); return;
+          R.robotBusy = false; cup = newCup(); renderCup(); renderPanel(); return;
         }
         if (!adds.length) {
           if (lv >= 2 && !cup.ice) cup.ice = 'Không đá';
@@ -6998,7 +6998,7 @@
             if (R.running && R.slots.includes(c)) {
               sealServe(1);
             } else {
-              spoilCup(); renderCup(); renderPanel();
+              cup = newCup(); renderCup(); renderPanel();
             }
             setTimeout(() => { R.robotBusy = false }, 1200);
           }, 300);
@@ -7021,7 +7021,7 @@
           if (kind === 'top' && cup.tops.length > n && ITEMS[k].g !== 'foam') (cup.vt = cup.vt || []).push({ k, pts: q3layer(k) });
           const z = $('q3b_' + k); if (z) q3pop(z); renderCup();
         } else {
-          R.robotBusy = false; spoilCup(); toast('Robot dừng pha do hết ' + low(ITEMS[k].n)); renderCup(); renderPanel(); return;
+          R.robotBusy = false; cup = newCup(); toast('Lượng Toàn Năng tạm dừng do hết ' + low(ITEMS[k].n)); renderCup(); renderPanel(); return;
         }
         setTimeout(nextAdd, 350);
       };
