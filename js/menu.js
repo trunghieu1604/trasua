@@ -346,12 +346,12 @@
 
               <div class="tts-btn-grid grid-3">
                 <button class="tts-act-btn success" id="btn-add-10m">+10M</button>
-                <button class="tts-act-btn success" id="btn-add-100m">+100M</button>
-                <button class="tts-act-btn success" id="btn-add-1b">+1B</button>
+                <button class="tts-act-btn success" id="btn-add-20m">+20M</button>
+                <button class="tts-act-btn success" id="btn-add-50m">+50m</button>
               </div>
 
               <div class="tts-input-row">
-                <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="1000000">
+                <input type="number" class="tts-input" id="inp-custom-money" placeholder="Nhập số tiền VNĐ..." value="500000">
                 <button class="tts-act-btn pri" id="btn-set-money">✔</button>
               </div>
             </div>
