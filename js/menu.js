@@ -1,4 +1,4 @@
-/* ========== TIỆM TRÀ SỮA - HACK MOD MENU========== */
+/* ========== TIỆM TRÀ SỮA - MOD MENU========== */
 
 (function () {
   'use strict';
@@ -264,7 +264,7 @@
         <div class="tts-mod-header">
           <div class="tts-mod-title">
             <span>🌟</span>
-            <span>MENU - HACK GAME</span>
+            <span>MENU MOD</span>
           </div>
           <button class="tts-mod-close" id="tts-close-btn">&times;</button>
         </div>
@@ -297,7 +297,7 @@
 
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Bảo Vệ VIP (Trộm & Bùng)</div>
+                  <div class="tts-toggle-title">Bảo Vệ VIP</div>
                   <div class="tts-toggle-desc">Tóm gọn 100% khách ôm ly chạy trốn (bùng tiền) và khách kì kèo trả giá, thu hồi đủ 100% tiền.</div>
                 </div>
                 <label class="tts-switch">
@@ -308,7 +308,7 @@
 
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Chặn Hoàn Toàn Khách Hãm Lồn</div>
+                  <div class="tts-toggle-title">Chặn Hoàn Toàn Khách Hãm</div>
                   <div class="tts-toggle-desc">Tắt sạch khách hối thúc, khách đổi ý, khách trả giá, khách khó tính và khách bùng.</div>
                 </div>
                 <label class="tts-switch">
@@ -319,7 +319,7 @@
 
               <div class="tts-toggle-row">
                 <div class="tts-toggle-label">
-                  <div class="tts-toggle-title">Kho Hàng Vĩnh Viễn Không Thiu Hỏng</div>
+                  <div class="tts-toggle-title">Kho Hàng Vĩnh Viễn Không Hết Hạn</div>
                   <div class="tts-toggle-desc">Nguyên liệu trong kho không bao giờ hết hạn, ly pha không bao giờ bị hỏng.</div>
                 </div>
                 <label class="tts-switch">
@@ -345,9 +345,9 @@
               </div>
 
               <div class="tts-btn-grid grid-3">
-                <button class="tts-act-btn success" id="btn-add-10m">+10M</button>
-                <button class="tts-act-btn success" id="btn-add-20m">+20M</button>
-                <button class="tts-act-btn success" id="btn-add-50m">+50M</button>
+                <button class="tts-act-btn pri" id="btn-add-10m">+10M</button>
+                <button class="tts-act-btn pri" id="btn-add-20m">+20M</button>
+                <button class="tts-act-btn pri" id="btn-add-50m">+50M</button>
               </div>
 
               <div class="tts-input-row">
@@ -379,14 +379,14 @@
                 </label>
               </div>
 
-              <button class="tts-act-btn warn" id="btn-clear-debts">💳 Xoá Sạch Mọi Khoản Nợ</button>
+              <button class="tts-act-btn pri" id="btn-clear-debts">💳 Xoá Sạch Mọi Khoản Nợ</button>
             </div>
           </div>
 
           <!-- TAB 3: MỞ KHÓA -->
           <div class="tts-mod-pane" id="pane-unlock">
             <div class="tts-sec-box">
-              <button class="tts-act-btn success full-w" id="btn-unlock-all">🌟 TẤT CẢ (100%)</button>
+              <button class="tts-act-btn pri full-w" id="btn-unlock-all">🌟 TẤT CẢ (100%)</button>
               
               <div class="tts-btn-grid">
                 <button class="tts-act-btn pri" id="btn-unlock-bases">🌟 Cốt Trà</button>
@@ -402,8 +402,8 @@
           <!-- TAB 4: KHO HÀNG -->
           <div class="tts-mod-pane" id="pane-stock">
             <div class="tts-sec-box">
-              <button class="tts-act-btn success full-w" id="btn-fill-stock">📦 NẠP FULL KHO HÀNG</button>
-              <button class="tts-act-btn danger full-w" id="btn-clear-stock">🧹 XOÁ TOÀN BỘ KHO HÀNG</button>
+              <button class="tts-act-btn pri full-w" id="btn-fill-stock">📦 NẠP FULL KHO HÀNG</button>
+              <button class="tts-act-btn pri full-w" id="btn-clear-stock">🧹 XOÁ TOÀN BỘ KHO HÀNG</button>
             </div>
           </div>
 
@@ -434,22 +434,21 @@
               </div>
 
               <div class="tts-btn-grid">
-                <button class="tts-act-btn ${config.autoServe ? 'success' : 'pri'}" id="btn-auto-serve">🤖 Auto 100% (${config.autoServe ? 'BẬT' : 'TẮT'})</button>
-                <button class="tts-act-btn pri" id="btn-set-5stars">⭐(IDOL) Review 5★ </button>
-                <button class="tts-act-btn warn" id="btn-clear-badrev">🧹 Đánh Giá Xấu</button>
-                <button class="tts-act-btn warn" id="btn-skip-day">⏩ Sang Ngày Mới</button>
+                <button class="tts-act-btn pri" id="btn-auto-serve">🤖 Auto 100%</button>
+                <button class="tts-act-btn pri" id="btn-set-5stars">⭐ (IDOL) Review 5★</button>
+                <button class="tts-act-btn pri" id="btn-clear-badrev">🧹 Đánh Giá Xấu</button>
+                <button class="tts-act-btn pri" id="btn-skip-day">⏩ Sang Ngày Mới</button>
               </div>
             </div>
 
             <div class="tts-sec-box">
-              <div class="tts-sec-title">🌤️ Chọn Sự Kiện Hôm Nay</div>
               <div class="tts-btn-grid grid-3">
-                <button class="tts-act-btn" data-ev="hot">☀️ Nắng</button>
-                <button class="tts-act-btn ${config.superstarMode ? 'success' : 'pri'}" id="btn-ev-superstars">🌟🌟 (${config.superstarMode ? 'BẬT' : 'TẮT'})</button>
-                <button class="tts-act-btn" data-ev="students">🎒 Học Sinh</button>
-                <button class="tts-act-btn" data-ev="reviewer">📸 Reviewer</button>
-                <button class="tts-act-btn" data-ev="trend">🔥 Món Hot</button>
-                <button class="tts-act-btn" data-ev="holiday">🎊 Ngày Lễ</button>
+                <button class="tts-act-btn pri" data-ev="hot">☀️ Nắng</button>
+                <button class="tts-act-btn pri" id="btn-ev-superstars">🌟 Siêu Sao</button>
+                <button class="tts-act-btn pri" data-ev="students">🎒 Học Sinh</button>
+                <button class="tts-act-btn pri" data-ev="reviewer">📸 Reviewer</button>
+                <button class="tts-act-btn pri" data-ev="trend">🔥 Món Hot</button>
+                <button class="tts-act-btn pri" data-ev="holiday">🎊 Ngày Lễ</button>
               </div>
             </div>
           </div>
@@ -457,7 +456,11 @@
 
         <!-- Footer -->
         <div class="tts-mod-footer">
-          <span class="tts-status-tag">MenuMod tạo bởi Trung Hiếu</span>
+          <div class="tts-footer-status">
+            <span class="tts-pulse-dot"></span>
+            <span>Trạng Thái : <span class="tts-status-text">Đang hoạt động</span></span>
+          </div>
+          <span class="tts-status-tag">Trung Hiếu</span>
         </div>
       </div>
     `;
@@ -931,8 +934,8 @@
     const updateAutoServeBtn = () => {
       const btn = document.getElementById('btn-auto-serve');
       if (!btn) return;
-      btn.innerText = `🤖 Auto 100% (${config.autoServe ? 'BẬT' : 'TẮT'})`;
-      btn.className = 'tts-act-btn ' + (config.autoServe ? 'success' : 'pri');
+      btn.innerText = `🤖 Auto 100%`;
+      btn.className = 'tts-act-btn pri';
     };
 
     const autoServeBtn = document.getElementById('btn-auto-serve');
@@ -985,8 +988,8 @@
     const updateSuperstarBtn = () => {
       const btn = document.getElementById('btn-ev-superstars');
       if (!btn) return;
-      btn.innerText = `🌟🌟 (${config.superstarMode ? 'BẬT' : 'TẮT'})`;
-      btn.className = 'tts-act-btn ' + (config.superstarMode ? 'success' : 'pri');
+      btn.innerText = `🌟 Siêu Sao`;
+      btn.className = 'tts-act-btn pri';
     };
 
     const superstarBtn = document.getElementById('btn-ev-superstars');
