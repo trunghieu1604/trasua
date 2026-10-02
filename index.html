@@ -5467,14 +5467,15 @@
     const SAVE = 'tsShop2', OWNER_SAVE = 'tsOwner';
 	
     /* ===== PHIÊN BẢN GAME: mỗi lần cập nhật, tăng số và thêm một mục lên ĐẦU danh sách ===== */
-    const GAME_VERSION = '2.4';
+    const GAME_VERSION = '2.4.1';
     const CHANGELOG = [
+	  {v:'2.4.1',d:'02/10/2026', items:['Fix chức năng Chơi Thử','Nâng cấp AnTiCheat 3.0']},
 	  {v:'2.4', d: '02/10/2026', items: ['Lượng Toàn Năng giờ toàn năng thật sự: đơn online + pha chế cho khách chờ lâu, không cần thuê thêm nhân viên nào','Fix lỗi mở Full 100% xóa đánh giá thật của người chơi','Fix lỗi mở Full 100% reset Lv về thấp hơn','Mở Chế Độ Chơi Thử, Mở khóa toàn bộ, Chơi thử trong 7 ngày. Chỉ hiển thị khi chơi lại từ đầu.','Nâng cấp MENU ăn theo chủ đề màu của game, cho đồng bộ màu 100%.']},
 	  {v:'2.3.2',d:'01/10/2026', items:['Chỉnh lại màu sắc cho hợp với chủ đề của game']},
 	  {v:'2.3.1',d:'01/10/2026', items:['Fix lỗi Thành Tích bị mất sau khi đã hoàn thành','Fix lỗi Thống Kê không hoạt động']},
 	  {v:'2.3',d:'01/10/2026', items:['Thêm BXH Quán và Danh Hiệu']},
-	  {v:'2.2',d:'30/10/2026', items:['Thêm 30 Thành Tích','Ngưng cho thuê Lượng Toàn Năng','Lượng Toàn Năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
-	  {v:'2.1',d:'30/10/2026', items:['Nâng cấp AntiCheat 2.0']},
+	  {v:'2.2',d:'30/09/2026', items:['Thêm 30 Thành Tích','Ngưng cho thuê Lượng Toàn Năng','Lượng Toàn Năng sẽ là phần thưởng sau khi bạn hoàn thành đủ 30 Thành tích','Thêm 10 Nghệ Sĩ Việt Nam vào danh sách IDOL']},
+	  {v:'2.1',d:'30/09/2026', items:['Nâng cấp AntiCheat 2.0']},
 	  {v:'2.0.8',d:'29/09/2026', items:['Fix lỗi','Fix màu']},
 	  {v:'2.0.7',d:'28/09/2026', items:['Cơ chế AntiCheat','Chống gian lận tiền bất chính']},
 	  {v:'2.0.6',d:'27/09/2026', items:['Thêm cơ chế mở to màn hình nếu như chơi trực tiếp trên trình duyệt'] },
@@ -5523,7 +5524,7 @@
       itemCap: 50000,            // 1 món (trà, hương, topping) trên mức này: khách chê mắc, quán vắng 80%
       sizeCap: 50000,            // phụ thu size L tối đa; để đúng mức này thì không ai chọn size L, quán vắng 80%
       sizeWarn: 20000,
-      thiefMoney: 80000000, thiefDay: 30, thiefLeft: 500000, // két trên 80.000k trước ngày 30 thì bị trộm, chừa lại 500k
+      thiefMoney: 10000000, thiefDay: 10, thiefLeft: 500000, // két trên 10.000k trước ngày 30 thì bị trộm, chừa lại 500k
       loanLow: 200000,           // két dưới mức này thì cho vay ngân hàng // lương mỗi ngày: nhân viên phụ quầy, nhân viên pha chế
       rent: 40000,               // tiền mặt bằng mỗi ngày
       utilBase: 20000,           // điện nước cơ bản mỗi ngày
@@ -5541,7 +5542,7 @@
     if (!(CFG.cfgVer >= 31)) { CFG.dayMin = 4 } if (!(CFG.cfgVer >= 33)) { CFG.wage1 = 90000; CFG.wage2 = 100000; CFG.cfgVer = 33; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     if (!(CFG.cfgVer >= 35)) { CFG.priceCap = 120000; CFG.itemCap = CFG.itemCap || 50000; CFG.sizeCap = CFG.sizeCap || 50000; }
     if (!(CFG.cfgVer >= 37)) { CFG.sizeWarn = CFG.sizeWarn || 20000; }
-    if (!(CFG.cfgVer >= 39)) { CFG.thiefMoney = 80000000; CFG.thiefDay = 30; CFG.thiefLeft = 500000; CFG.cfgVer = 39; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
+    if (!(CFG.cfgVer >= 39)) { CFG.thiefMoney = 10000000; CFG.thiefDay = 10; CFG.thiefLeft = 500000; CFG.cfgVer = 39; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     if (!(CFG.cfgVer >= 36)) { CFG.teaCap = CFG.teaCap || 40000; CFG.teaCapMatcha = CFG.teaCapMatcha || 50000; Object.assign(CFG.cost, { tra: 4500, matcha: 6000, thai: 5000, hong: 1500, luc: 1500, olong: 2500 }) }
     if (!(CFG.cfgVer >= 37)) { CFG.cfgVer = 37; try { localStorage.setItem(OWNER_SAVE, JSON.stringify(CFG)) } catch (e) { } }
     const LIFE_OLD = { f_vai: 3, f_dao: 3, f_dau: 3, f_nho: 3, f_xoai: 1, f_tao: 3, f_me: 3, f_dua: 1, f_choco: 3, cheese: 1, fmatcha: 1, fsalt: 1, fube: 1, pmtuoi: 1 };
@@ -5851,6 +5852,10 @@
     /* chờ hết màn hình chào và hộp thoại khác rồi mới báo trộm / quà */
     function prepChecks() {
       if (R.mode !== 'prep' || !$('splash').hidden) return; if (!$('modal').hidden) { clearTimeout(R.pcT); R.pcT = setTimeout(prepChecks, 500); return }
+      if (S.trialMode && (S.trialDaysUsed >= 7 || S.day > 7)) {
+        ask('<div class="pbig">🎮</div><h2>Hết Thời Gian Chơi Thử 7 Ngày!</h2><p>Bạn đã hoàn thành trọn vẹn 7 ngày chơi thử. Quán sẽ tự động được làm mới và <b>bắt đầu lại từ Ngày 1</b>.</p>', [['Chơi lại Ngày 1 🔄', () => { deactivateTrial(); }, 1]]);
+        return;
+      }
       if (storeCheck()) return; if (!badCheck() && S.gift) { giftCheck(); return } bakRemind()
     }
     function storeCheck() {
@@ -7333,22 +7338,7 @@
       $('pMus').onclick = () => { AU.mus = !AU.mus; saveAu(); au(); musSync(); $('pMus').textContent = 'Nhạc: ' + (AU.mus ? 'Bật' : 'Tắt') };
       $('pSnd').onclick = () => { AU.on = !AU.on; saveAu(); $('pSnd').textContent = 'Âm thanh: ' + (AU.on ? 'Bật' : 'Tắt') };
     }
-    function askModPin() {
-      ask('<h2>🔑 Mã Admin 🔑</h2><p class="note" style="text-align:center">Nhập mật khẩu Admin để bật Menu Mod</p><input id="pin" type="password" inputmode="numeric" class="pinbox" aria-label="Mã chủ game">',
-        [['Huỷ', () => { R.paused = false; pauseGame() }],
-        ['Mở', (pinVal) => {
-          const p = (pinVal || '').trim();
-          if (p !== (CFG.ownerPin || '1616')) {
-            toast('Sai mật khẩu Admin');
-            R.paused = false; pauseGame();
-            return;
-          }
-          if (typeof window.toggleModMenu === 'function') window.toggleModMenu(true);
-          toast('Đã bật Menu Mod');
-          R.paused = false; pauseGame();
-        }, 1]]);
-      setTimeout(() => $('pin') && $('pin').focus(), 50);
-    }
+	
     function askClose() {
       const waiting = R.slots.filter(Boolean).length + R.online.length;
       ask(`<div class="pbig">${ico('moon')}</div><h2>Đóng cửa hôm nay?</h2><p>Quán nghỉ sớm và chuyển sang tổng kết ngày.${waiting ? ` ${waiting} khách đang chờ sẽ ra về.` : ''}</p>`,
@@ -8323,10 +8313,13 @@
     }
     function passDlg(msg) {
       $('card').onchange = null;
-      $('card').innerHTML = `<h2>🔑Nhập Mật Khẩu Admin🔑</h2><p>Menu Mod</p>
+      $('card').innerHTML = `<h2>🔑 Mã Admin 🔑</h2>
     ${msg ? `<p class="warnline"><b>${esc(msg)}</b></p>` : ''}
-    <input type="password" id="modPassInp" class="rpin" placeholder="Nhập mật khẩu (4 số)…" inputmode="numeric" style="font-size:16px!important;text-align:center;letter-spacing:4px" autofocus>
-    <div class="askbtns"><button class="big" id="modPassGo">Xác nhận</button><button class="sbtn ghost" id="modPassBack">Quay lại</button></div>`;
+    <input type="password" id="modPassInp" inputmode="numeric" style="width:100%;height:44px;min-height:unset;margin:10px 0 12px 0;border:2px solid var(--pink,#ef6f8e);background:var(--panel,#fffaf2);color:var(--ink);border-radius:14px;padding:0 14px;font:inherit;font-size:16px!important;text-align:center;letter-spacing:4px;box-sizing:border-box" autofocus>
+    <div class="askbtns" style="display:flex;flex-direction:column;gap:8px">
+      <button class="sbtn ghost" id="modPassBack" style="width:100%;height:42px;border-radius:14px;margin:0;font-weight:700">Huỷ</button>
+      <button class="big" id="modPassGo" style="width:100%;height:46px;border-radius:14px;margin:0;font-weight:700">Mở</button>
+    </div>`;
       $('modal').hidden = false;
       setTimeout(() => { const el = $('modPassInp'); if (el) el.focus() }, 100);
       const check = () => {
@@ -8426,7 +8419,7 @@
     <button class="setb" id="sAuto"><span>${ico('calendar')}</span>Khôi phục bản tự lưu<small>Game tự lưu 3 cuối ngày gần nhất</small></button>
     <button class="setb" id="sRes"><span>${ico('reload')}</span>Khôi phục từ mã</button>
     <button class="setb warnb" id="sReset"><span>${ico('reload')}</span>Chơi lại từ đầu</button>
-    ${showTrialOption() && !trialExpired() ? `<button class="setb" id="sTrial" style="background:linear-gradient(135deg,#a8edea,#fed6e3);border:2px solid #a0d9d5;color:#2a6b68;font-weight:900;"><span>🎮</span>Chế Độ Chơi Thử<small>${S.trialMode ? 'Đang bật · ' + (7-(S.trialDaysUsed||0)) + ' ngày còn lại' : 'Mở tất cả 7 ngày miễn phí'}</small></button>` : ''}</div>
+    ${showTrialOption() && !trialExpired() ? `<button class="setb" id="sTrial" style="background:linear-gradient(135deg,#a8edea,#fed6e3);border:2px solid #a0d9d5;color:#2a6b68;font-weight:900;"><span>🎮</span>Chơi Thử<small>${S.trialMode ? 'Đang bật · ' + (7-(S.trialDaysUsed||0)) + ' ngày còn lại' : 'Trải nghiệm game'}</small></button>` : ''}</div>
     <button class="big" id="sClose" style="margin-top:12px">Đóng</button>`;
 
       $('modal').hidden = false;
@@ -8458,11 +8451,11 @@
         sReset: () => ask('<div class="pbig">' + ico('reload') + '</div><h2>Chơi lại từ đầu?</h2>', [['Huỷ', showSettings], ['Xoá và chơi lại', () => { const n = S.shopName; S = fresh(); S.shopName = n; save(); R.tab = 'kho'; renderPrep() }, 1]]),
         sTrial: () => {
           if (S.trialMode) {
-            // Tắt trial
-            ask('<div class="pbig">🎮</div><h2>Tắt Chế Độ Chơi Thử?</h2><p>Vẫn giữ lại dữ liệu đã chơi. Số ngày đã dùng: ' + (S.trialDaysUsed||0) + '/7.</p>', [['Huỷ', showSettings], ['Tắt chế độ thử', () => { S.trialMode = false; save(); showSettings() }, 1]]);
+            // Tắt trial - ép chơi lại từ đầu
+            ask('<div class="pbig">🎮</div><h2>Tắt Chế Độ Chơi Thử?</h2><p>Khi tắt Chế Độ Chơi Thử, toàn bộ dữ liệu chơi thử sẽ bị làm mới và quán sẽ <b>bắt đầu lại từ Ngày 1</b>.</p>', [['Huỷ', showSettings], ['Xác Nhận', () => { deactivateTrial(); }, 1]]);
           } else {
             // Bật trial
-            ask('<div class="pbig">🎮</div><h2>Bật Chế Độ Chơi Thử?</h2><p>Mở tất cả trà, hương, topping, kho 999 không hết hạn, vô hạn kiên nhẫn khách, cấp 3 ngay từ đầu. <b>Chỉ hoạt động 7 ngày, sau đó tự tắt.</b></p>', [['Huỷ', showSettings], ['Bật ngay 🎉', () => { activateTrial(); showSettings() }, 1]]);
+            ask('<div class="pbig">🎮</div><h2>Bật Chế Độ Chơi Thử?</h2><p>Mở tất cả trà, hương, topping, kho 999 không hết hạn, vô hạn kiên nhẫn khách, cấp 3 ngay từ đầu. <b>Chỉ hoạt động 7 ngày, sau đó tự reset về Ngày 1.</b></p>', [['Huỷ', showSettings], ['Bật Ngay', () => { activateTrial(); showSettings() }, 1]]);
           }
         }
       };
@@ -8476,7 +8469,8 @@
     function activateTrial() {
       if (!S) return;
       S.trialMode = true;
-      S.trialDaysUsed = S.trialDaysUsed || 0;
+      S.trialDaysUsed = 0;
+      S.day = 1;
       S.online = true;
       S.tablets = Math.max(S.tablets || 0, APPS.length);
       APPS.forEach(ap => { S.apps = S.apps || {}; S.apps[ap.id] = true; });
@@ -8493,6 +8487,24 @@
       save();
       toast('🎉 Đã bật Chế Độ Chơi Thử! Mở khóa tất cả Trang Bị, Nhân Viên & Kho max 999!', 5000);
       if (R.mode === 'prep') renderPrep();
+    }
+
+    function deactivateTrial() {
+      if (!S) return;
+      const n = S.shopName;
+      S = fresh();
+      if (n) S.shopName = n;
+      save();
+      R.plan = {};
+      R.tab = 'kho';
+      document.title = shopName();
+      if (R.mode === 'sell') {
+        R.mode = 'prep';
+        document.body.classList.remove('selling');
+      }
+      $('modal').hidden = true;
+      renderPrep();
+      toast('🔄 Đã tắt Chế Độ Chơi Thử. Quán đã được bắt đầu lại từ Ngày 1!', 5000, 1);
     }
 
     /* ---------- BOOT ---------- */
